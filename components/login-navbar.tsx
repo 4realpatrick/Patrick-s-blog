@@ -5,6 +5,7 @@ import { FaHome } from "react-icons/fa";
 import LanguageController from "./language-controller";
 import Logo from "./logo";
 import { ThemeController } from "./theme-controller";
+import Hint from "./hint";
 const LoginNavbar = () => {
   return (
     <div className="flex justify-between items-center pl-4 h-24">
@@ -20,11 +21,13 @@ const LoginNavbar = () => {
         </Button>
         <LanguageController />
         <ThemeController variant="ghost" />
-        <Button variant="ghost" size="lg" className="text-lg">
-          <Link href="/">
-            <FaHome />
-          </Link>
-        </Button>
+        <Hint descrption="首页" side="top" sideOffset={5}>
+          <Button variant="ghost" size="lg" className="text-lg" asChild>
+            <Link href="/">
+              <FaHome />
+            </Link>
+          </Button>
+        </Hint>
       </div>
     </div>
   );
