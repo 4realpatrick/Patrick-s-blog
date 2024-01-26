@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -13,7 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-theme="light">
-      <body>{children}</body>
+      <body>
+        <Toaster richColors />
+        {children}
+      </body>
     </html>
   );
 }
