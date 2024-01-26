@@ -5,6 +5,7 @@ import Social from "@/components/auth/social";
 import CompositeAlert from "@/components/composite-alert";
 import Link from "next/link";
 import { Frame as LoginFrame } from "../_components/frame";
+import Separator from "@/components/ui/separator";
 const LoginPage = async () => {
   return (
     <LoginFrame
@@ -19,6 +20,7 @@ const LoginPage = async () => {
       }
     >
       <LoginForm />
+      <Separator>或者使用以下方式登录</Separator>
       <Social />
       <CompositeAlert
         title="您无需登录亦可浏览此网站的所有文章，只是部分功能会有所限制"
