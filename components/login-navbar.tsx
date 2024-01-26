@@ -3,15 +3,21 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { FaHome } from "react-icons/fa";
 import LanguageController from "./language-controller";
-import Logo from "./logo";
+import Logo from "./svg-components/logo";
 import { ThemeController } from "./theme-controller";
 import Hint from "./hint";
+import { motion } from "framer-motion";
 const LoginNavbar = () => {
   return (
-    <div className="flex justify-between items-center pl-4 h-24">
+    <motion.div
+      className="flex justify-between items-center pl-4 py-4 shadow-sm"
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="flex items-center">
         <Logo />
-        <span className="pl-4 text-xl text-primary tracking-wider">
+        <span className="pl-4 text-xl text-primary tracking-wider hidden md:inline-block">
           Patrick's blog
         </span>
       </div>
@@ -29,7 +35,7 @@ const LoginNavbar = () => {
           </Button>
         </Hint>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

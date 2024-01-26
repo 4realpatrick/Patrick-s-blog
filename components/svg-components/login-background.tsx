@@ -1,22 +1,15 @@
 "use client";
 import { m, LazyMotion, domAnimation } from "framer-motion";
-import { useEffect, useState } from "react";
-import { moveTo } from "@/constant/animations";
+import { moveTo, showup } from "@/constant/animations";
 const LoginBackground = () => {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) return null;
   return (
     <LazyMotion features={domAnimation}>
-      <svg
-        // width="800"
-        // height="540"
+      <m.svg
         viewBox="0 0 1600 1080"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="rounded-md max-w-[1920px] max-h-[1080px] min-w-[480px] min-h-[270px] shadow-lg"
+        {...showup({ duration: 2 })}
       >
         <g clipPath="url(#clip0_14_357)">
           <rect
@@ -1243,7 +1236,7 @@ const LoginBackground = () => {
             />
           </clipPath>
         </defs>
-      </svg>
+      </m.svg>
     </LazyMotion>
   );
 };
