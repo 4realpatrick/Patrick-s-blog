@@ -20,6 +20,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisterSchema } from "@/schemas";
 import { toast } from "sonner";
 import { register } from "@/actions/register";
+import fetchHandler from "@/lib/fetch-handler";
 
 const RegisterForm = () => {
   const [ispending, startTransition] = useTransition();
@@ -34,9 +35,7 @@ const RegisterForm = () => {
 
   const onSubmit = (value: z.infer<typeof RegisterSchema>) => {
     startTransition(() => {
-      register(value).then((data) => {
-        console.log("data:", data);
-      });
+      register(value).then(fetchHandler);
     });
   };
   return (
