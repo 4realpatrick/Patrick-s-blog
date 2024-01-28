@@ -10,6 +10,8 @@ export default function fetchHandler(
   } = {}
 ) {
   const { success, message, type } = response;
+  // 防止Server返回值有误
+  if (!type || !message) return;
   const { description = "", withTime = true } = options;
   const realDesc = description + withTime ? getRegularTime() : "";
   const toastType = !!type ? type : success ? "success" : "error";
