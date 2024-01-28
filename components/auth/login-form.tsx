@@ -20,6 +20,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginSchema } from "@/schemas";
 import { toast } from "sonner";
 import { login } from "@/actions/login";
+import fetchHandler from "@/lib/fetch-handler";
 
 const LoginForm = () => {
   const [ispending, startTransition] = useTransition();
@@ -33,9 +34,7 @@ const LoginForm = () => {
 
   const onSubmit = (value: z.infer<typeof LoginSchema>) => {
     startTransition(() => {
-      login(value).then((data) => {
-        console.log("data:", data);
-      });
+      login(value).then(fetchHandler);
     });
   };
   return (
