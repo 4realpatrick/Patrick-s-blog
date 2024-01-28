@@ -38,6 +38,6 @@ export const getUserByName = async (name: string) => {
     return user;
   } catch (error) {
     console.log("Internal error in getUserByName", error);
-    return [];
+    return null;
   }
 };
