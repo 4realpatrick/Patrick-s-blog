@@ -6,7 +6,7 @@ import Separator from "@/components/ui/separator";
 import Link from "next/link";
 import { Frame as RegisterFrame } from "../_components/frame";
 
-const RegisterPage = async () => {
+const RegisterPage = () => {
   return (
     <RegisterFrame
       title="创建一个账户"

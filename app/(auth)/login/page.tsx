@@ -6,7 +6,7 @@ import CompositeAlert from "@/components/composite-alert";
 import Link from "next/link";
 import { Frame as LoginFrame } from "../_components/frame";
 import Separator from "@/components/ui/separator";
-const LoginPage = async () => {
+const LoginPage = () => {
   return (
     <LoginFrame
       title="欢迎回来"
