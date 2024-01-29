@@ -22,7 +22,6 @@ export const login = async (
     return await signIn("credentials", {
       email,
       password,
-      redirect: false,
       redirectTo: DEFAULT_LOGIN_REDIRECT,
     });
   } catch (error) {
