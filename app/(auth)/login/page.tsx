@@ -6,6 +6,7 @@ import CompositeAlert from "@/components/composite-alert";
 import Link from "next/link";
 import { Frame as LoginFrame } from "../_components/frame";
 import Separator from "@/components/ui/separator";
+import UnderlineLink from "@/components/underline-link";
 const LoginPage = () => {
   return (
     <LoginFrame
@@ -13,9 +14,9 @@ const LoginPage = () => {
       description={
         <>
           还没有账户吗？
-          <Link href="/register" className="pl-2 text-primary">
+          <UnderlineLink href="/register" className="ml-2">
             点击注册
-          </Link>
+          </UnderlineLink>
         </>
       }
     >

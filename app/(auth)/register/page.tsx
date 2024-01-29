@@ -5,6 +5,7 @@ import Social from "@/components/auth/social";
 import Separator from "@/components/ui/separator";
 import Link from "next/link";
 import { Frame as RegisterFrame } from "../_components/frame";
+import UnderlineLink from "@/components/underline-link";
 
 const RegisterPage = () => {
   return (
@@ -13,9 +14,9 @@ const RegisterPage = () => {
       description={
         <>
           已经有帐户？
-          <Link href="/login" className="pl-2 text-primary">
+          <UnderlineLink href="/login" className="ml-2">
             点击登录
-          </Link>
+          </UnderlineLink>
         </>
       }
     >
