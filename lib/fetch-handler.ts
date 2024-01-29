@@ -9,9 +9,10 @@ export default function fetchHandler(
     withTime?: boolean;
   } = {}
 ) {
-  const { success, message, type } = response;
   // 防止Server返回值有误
-  if (!type || !message) return;
+  if (!response) return;
+  const { success, message, type } = response;
+  if (!message) return;
   const { description = "", withTime = true } = options;
   const realDesc = description + withTime ? getRegularTime() : "";
   const toastType = !!type ? type : success ? "success" : "error";
