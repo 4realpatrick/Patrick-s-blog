@@ -54,6 +54,7 @@ const LoginForm = () => {
                     placeholder="请输入邮箱"
                     type="email"
                     className="border-primary"
+                    autoComplete="email"
                   />
                 </FormControl>
                 <FormMessage />
@@ -73,6 +74,7 @@ const LoginForm = () => {
                     placeholder="******"
                     type="password"
                     className="border-primary"
+                    autoComplete="current-password"
                   />
                 </FormControl>
                 <FormMessage />
