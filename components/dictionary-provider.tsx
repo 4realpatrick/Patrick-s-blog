@@ -8,6 +8,7 @@ interface IDictionaryProviderProps {
   dictionary: TDictionary;
   lang: Locale;
 }
+export const LocaleContext = createContext<Locale>("zh");
 export const DictionaryContext = createContext<TDictionary>(defaultDictionary);
 const TranslationProvider: React.FC<IDictionaryProviderProps> = ({
   children,
@@ -15,9 +16,11 @@ const TranslationProvider: React.FC<IDictionaryProviderProps> = ({
   lang,
 }) => {
   return (
-    <DictionaryContext.Provider value={dictionary}>
-      {children}
-    </DictionaryContext.Provider>
+    <LocaleContext.Provider value={lang}>
+      <DictionaryContext.Provider value={dictionary}>
+        {children}
+      </DictionaryContext.Provider>
+    </LocaleContext.Provider>
   );
 };
 

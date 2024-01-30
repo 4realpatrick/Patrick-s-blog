@@ -1,3 +1,4 @@
+"use client";
 // Cmp
 import { IoMdMenu, IoMdContact, IoMdSettings } from "react-icons/io";
 import { FaBilibili, FaGithub } from "react-icons/fa6";
@@ -21,7 +22,8 @@ import Link from "next/link";
 // Utils
 import { useSession, signOut } from "next-auth/react";
 import { TDictionary } from "@/lib/dictionary";
-import { addLocaleOnJump } from "@/lib/add-locale-on-jump";
+import { useContext } from "react";
+import { LocaleContext } from "./dictionary-provider";
 
 export default function SettingDropdown({
   dictionary,
@@ -29,6 +31,7 @@ export default function SettingDropdown({
   dictionary: TDictionary["components"]["navbar"];
 }) {
   const session = useSession();
+  const locale = useContext(LocaleContext);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -71,8 +74,14 @@ export default function SettingDropdown({
             </DropdownMenuPortal>
           </DropdownMenuSub>
           <DropdownMenuItem>
-            <IoMdSettings className="mr-2 size-4" />
-            <span>{dictionary.setting}</span>
+            <Link
+              href={`/${locale}/setting`}
+              className="w-full flex items-center"
+            >
+              <IoMdSettings className="mr-2 size-4" />
+              <span>{dictionary.setting}</span>
+            </Link>
+
             {/* <DropdownMenuShortcut>⌘S</DropdownMenuShortcut> */}
           </DropdownMenuItem>
         </DropdownMenuGroup>
@@ -85,7 +94,7 @@ export default function SettingDropdown({
         ) : (
           <DropdownMenuItem>
             <Link
-              href={addLocaleOnJump("/login")}
+              href={`/${locale}/login`}
               className="w-full flex items-center"
             >
               <TbLogin className="mr-2 size-4" />

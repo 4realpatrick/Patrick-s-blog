@@ -8,21 +8,24 @@ import UnderlineLink from "@/components/underline-link";
 // Hooks
 import { useContext } from "react";
 // Context
-import { DictionaryContext } from "@/components/dictionary-provider";
-// Utils
-import { addLocaleOnJump } from "@/lib/add-locale-on-jump";
+import {
+  DictionaryContext,
+  LocaleContext,
+} from "@/components/dictionary-provider";
 
 const RegisterPage = () => {
   const {
     pages: { register: registerDictionary },
   } = useContext(DictionaryContext);
+
+  const locale = useContext(LocaleContext);
   return (
     <RegisterFrame
       title={registerDictionary.title}
       description={
         <>
           {registerDictionary.description}
-          <UnderlineLink href={addLocaleOnJump("/login")} className="ml-2">
+          <UnderlineLink href={`/${locale}/login`} className="ml-2">
             {registerDictionary.jump_link}
           </UnderlineLink>
         </>

@@ -5,19 +5,23 @@ import { Button } from "./ui/button";
 import Logo from "./svg-components/logo";
 import SettingDropdown from "./setting-dropdown";
 import Hint from "./hint";
+// Hooks
+import { useContext } from "react";
 // Utils
 import { m, LazyMotion, domAnimation } from "framer-motion";
-import { addLocaleOnJump } from "@/lib/add-locale-on-jump";
 // Constant
 import { getNavRoutes } from "@/constant/nav-routes";
 // Types
 import { TDictionary } from "@/lib/dictionary";
+// Context
+import { LocaleContext } from "./dictionary-provider";
 
 const Navbar = ({
   dictionary,
 }: {
   dictionary: TDictionary["components"]["navbar"];
 }) => {
+  const locale = useContext(LocaleContext);
   return (
     <LazyMotion features={domAnimation}>
       <m.div
@@ -27,14 +31,13 @@ const Navbar = ({
         transition={{ duration: 0.5 }}
       >
         <Hint descrption={dictionary.home} asChild>
-          <Link className="flex items-center" href={addLocaleOnJump("/")}>
+          <Link className="flex items-center" href={`/${locale}/`}>
             <Logo />
             <span className="pl-4 text-xl text-primary tracking-wider hidden md:inline-block">
               {dictionary.title}
             </span>
           </Link>
         </Hint>
-
         <div className="flex justify-end gap-x-8 pr-8">
           {getNavRoutes(dictionary.routes).map((nav) => (
             <Button
@@ -45,7 +48,7 @@ const Navbar = ({
               key={nav.title}
             >
               <Link
-                href={addLocaleOnJump(nav.href)}
+                href={`/${locale}${nav.href}`}
                 className="hover:text-primary"
               >
                 <nav.icon className="mr-2" />
