@@ -73,7 +73,7 @@ export default function SettingDropdown() {
           </DropdownMenuItem>
         ) : (
           <DropdownMenuItem>
-            <Link href="/login">
+            <Link href="/login" className="w-full flex items-center">
               <TbLogin className="mr-2 size-4" />
               <span>登录</span>
             </Link>
