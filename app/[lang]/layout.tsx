@@ -20,8 +20,6 @@ export default async function RootLayout({
   params: { lang: Locale };
 }) {
   const dictionary = await getDictionary(params.lang);
-  console.log("dictionary:", dictionary);
-
   return (
     <html lang={params.lang} data-theme="light">
       <body className="w-screen sm:min-w-[800px] md:min-w-[800px] lg:min-w-[800px] xl:min-w-[800px] 2xl:min-w-[800px]">
