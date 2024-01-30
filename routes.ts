@@ -2,7 +2,7 @@
  * @description 一个数组，用户无需登录也可以访问的地址集合
  * @type {string[]}
  */
-export const publicRoutes = ["/", "/css", "/js"];
+export const publicRoutes = ["/", "/css", "/js", ""];
 
 /**
  * @description 用以authentication的地址，用户在登录之前可以访问这些页面，但是用户在登录之后则不能访问这些页面，而是会被重定向到我们设置的页面，反之，如果用户在登录之前访问了不能访问的页面，我们会重定向到登录页

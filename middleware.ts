@@ -8,18 +8,60 @@ import {
   authRoutes,
   publicRoutes,
 } from "@/routes";
+import { NextRequest } from "next/server";
+import { i18n } from "./i18n.config";
+import Negotiator from "negotiator";
+import { match as matchLocale } from "@formatjs/intl-localematcher";
+
 export const { auth } = NextAuth(authConfig);
 
+/**
+ * @description 获取当前浏览器的语言
+ * @param {NextRequest} req request
+ * @returns {string} 返回当前的语言
+ */
+function getLocale(req: NextRequest): string {
+  const negotiatorHears: Record<string, string> = {};
+  req.headers.forEach((value, key) => (negotiatorHears[key] = value));
+  // @ts-ignore locales are readonly
+  const locales: string[] = i18n.locales;
+  const languages = new Negotiator({ headers: negotiatorHears }).languages();
+  const locale = matchLocale(languages, locales, i18n.defaultLocale);
+  return locale;
+}
+
+// Core function
 export default auth((req) => {
   const { nextUrl } = req;
+  const { pathname } = req.nextUrl;
+  // 是否登录
   const isLoggedIn = !!req.auth;
+  // 当前语言
+  const locale = getLocale(req);
+  // 去掉locale的pathname
+  const pathnameWithoutLocale = pathname.replace(/^\/[^\/]+/, "");
 
-  const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
-  const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
-  const isAuthRoute = authRoutes.includes(nextUrl.pathname);
+  const isApiAuthRoute = pathname.startsWith(apiAuthPrefix);
+  const isPublicRoute = publicRoutes.includes(pathnameWithoutLocale);
+  const isAuthRoute = authRoutes.includes(pathnameWithoutLocale);
+
+  // 当前路径中是否包含locale
+  const isPathnameMissingLocale = i18n.locales.every(
+    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+  );
+
   // 如果是用以authentication的请求都允许
   if (isApiAuthRoute) {
     return null;
+  }
+  // 如果url缺少locale
+  if (isPathnameMissingLocale) {
+    return Response.redirect(
+      new URL(
+        `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
+        req.url
+      )
+    );
   }
   // 如果是用以authentication的地址
   if (isAuthRoute) {
@@ -37,6 +79,7 @@ export default auth((req) => {
   return null;
 });
 
+// 哪些
 export const config = {
   matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };
