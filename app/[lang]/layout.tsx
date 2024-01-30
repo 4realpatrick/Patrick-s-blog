@@ -4,19 +4,26 @@ import "./globals.css";
 import ThemeProvider from "@/components/theme/theme-provider";
 import { SessionProvider } from "next-auth/react";
 import Navbar from "@/components/navbar";
+import { Locale } from "@/i18n.config";
+import { getDictionary } from "@/lib/dictionary";
 
 export const metadata: Metadata = {
   title: "Patrick's blog",
   description: "Powered by NextJS",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: { lang: Locale };
 }) {
+  const dictionary = await getDictionary(params.lang);
+  console.log("dictionary:", dictionary);
+
   return (
-    <html lang="en" data-theme="light">
+    <html lang={params.lang} data-theme="light">
       <body className="w-screen sm:min-w-[800px] md:min-w-[800px] lg:min-w-[800px] xl:min-w-[800px] 2xl:min-w-[800px]">
         <SessionProvider>
           <ThemeProvider />
