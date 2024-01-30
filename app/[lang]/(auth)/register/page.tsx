@@ -3,25 +3,33 @@
 import RegisterForm from "@/components/auth/register-form";
 import Social from "@/components/auth/social";
 import Separator from "@/components/ui/separator";
-import Link from "next/link";
 import { Frame as RegisterFrame } from "../_components/frame";
 import UnderlineLink from "@/components/underline-link";
+// Hooks
+import { useContext } from "react";
+// Context
+import { DictionaryContext } from "@/components/dictionary-provider";
+// Utils
+import { addLocaleOnJump } from "@/lib/add-locale-on-jump";
 
 const RegisterPage = () => {
+  const {
+    pages: { register: registerDictionary },
+  } = useContext(DictionaryContext);
   return (
     <RegisterFrame
-      title="创建一个账户"
+      title={registerDictionary.title}
       description={
         <>
-          已经有帐户？
-          <UnderlineLink href="/login" className="ml-2">
-            点击登录
+          {registerDictionary.description}
+          <UnderlineLink href={addLocaleOnJump("/login")} className="ml-2">
+            {registerDictionary.jump_link}
           </UnderlineLink>
         </>
       }
     >
-      <RegisterForm />
-      <Separator>或者使用以下方式登录</Separator>
+      <RegisterForm dictionary={registerDictionary} />
+      <Separator>{registerDictionary.separator_text}</Separator>
       <Social />
     </RegisterFrame>
   );

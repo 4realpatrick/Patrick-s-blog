@@ -1,7 +1,43 @@
 {
   "pages": {
     "login": {
-      "title": "Welcome back"
+      "title": "Welcome back",
+      "description": "Don't have an account?",
+      "jump_link": "Sign Up",
+      "email": "Email Address",
+      "email_placeholder": "Please enter your email address",
+      "password": "Password",
+      "password_placeholder": "******",
+      "login_btn": "Login",
+      "separator_text": "Or",
+      "alert_title": "You can view all articles without login, but there's some function limitation",
+      "alert_description": "For example, commenting, liking, and viewing records"
+    },
+    "register": {
+      "title": "Create an account",
+      "description": "Have an account?",
+      "jump_link": "Log in now",
+      "usename": "username",
+      "usename_placeholder": "Please enter your username",
+      "email": "Email Address",
+      "email_placeholder": "Please enter your email address",
+      "password": "Password",
+      "password_placeholder": "******",
+      "register_btn": "Create",
+      "separator_text": "Or"
+    }
+  },
+  "components": {
+    "navbar": {
+      "title": "Patrick's Blog",
+      "home": "Homepage",
+      "menu": "Menu",
+      "contact": "Contact me",
+      "setting": "Setting",
+      "login": "Login",
+      "more": "More",
+      "signout": "Sign out",
+      "routes": ["CSS", "JS", "Homepage"]
     }
   }
 }

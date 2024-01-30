@@ -17,12 +17,19 @@ import { useTransition } from "react";
 // Utils
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+// Schema
 import { LoginSchema } from "@/schemas";
-import { toast } from "sonner";
-import { login } from "@/actions/login";
 import fetchHandler from "@/lib/fetch-handler";
+// Actions
+import { login } from "@/actions/login";
+// Types
+import { TDictionary } from "@/lib/dictionary";
 
-const LoginForm = () => {
+const LoginForm = ({
+  dictionary,
+}: {
+  dictionary: TDictionary["pages"]["login"];
+}) => {
   const [ispending, startTransition] = useTransition();
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -46,12 +53,12 @@ const LoginForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>邮箱</FormLabel>
+                <FormLabel>{dictionary.email}</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
                     disabled={ispending}
-                    placeholder="请输入邮箱"
+                    placeholder={dictionary.email_placeholder}
                     type="email"
                     className="border-primary"
                     autoComplete="email"
@@ -66,12 +73,12 @@ const LoginForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>密码</FormLabel>
+                <FormLabel>{dictionary.password}</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
                     disabled={ispending}
-                    placeholder="******"
+                    placeholder={dictionary.password_placeholder}
                     type="password"
                     className="border-primary"
                     autoComplete="current-password"
@@ -84,7 +91,7 @@ const LoginForm = () => {
         </div>
         <Button className="w-full" type="submit" disabled={ispending}>
           {ispending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          登录
+          {dictionary.login_btn}
         </Button>
       </form>
     </Form>

@@ -3,30 +3,40 @@
 import LoginForm from "@/components/auth/login-form";
 import Social from "@/components/auth/social";
 import CompositeAlert from "@/components/composite-alert";
-import Link from "next/link";
 import { Frame as LoginFrame } from "../_components/frame";
 import Separator from "@/components/ui/separator";
 import UnderlineLink from "@/components/underline-link";
+// Hooks
+import { useContext } from "react";
+// Context
+import { DictionaryContext } from "@/components/dictionary-provider";
+// Utils
+import { addLocaleOnJump } from "@/lib/add-locale-on-jump";
+
 const LoginPage = () => {
+  const {
+    pages: { login: loginDictionary },
+  } = useContext(DictionaryContext);
+
   return (
     <LoginFrame
-      title="欢迎回来"
+      title={loginDictionary.title}
       description={
         <>
-          还没有账户吗？
-          <UnderlineLink href="/register" className="ml-2">
-            点击注册
+          {loginDictionary.description}
+          <UnderlineLink href={addLocaleOnJump("/register")} className="ml-2">
+            {loginDictionary.jump_link}
           </UnderlineLink>
         </>
       }
     >
-      <LoginForm />
-      <Separator>或者使用以下方式登录</Separator>
+      <LoginForm dictionary={loginDictionary} />
+      <Separator>{loginDictionary.separator_text}</Separator>
       <Social />
       <CompositeAlert
-        title="您无需登录亦可浏览此网站的所有文章，只是部分功能会有所限制"
+        title={loginDictionary.alert_title}
         className="mt-4 border-primary shadow-lg"
-        description="例如评论、点赞、查看记录等"
+        description={loginDictionary.alert_description}
       />
     </LoginFrame>
   );

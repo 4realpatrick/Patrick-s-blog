@@ -1,6 +1,6 @@
 import "server-only";
 import type { Locale } from "@/i18n.config";
-type TDictionary = typeof import("@/dictionaries/cn.json");
+export type TDictionary = typeof import("@/dictionaries/cn.json");
 
 const dictionaries: {
   [key in Locale]: () => Promise<TDictionary>;

@@ -17,12 +17,19 @@ import { useTransition } from "react";
 // Utils
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { RegisterSchema } from "@/schemas";
-import { toast } from "sonner";
-import { register } from "@/actions/register";
 import fetchHandler from "@/lib/fetch-handler";
+// Schema
+import { RegisterSchema } from "@/schemas";
+// Actions
+import { register } from "@/actions/register";
+// Types
+import { TDictionary } from "@/lib/dictionary";
 
-const RegisterForm = () => {
+const RegisterForm = ({
+  dictionary,
+}: {
+  dictionary: TDictionary["pages"]["register"];
+}) => {
   const [ispending, startTransition] = useTransition();
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
@@ -47,12 +54,12 @@ const RegisterForm = () => {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>用户名</FormLabel>
+                <FormLabel>{dictionary.usename}</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
                     disabled={ispending}
-                    placeholder="请输入用户名"
+                    placeholder={dictionary.usename_placeholder}
                     className="border-primary"
                   />
                 </FormControl>
@@ -65,12 +72,12 @@ const RegisterForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>邮箱</FormLabel>
+                <FormLabel>{dictionary.email}</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
                     disabled={ispending}
-                    placeholder="请输入邮箱"
+                    placeholder={dictionary.email_placeholder}
                     type="email"
                     className="border-primary"
                     autoComplete="email"
@@ -85,12 +92,12 @@ const RegisterForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>密码</FormLabel>
+                <FormLabel>{dictionary.password}</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
                     disabled={ispending}
-                    placeholder="******"
+                    placeholder={dictionary.password_placeholder}
                     type="password"
                     className="border-primary"
                     autoComplete="current-password"
@@ -103,7 +110,7 @@ const RegisterForm = () => {
         </div>
         <Button className="w-full" type="submit" disabled={ispending}>
           {ispending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          创建账户
+          {dictionary.register_btn}
         </Button>
       </form>
     </Form>

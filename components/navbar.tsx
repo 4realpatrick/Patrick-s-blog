@@ -7,10 +7,17 @@ import SettingDropdown from "./setting-dropdown";
 import Hint from "./hint";
 // Utils
 import { m, LazyMotion, domAnimation } from "framer-motion";
+import { addLocaleOnJump } from "@/lib/add-locale-on-jump";
 // Constant
-import { navRoutes } from "@/constant/nav-routes";
+import { getNavRoutes } from "@/constant/nav-routes";
+// Types
+import { TDictionary } from "@/lib/dictionary";
 
-const Navbar = () => {
+const Navbar = ({
+  dictionary,
+}: {
+  dictionary: TDictionary["components"]["navbar"];
+}) => {
   return (
     <LazyMotion features={domAnimation}>
       <m.div
@@ -19,17 +26,17 @@ const Navbar = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <Hint descrption="首页" asChild>
-          <Link className="flex items-center" href="/">
+        <Hint descrption={dictionary.home} asChild>
+          <Link className="flex items-center" href={addLocaleOnJump("/")}>
             <Logo />
             <span className="pl-4 text-xl text-primary tracking-wider hidden md:inline-block">
-              Patrick's blog
+              {dictionary.title}
             </span>
           </Link>
         </Hint>
 
         <div className="flex justify-end gap-x-8 pr-8">
-          {navRoutes.map((nav) => (
+          {getNavRoutes(dictionary.routes).map((nav) => (
             <Button
               variant="ghost"
               size="lg"
@@ -37,13 +44,16 @@ const Navbar = () => {
               asChild
               key={nav.title}
             >
-              <Link href={nav.href} className="hover:text-primary">
+              <Link
+                href={addLocaleOnJump(nav.href)}
+                className="hover:text-primary"
+              >
                 <nav.icon className="mr-2" />
                 {nav.title}
               </Link>
             </Button>
           ))}
-          <SettingDropdown />
+          <SettingDropdown dictionary={dictionary} />
         </div>
       </m.div>
     </LazyMotion>

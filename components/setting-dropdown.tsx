@@ -20,8 +20,14 @@ import {
 import Link from "next/link";
 // Utils
 import { useSession, signOut } from "next-auth/react";
+import { TDictionary } from "@/lib/dictionary";
+import { addLocaleOnJump } from "@/lib/add-locale-on-jump";
 
-export default function SettingDropdown() {
+export default function SettingDropdown({
+  dictionary,
+}: {
+  dictionary: TDictionary["components"]["navbar"];
+}) {
   const session = useSession();
   return (
     <DropdownMenu>
@@ -31,37 +37,42 @@ export default function SettingDropdown() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>菜单</DropdownMenuLabel>
+        <DropdownMenuLabel>{dictionary.menu}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>
               <IoMdContact className="mr-2 size-4" />
-              <span>联系我</span>
+              <span>{dictionary.contact}</span>
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
                 <DropdownMenuItem>
                   <FaBilibili className="mr-2 size-4" />
-                  <Link href="https://space.bilibili.com/24280623">
+                  <Link
+                    href="https://space.bilibili.com/24280623"
+                    target="_blank"
+                  >
                     Bilibili
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <FaGithub className="mr-2 size-4" />
-                  <Link href="https://github.com/4realpatrick">Github</Link>
+                  <Link href="https://github.com/4realpatrick" target="_blank">
+                    Github
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
                   <GoPlusCircle className="mr-2 size-4" />
-                  <span>More...</span>
+                  <span>{dictionary.more}...</span>
                 </DropdownMenuItem>
               </DropdownMenuSubContent>
             </DropdownMenuPortal>
           </DropdownMenuSub>
           <DropdownMenuItem>
             <IoMdSettings className="mr-2 size-4" />
-            <span>设置</span>
+            <span>{dictionary.setting}</span>
             {/* <DropdownMenuShortcut>⌘S</DropdownMenuShortcut> */}
           </DropdownMenuItem>
         </DropdownMenuGroup>
@@ -69,13 +80,16 @@ export default function SettingDropdown() {
         {session.data?.user ? (
           <DropdownMenuItem onClick={() => signOut()}>
             <TbLogin2 className="mr-2 size-4" />
-            <span>退出登录</span>
+            <span>{dictionary.signout}</span>
           </DropdownMenuItem>
         ) : (
           <DropdownMenuItem>
-            <Link href="/login" className="w-full flex items-center">
+            <Link
+              href={addLocaleOnJump("/login")}
+              className="w-full flex items-center"
+            >
               <TbLogin className="mr-2 size-4" />
-              <span>登录</span>
+              <span>{dictionary.login}</span>
             </Link>
           </DropdownMenuItem>
         )}

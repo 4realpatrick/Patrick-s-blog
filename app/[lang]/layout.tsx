@@ -6,6 +6,7 @@ import { SessionProvider } from "next-auth/react";
 import Navbar from "@/components/navbar";
 import { Locale } from "@/i18n.config";
 import { getDictionary } from "@/lib/dictionary";
+import DictionaryProvider from "@/components/dictionary-provider";
 
 export const metadata: Metadata = {
   title: "Patrick's blog",
@@ -26,8 +27,10 @@ export default async function RootLayout({
         <SessionProvider>
           <ThemeProvider />
           <Toaster richColors />
-          <Navbar />
-          {children}
+          <DictionaryProvider lang={params.lang} dictionary={dictionary}>
+            <Navbar dictionary={dictionary.components.navbar} />
+            {children}
+          </DictionaryProvider>
         </SessionProvider>
       </body>
     </html>
