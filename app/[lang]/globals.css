@@ -70,11 +70,11 @@ body,
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
   }
-  @import "../constant//theme/blue.css";
-  @import "../constant//theme/green.css";
-  @import "../constant//theme/red.css";
-  @import "../constant//theme/violet.css";
-  @import "../constant//theme/yellow.css";
+  @import "@/constant/theme/blue.css";
+  @import "@/constant/theme/green.css";
+  @import "@/constant/theme/red.css";
+  @import "@/constant/theme/violet.css";
+  @import "@/constant/theme/yellow.css";
 }
 
 @layer base {
