@@ -25,6 +25,30 @@
       "password_placeholder": "******",
       "register_btn": "Create",
       "separator_text": "Or"
+    },
+    "setting": {
+      "general": {
+        "title": "General settings",
+        "theme": "Theme",
+        "theme_description": "Change the theme of the App",
+        "themes": {
+          "blue": "Blue",
+          "green": "Green",
+          "red": "Red",
+          "violet": "Violet",
+          "yellow": "Yellow"
+        },
+        "language": "Language",
+        "language_description": "Change the language of the App (currently only supports Chinese and English)",
+        "language_placeholder": "Select a language",
+        "languages": {
+          "zh": "Simplified Chinese",
+          "en": "English(US)"
+        }
+      },
+      "profile": {
+        "title": "Profile"
+      }
     }
   },
   "components": {

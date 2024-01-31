@@ -25,6 +25,30 @@
       "password_placeholder": "******",
       "register_btn": "创建账户",
       "separator_text": "或者"
+    },
+    "setting": {
+      "general": {
+        "title": "基本设置",
+        "theme": "主题",
+        "theme_description": "更改应用的主题色",
+        "themes": {
+          "blue": "蓝宝石",
+          "green": "苹果绿",
+          "red": "胭脂红",
+          "violet": "紫罗兰",
+          "yellow": "活力黄"
+        },
+        "language": "语言",
+        "language_description": "更改应用的语言(目前仅支持中英文)",
+        "language_placeholder": "请选择一种语言",
+        "languages": {
+          "zh": "中文",
+          "en": "英文"
+        }
+      },
+      "profile": {
+        "title": "个人资料"
+      }
     }
   },
   "components": {
