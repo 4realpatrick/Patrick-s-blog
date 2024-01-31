@@ -24,8 +24,8 @@ const Navbar = ({
   const locale = useContext(LocaleContext);
   return (
     <LazyMotion features={domAnimation}>
-      <m.div
-        className="flex justify-between items-center pl-4 py-4 shadow-sm"
+      <m.nav
+        className="flex justify-between items-center pl-4 py-4 shadow-sm sticky top-0 w-full z-50 bg-background"
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
@@ -58,7 +58,7 @@ const Navbar = ({
           ))}
           <SettingDropdown dictionary={dictionary} />
         </div>
-      </m.div>
+      </m.nav>
     </LazyMotion>
   );
 };

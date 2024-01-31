@@ -29,7 +29,7 @@ export default async function RootLayout({
           <Toaster richColors />
           <DictionaryProvider lang={params.lang} dictionary={dictionary}>
             <Navbar dictionary={dictionary.components.navbar} />
-            {children}
+            <div className="w-full h-[calc(100vh-76px)]">{children}</div>
           </DictionaryProvider>
         </SessionProvider>
       </body>
