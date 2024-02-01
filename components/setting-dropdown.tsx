@@ -28,6 +28,31 @@ import { TDictionary } from "@/lib/dictionary";
 import { useContext } from "react";
 // Context
 import { LocaleContext } from "./dictionary-provider";
+import { cn } from "@/lib/utils";
+
+const contacts = [
+  {
+    id: "bilibili",
+    icon: FaBilibili,
+    iconClass: "text-[#00AEEC]",
+    title: "Bilibili",
+    href: "https://space.bilibili.com/24280623",
+  },
+  {
+    id: "github",
+    icon: FaGithub,
+    iconClass: "",
+    title: "Github",
+    href: "https://github.com/4realpatrick",
+  },
+  {
+    id: "email",
+    icon: MdEmail,
+    iconClass: "text-primary",
+    title: "Email",
+    href: "mailto:patrick577995@gmail.com",
+  },
+];
 
 export default function SettingDropdown({
   dictionary,
@@ -54,27 +79,16 @@ export default function SettingDropdown({
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
-                <DropdownMenuItem>
-                  <FaBilibili className="mr-2 size-4 text-[#00AEEC]" />
-                  <Link
-                    href="https://space.bilibili.com/24280623"
-                    target="_blank"
-                  >
-                    Bilibili
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <FaGithub className="mr-2 size-4" />
-                  <Link href="https://github.com/4realpatrick" target="_blank">
-                    Github
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <MdEmail className="mr-2 size-4" />
-                  <Link href="https://github.com/4realpatrick" target="_blank">
-                    Email
-                  </Link>
-                </DropdownMenuItem>
+                {contacts.map((contact) => (
+                  <DropdownMenuItem key={contact.id}>
+                    {contact.icon({
+                      className: cn("mr-2 size-4", contact.iconClass),
+                    })}
+                    <Link href={contact.href} target="_blank">
+                      {contact.title}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
                   <GoPlusCircle className="mr-2 size-4" />
@@ -91,7 +105,6 @@ export default function SettingDropdown({
               <IoMdSettings className="mr-2 size-4" />
               <span>{dictionary.setting}</span>
             </Link>
-
             {/* <DropdownMenuShortcut>⌘S</DropdownMenuShortcut> */}
           </DropdownMenuItem>
         </DropdownMenuGroup>
