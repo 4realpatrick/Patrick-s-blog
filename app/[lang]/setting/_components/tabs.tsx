@@ -4,12 +4,13 @@ import { useState } from "react";
 // Utils
 import { LazyMotion, Variants, domAnimation, m, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { IconType } from "react-icons/lib";
 // Types
 interface ITabsProps {
   tabs: {
     id: string;
     title: string;
-    icon?: React.ReactNode;
+    icon: IconType;
     content: JSX.Element;
   }[];
   defaultIndex?: number;
@@ -45,37 +46,37 @@ const SettingTab: React.FC<ITabsProps> = ({ tabs, defaultIndex = 0 }) => {
           exit="exit"
           transition={{ duration: 0.5 }}
         >
-          {tabs.map((tab, index) => (
-            <li
-              key={tab.id}
-              className={cn(
-                "relative w-full cursor-pointer",
-                activeTabIndex === index && "text-primary"
-              )}
-              role="presentation"
-            >
-              <a
-                onClick={() => setActiveTabIndex(index)}
-                className="p-4 flex items-center text-lg overflow-hidden relative"
+          {tabs.map((tab, index) => {
+            const isActive = activeTabIndex === index;
+            return (
+              <m.li
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 1 }}
+                key={tab.id}
+                className={cn(
+                  "relative w-full cursor-pointer",
+                  isActive && "text-primary"
+                )}
+                role="presentation"
               >
-                {tab.icon}
-                <span
-                  className={cn(
-                    "ml-3",
-                    activeTabIndex === index && "text-primary"
-                  )}
+                <a
+                  onClick={() => setActiveTabIndex(index)}
+                  className="p-4 flex items-center text-lg overflow-hidden relative"
                 >
-                  {tab.title}
-                </span>
-              </a>
-              {activeTabIndex === index && (
-                <motion.span
-                  layoutId="indicator"
-                  className="absolute h-full right-0 top-0 w-[2px] bg-primary"
-                />
-              )}
-            </li>
-          ))}
+                  {tab.icon({ className: "size-6" })}
+                  <span className={cn("ml-3", isActive && "text-primary")}>
+                    {tab.title}
+                  </span>
+                </a>
+                {isActive && (
+                  <motion.span
+                    layoutId="indicator"
+                    className="absolute h-full right-0 top-0 w-[2px] bg-primary"
+                  />
+                )}
+              </m.li>
+            );
+          })}
         </m.ul>
         {tabs.map(
           (tab, index) =>

@@ -19,14 +19,14 @@ const SettingPage = () => {
       {
         title: setting.profile.title,
         id: "hotels",
-        icon: <CgProfile className="size-6" />,
+        icon: CgProfile,
         color: "#67bb67",
         content: <ProfileSetting dictionary={setting.profile} />,
       },
       {
         title: setting.general.title,
         id: "flights",
-        icon: <IoMdSettings className="size-6" />,
+        icon: CgProfile,
         color: "#5d5dff",
         content: <GenralSetting dictionary={setting.general} />,
       },
