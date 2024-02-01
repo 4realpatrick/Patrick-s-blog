@@ -25,15 +25,15 @@ const Navbar = ({
   return (
     <LazyMotion features={domAnimation}>
       <m.nav
-        className="flex justify-between items-center pl-4 py-4 shadow-sm sticky top-0 w-full z-50 bg-background"
-        initial={{ y: -100, opacity: 0 }}
+        className="flex justify-between items-center pl-4 py-4 sticky top-0 w-full z-50 bg-background"
+        initial={{ y: -76, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
         <Hint descrption={dictionary.home} asChild>
           <Link className="flex items-center" href={`/${locale}/`}>
-            <Logo />
-            <span className="pl-4 text-xl text-primary tracking-wider hidden md:inline-block">
+            <Logo className="transition-[fill]" />
+            <span className="pl-4 text-xl text-primary tracking-wider hidden md:inline-block transition-[background]">
               {dictionary.title}
             </span>
           </Link>
