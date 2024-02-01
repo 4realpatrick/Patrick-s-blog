@@ -37,7 +37,7 @@ const SettingTab: React.FC<ITabsProps> = ({ tabs, defaultIndex = 0 }) => {
     <LazyMotion features={domAnimation}>
       <div className="rounded-[40px] flex size-full">
         <m.ul
-          className="p-8 m-[0_auto_20px] list-none max-w-[400px] h-full shadow-xl rounded-xl space-y-4 bg-background/80"
+          className="p-8 m-[0_auto_20px] list-none max-w-[400px] h-full shadow-xl rounded-xl space-y-8 bg-background/80"
           role="tablist"
           variants={tabContentVariants}
           initial="initial"
@@ -56,12 +56,12 @@ const SettingTab: React.FC<ITabsProps> = ({ tabs, defaultIndex = 0 }) => {
             >
               <a
                 onClick={() => setActiveTabIndex(index)}
-                className="p-4 flex items-center text-xl overflow-hidden relative"
+                className="p-4 flex items-center text-lg overflow-hidden relative"
               >
                 {tab.icon}
                 <span
                   className={cn(
-                    "ml-2",
+                    "ml-3",
                     activeTabIndex === index && "text-primary"
                   )}
                 >
@@ -71,7 +71,7 @@ const SettingTab: React.FC<ITabsProps> = ({ tabs, defaultIndex = 0 }) => {
               {activeTabIndex === index && (
                 <motion.span
                   layoutId="indicator"
-                  className="absolute inset-0 bg-primary/20 rounded-lg"
+                  className="absolute h-full right-0 top-0 w-[2px] bg-primary"
                 />
               )}
             </li>
