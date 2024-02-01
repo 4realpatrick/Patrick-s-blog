@@ -44,7 +44,9 @@ const LanguageController = ({
             {dictionary.language}
           </SelectLabel>
           {i18n.locales.map((lang) => (
-            <SelectItem value={lang}>{dictionary.languages[lang]}</SelectItem>
+            <SelectItem value={lang} key={lang}>
+              {dictionary.languages[lang]}
+            </SelectItem>
           ))}
         </SelectGroup>
       </SelectContent>
