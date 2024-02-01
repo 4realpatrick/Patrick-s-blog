@@ -4,41 +4,41 @@ import { ThemeController } from "@/components/theme/theme-controller";
 import { MdLanguage } from "react-icons/md";
 import { IoIosColorPalette } from "react-icons/io";
 // Hooks
-import { useContext, useMemo } from "react";
+import { useMemo } from "react";
 // Context
-import { DictionaryContext } from "@/components/dictionary-provider";
 import CompositeAlert from "@/components/composite-alert";
+// Types
+import { TDictionary } from "@/lib/dictionary";
 
-const GenralSetting = () => {
-  const {
-    pages: {
-      setting: { general },
-    },
-  } = useContext(DictionaryContext);
+const GenralSetting = ({
+  dictionary,
+}: {
+  dictionary: TDictionary["pages"]["setting"]["general"];
+}) => {
   const settings = useMemo(() => {
     return [
       {
-        title: general.theme,
-        description: general.theme_description,
+        title: dictionary.theme,
+        description: dictionary.theme_description,
         id: "theme",
         icon: IoIosColorPalette,
         cmp: <ThemeController />,
       },
       {
-        title: general.language,
-        description: general.language_description,
+        title: dictionary.language,
+        description: dictionary.language_description,
         id: "language",
         icon: MdLanguage,
-        cmp: <LanguageController dictionary={general} />,
+        cmp: <LanguageController dictionary={dictionary} />,
       },
     ];
   }, []);
   return (
     <div className="p-8 space-y-4">
-      <h1 className="text-2xl font-bold">{general.title}</h1>
+      <h1 className="text-2xl font-bold">{dictionary.title}</h1>
       <CompositeAlert
-        title={general.alert_title}
-        description={general.alert_description}
+        title={dictionary.alert_title}
+        description={dictionary.alert_description}
       />
       {settings.map((setting) => (
         <div

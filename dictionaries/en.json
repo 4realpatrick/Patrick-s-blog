@@ -44,10 +44,14 @@
         "languages": {
           "zh": "Simplified Chinese",
           "en": "English(US)"
-        }
+        },
+        "alert_title": "Tips",
+        "alert_description": "When a user is not logged in, the settings are saved in the browser cache. If the user returns to the website later, some settings may have changed since the last time the user exited."
       },
       "profile": {
-        "title": "Profile"
+        "title": "Profile",
+        "unauthorized": "You need to login first",
+        "login": "Login"
       }
     }
   },

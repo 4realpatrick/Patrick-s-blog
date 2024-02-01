@@ -21,14 +21,14 @@ const SettingPage = () => {
         id: "hotels",
         icon: <CgProfile className="size-6" />,
         color: "#67bb67",
-        content: <ProfileSetting />,
+        content: <ProfileSetting dictionary={setting.profile} />,
       },
       {
         title: setting.general.title,
         id: "flights",
         icon: <IoMdSettings className="size-6" />,
         color: "#5d5dff",
-        content: <GenralSetting />,
+        content: <GenralSetting dictionary={setting.general} />,
       },
     ];
   }, []);

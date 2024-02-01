@@ -44,10 +44,14 @@
         "languages": {
           "zh": "中文",
           "en": "英文"
-        }
+        },
+        "alert_title": "小贴士",
+        "alert_description": "在没有登录的情况下，设置是保存在浏览器缓存的，下一次进入网站时有可能有些设置会与上次退出时不同"
       },
       "profile": {
-        "title": "个人资料"
+        "title": "个人资料",
+        "unauthorized": "您需要先登录才能查看个人资料",
+        "login": "登录"
       }
     }
   },
