@@ -4,6 +4,7 @@ import { IoMdMenu, IoMdContact, IoMdSettings } from "react-icons/io";
 import { FaBilibili, FaGithub } from "react-icons/fa6";
 import { GoPlusCircle } from "react-icons/go";
 import { TbLogin, TbLogin2 } from "react-icons/tb";
+import { MdEmail } from "react-icons/md";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -21,8 +22,11 @@ import {
 import Link from "next/link";
 // Utils
 import { useSession, signOut } from "next-auth/react";
+// Types
 import { TDictionary } from "@/lib/dictionary";
+// Hooks
 import { useContext } from "react";
+// Context
 import { LocaleContext } from "./dictionary-provider";
 
 export default function SettingDropdown({
@@ -51,7 +55,7 @@ export default function SettingDropdown({
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
                 <DropdownMenuItem>
-                  <FaBilibili className="mr-2 size-4" />
+                  <FaBilibili className="mr-2 size-4 text-[#00AEEC]" />
                   <Link
                     href="https://space.bilibili.com/24280623"
                     target="_blank"
@@ -63,6 +67,12 @@ export default function SettingDropdown({
                   <FaGithub className="mr-2 size-4" />
                   <Link href="https://github.com/4realpatrick" target="_blank">
                     Github
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <MdEmail className="mr-2 size-4" />
+                  <Link href="https://github.com/4realpatrick" target="_blank">
+                    Email
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
