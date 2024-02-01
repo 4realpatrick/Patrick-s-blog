@@ -1,4 +1,4 @@
-import NextAuth, { type DefaultSession } from "next-auth";
+import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import authConfig from "@/auth.config";
 import { db } from "./lib/db";
@@ -12,6 +12,22 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
+  pages: {
+    signIn: "/login",
+    error: "/error",
+  },
+  events: {
+    async linkAccount({ user }) {
+      await db.user.update({
+        where: {
+          id: user.id,
+        },
+        data: {
+          emailVerified: new Date(),
+        },
+      });
+    },
+  },
   callbacks: {
     // @ts-ignore offcial bug wait for fix https://github.com/nextauthjs/next-auth/pull/9756/files
     async session({ token, session }) {
