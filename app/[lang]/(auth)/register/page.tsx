@@ -1,7 +1,7 @@
 "use client";
 // Cmp
-import RegisterForm from "@/components/auth/register-form";
-import Social from "@/components/auth/social";
+import RegisterForm from "@/app/[lang]/(auth)/_components/register-form";
+import Social from "@/app/[lang]/(auth)/_components/social";
 import Separator from "@/components/ui/separator";
 import { Frame as RegisterFrame } from "../_components/frame";
 import UnderlineLink from "@/components/underline-link";

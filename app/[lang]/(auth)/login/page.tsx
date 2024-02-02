@@ -1,7 +1,7 @@
 "use client";
 // Cmp
-import LoginForm from "@/components/auth/login-form";
-import Social from "@/components/auth/social";
+import LoginForm from "@/app/[lang]/(auth)/_components/login-form";
+import Social from "@/app/[lang]/(auth)/_components/social";
 import CompositeAlert from "@/components/composite-alert";
 import { Frame as LoginFrame } from "../_components/frame";
 import Separator from "@/components/ui/separator";

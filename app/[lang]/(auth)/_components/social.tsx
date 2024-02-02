@@ -1,7 +1,7 @@
 "use client";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub, FaDiscord } from "react-icons/fa";
-import { Button } from "../ui/button";
+import { Button } from "../../../../components/ui/button";
 import { RiNotionFill } from "react-icons/ri";
 import { signIn } from "next-auth/react";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";

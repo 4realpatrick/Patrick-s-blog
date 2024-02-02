@@ -1,8 +1,8 @@
 "use client";
 // Cmp
 import { Loader2 } from "lucide-react";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import { Input } from "../../../../components/ui/input";
+import { Button } from "../../../../components/ui/button";
 import {
   Form,
   FormControl,
@@ -17,56 +17,37 @@ import { useTransition } from "react";
 // Utils
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import fetchHandler from "@/lib/fetch-handler";
 // Schema
-import { RegisterSchema } from "@/schemas";
+import { LoginSchema } from "@/schemas";
+import fetchHandler from "@/lib/fetch-handler";
 // Actions
-import { register } from "@/actions/register";
+import { login } from "@/actions/login";
 // Types
 import { TDictionary } from "@/lib/dictionary";
 
-const RegisterForm = ({
+const LoginForm = ({
   dictionary,
 }: {
-  dictionary: TDictionary["pages"]["register"];
+  dictionary: TDictionary["pages"]["login"];
 }) => {
   const [ispending, startTransition] = useTransition();
-  const form = useForm<z.infer<typeof RegisterSchema>>({
-    resolver: zodResolver(RegisterSchema),
+  const form = useForm<z.infer<typeof LoginSchema>>({
+    resolver: zodResolver(LoginSchema),
     defaultValues: {
       email: "",
       password: "",
-      name: "",
     },
   });
 
-  const onSubmit = (value: z.infer<typeof RegisterSchema>) => {
+  const onSubmit = (value: z.infer<typeof LoginSchema>) => {
     startTransition(() => {
-      register(value).then(fetchHandler);
+      login(value).then(fetchHandler);
     });
   };
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <div className="space-y-8">
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{dictionary.usename}</FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    disabled={ispending}
-                    placeholder={dictionary.usename_placeholder}
-                    className="border-primary"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
           <FormField
             control={form.control}
             name="email"
@@ -110,11 +91,11 @@ const RegisterForm = ({
         </div>
         <Button className="w-full" type="submit" disabled={ispending}>
           {ispending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          {dictionary.register_btn}
+          {dictionary.login_btn}
         </Button>
       </form>
     </Form>
   );
 };
 
-export default RegisterForm;
+export default LoginForm;
