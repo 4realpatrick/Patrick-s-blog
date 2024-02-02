@@ -40,11 +40,7 @@
         },
         "language": "Language",
         "language_description": "Change the language of the App (currently only supports Chinese and English)",
-        "language_placeholder": "Select a language",
-        "languages": {
-          "zh": "Simplified Chinese",
-          "en": "English(US)"
-        },
+
         "alert_title": "Tips",
         "alert_description": "When a user is not logged in, the settings are saved in the browser cache. If the user returns to the website later, some settings may have changed since the last time the user exited."
       },
@@ -53,6 +49,10 @@
         "unauthorized": "You need to login first",
         "login": "Login"
       }
+    },
+    "error": {
+      "title": "Something went wrong with OAuth(inland user can use email to login)",
+      "to_login": "Back to login"
     }
   },
   "components": {
@@ -66,6 +66,13 @@
       "more": "More",
       "signout": "Sign out",
       "routes": ["CSS", "JS", "Homepage"]
+    },
+    "language_controller": {
+      "language_placeholder": "Select a language",
+      "languages": {
+        "zh": "Simplified Chinese(zh)",
+        "en": "English(en)"
+      }
     }
   }
 }
