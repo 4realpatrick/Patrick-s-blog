@@ -15,16 +15,18 @@ import { TDictionary } from "@/lib/dictionary";
 import { useContext } from "react";
 import { usePathname, useRouter } from "next/navigation";
 // Context
-import { LocaleContext } from "./dictionary-provider";
+import { DictionaryContext, LocaleContext } from "./dictionary-provider";
 // Constant
 import { i18n } from "@/i18n.config";
 
-const LanguageController = ({
-  dictionary,
-}: {
-  dictionary: TDictionary["pages"]["setting"]["general"];
-}) => {
+const LanguageController = () => {
   const locale = useContext(LocaleContext);
+  const {
+    pages: {
+      setting: { general: dictionary },
+    },
+    components: { language_controller },
+  } = useContext(DictionaryContext);
   const pathname = usePathname();
   const router = useRouter();
   const handleLanguageChange = (value: string) => {
@@ -36,7 +38,7 @@ const LanguageController = ({
   return (
     <Select value={locale} onValueChange={handleLanguageChange}>
       <SelectTrigger className="w-[180px]">
-        <SelectValue placeholder={dictionary.language_placeholder} />
+        <SelectValue placeholder={language_controller.language_placeholder} />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
@@ -45,7 +47,7 @@ const LanguageController = ({
           </SelectLabel>
           {i18n.locales.map((lang) => (
             <SelectItem value={lang} key={lang}>
-              {dictionary.languages[lang]}
+              {language_controller.languages[lang]}
             </SelectItem>
           ))}
         </SelectGroup>

@@ -29,7 +29,7 @@ const GenralSetting = ({
         description: dictionary.language_description,
         id: "language",
         icon: MdLanguage,
-        cmp: <LanguageController dictionary={dictionary} />,
+        cmp: <LanguageController />,
       },
     ];
   }, []);

@@ -11,16 +11,13 @@ import { useContext } from "react";
 import { m, LazyMotion, domAnimation } from "framer-motion";
 // Constant
 import { getNavRoutes } from "@/constant/nav-routes";
-// Types
-import { TDictionary } from "@/lib/dictionary";
 // Context
-import { LocaleContext } from "./dictionary-provider";
+import { DictionaryContext, LocaleContext } from "./dictionary-provider";
 
-const Navbar = ({
-  dictionary,
-}: {
-  dictionary: TDictionary["components"]["navbar"];
-}) => {
+const Navbar = () => {
+  const {
+    components: { navbar: dictionary },
+  } = useContext(DictionaryContext);
   const locale = useContext(LocaleContext);
   return (
     <LazyMotion features={domAnimation}>
