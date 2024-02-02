@@ -8,13 +8,12 @@ import {
   authRoutes,
   publicRoutes,
 } from "@/routes";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { i18n } from "./i18n.config";
 import Negotiator from "negotiator";
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 
 export const { auth } = NextAuth(authConfig);
-
 /**
  * @description 获取当前浏览器的语言
  * @param {NextRequest} req request
@@ -33,7 +32,7 @@ function getLocale(req: NextRequest): string {
 // Core function
 export default auth((req) => {
   const { nextUrl } = req;
-  const { pathname } = req.nextUrl;
+  const { pathname, search } = req.nextUrl;
   // 是否登录
   const isLoggedIn = !!req.auth;
   // 当前语言
@@ -56,9 +55,9 @@ export default auth((req) => {
   }
   // 如果url缺少locale
   if (isPathnameMissingLocale) {
-    return Response.redirect(
+    return NextResponse.redirect(
       new URL(
-        `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
+        `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}${search}`,
         nextUrl
       )
     );
@@ -67,7 +66,7 @@ export default auth((req) => {
   if (isAuthRoute) {
     // 如果是已经登录，则不允许再访问登录或者注册页面
     if (isLoggedIn) {
-      return Response.redirect(
+      return NextResponse.redirect(
         new URL(`/${locale}${DEFAULT_LOGIN_REDIRECT}`, nextUrl)
       );
     }
@@ -75,9 +74,9 @@ export default auth((req) => {
     return null;
   }
   // 如果没有登录，且当前不是在为登录就可以访问的地址则重定向到登录
-  if (!isLoggedIn && !isPublicRoute) {
-    return Response.redirect(new URL("/login", nextUrl));
-  }
+  // if (!isLoggedIn && !isPublicRoute) {
+  //   return Response.redirect(new URL("/login", nextUrl));
+  // }
   return null;
 });
 

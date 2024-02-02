@@ -29,7 +29,18 @@ export const {
     },
   },
   callbacks: {
+    async signIn({ user, account }) {
+      // 使用除credentials以外的provider都不阻止
+      if (account?.provider !== "credentials") return true;
+
+      const existingUser = await getUserById(user.id!);
+      // 阻止未激活邮箱的用户登录
+      if (!existingUser?.emailVerified) return false;
+
+      return true;
+    },
     // @ts-ignore offcial bug wait for fix https://github.com/nextauthjs/next-auth/pull/9756/files
+
     async session({ token, session }) {
       if (token.sub && session.user) {
         session.user.id = token.sub;

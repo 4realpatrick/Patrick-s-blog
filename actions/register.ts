@@ -5,12 +5,14 @@ import bcrypt from "bcryptjs";
 import { db } from "@/lib/db";
 import { ICommonResponse, EStatusCode } from "@/types";
 import { getUserByEmail, getUserByName } from "@/data/user";
+import { generateVerificationToken } from "@/lib/tokens";
+import { sendVerificationEmail } from "@/lib/mail";
 export const register = async (
   values: z.infer<typeof RegisterSchema>
 ): Promise<ICommonResponse> => {
   try {
     const validatedFields = RegisterSchema.safeParse(values);
-
+    // 检查字段是否符合要求，如不符合，有可能是恶意攻击
     if (!validatedFields.success) {
       return {
         code: EStatusCode.BAD_REQUEST,
@@ -24,6 +26,7 @@ export const register = async (
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const existingEmailUser = await getUserByEmail(email);
+    // 检查是否已有相同邮箱注册
     if (existingEmailUser) {
       return {
         code: EStatusCode.FORBIDDEN,
@@ -33,6 +36,7 @@ export const register = async (
       };
     }
     const existingNameUser = await getUserByName(name);
+    // 检查是否有相同用户名注册
     if (existingNameUser) {
       return {
         code: EStatusCode.FORBIDDEN,
@@ -41,6 +45,7 @@ export const register = async (
         message: "该用户名已被占用",
       };
     }
+    // 创建用户
     await db.user.create({
       data: {
         name,
@@ -48,11 +53,23 @@ export const register = async (
         password: hashedPassword,
       },
     });
+    // 创建激活邮箱token
+    const verificationToken = await generateVerificationToken(email);
+    // 发送邮件
+    const { error } = await sendVerificationEmail(
+      verificationToken.email,
+      verificationToken.token,
+      name
+    );
+
+    if (error) {
+      throw Error(error?.message);
+    }
     return {
       code: EStatusCode.OK,
       type: "success",
       success: true,
-      message: "用户创建成功",
+      message: "我们向您的邮箱发送了一封激活邮件，请先激活邮箱",
     };
   } catch (error) {
     console.log("Internal error in register", error);
