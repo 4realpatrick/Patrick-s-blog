@@ -51,7 +51,7 @@
       }
     },
     "error": {
-      "title": "Something went wrong with OAuth(inland user can use email to login)",
+      "title": "Something went wrong with OAuth",
       "to_login": "Back to login"
     }
   },
