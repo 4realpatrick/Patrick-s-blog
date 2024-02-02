@@ -73,5 +73,10 @@
         "en": "英文(en)"
       }
     }
+  },
+  "common": {
+    "provider_error": {
+      "OAuthAccountNotLinked": "邮箱已经被占用,请检查是否使用其他方式登录过"
+    }
   }
 }

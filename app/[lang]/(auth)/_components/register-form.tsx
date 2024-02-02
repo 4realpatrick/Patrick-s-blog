@@ -14,6 +14,7 @@ import {
 // Hooks
 import { useForm } from "react-hook-form";
 import { useTransition } from "react";
+import useHandlerProviderError from "@/hooks/use-handle-provider-error";
 // Utils
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -45,6 +46,7 @@ const RegisterForm = ({
       register(value).then(fetchHandler);
     });
   };
+  useHandlerProviderError();
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
