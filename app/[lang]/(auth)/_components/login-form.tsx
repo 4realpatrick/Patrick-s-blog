@@ -24,13 +24,18 @@ import fetchHandler from "@/lib/fetch-handler";
 // Actions
 import { login } from "@/actions/login";
 // Context
-import { DictionaryContext } from "@/components/dictionary-provider";
+import {
+  DictionaryContext,
+  LocaleContext,
+} from "@/components/dictionary-provider";
 
 const LoginForm = () => {
   const [ispending, startTransition] = useTransition();
   const {
     pages: { login: dictionary },
+    common: commonDictionary,
   } = useContext(DictionaryContext);
+  const locale = useContext(LocaleContext);
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -41,7 +46,7 @@ const LoginForm = () => {
 
   const onSubmit = (value: z.infer<typeof LoginSchema>) => {
     startTransition(() => {
-      login(value).then(fetchHandler);
+      login(value, locale).then(fetchHandler);
     });
   };
   useHandlerProviderError();
@@ -54,12 +59,12 @@ const LoginForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{dictionary.email}</FormLabel>
+                <FormLabel>{commonDictionary.email}</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
                     disabled={ispending}
-                    placeholder={dictionary.email_placeholder}
+                    placeholder={commonDictionary.email_placeholder}
                     type="email"
                     className="border-primary"
                     autoComplete="email"
@@ -74,12 +79,12 @@ const LoginForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{dictionary.password}</FormLabel>
+                <FormLabel>{commonDictionary.password}</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
                     disabled={ispending}
-                    placeholder={dictionary.password_placeholder}
+                    placeholder={commonDictionary.password_placeholder}
                     type="password"
                     className="border-primary"
                     autoComplete="current-password"
@@ -90,6 +95,7 @@ const LoginForm = () => {
             )}
           />
         </div>
+        <Button variant="ghost"></Button>
         <Button className="w-full" type="submit" disabled={ispending}>
           {ispending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           {dictionary.login_btn}
