@@ -40,7 +40,6 @@ export const updateProfile = async (
     if (password) {
       data.password = await bcrypt.hash(password, 10);
     }
-    console.log("data:", data);
 
     await db.user.update({
       where: {
