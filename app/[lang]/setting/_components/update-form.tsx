@@ -20,6 +20,7 @@ import useHandlerProviderError from "@/hooks/use-handle-provider-error";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import fetchHandler from "@/lib/fetch-handler";
+import { signOut } from "next-auth/react";
 // Schema
 import { UpdateSchema } from "@/schemas";
 // Actions
@@ -29,8 +30,7 @@ import {
   DictionaryContext,
   LocaleContext,
 } from "@/components/dictionary-provider";
-import { signOut } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import Hint from "@/components/hint";
 interface IUpdateFormProps {
   username: string;
   email: string;
@@ -141,11 +141,26 @@ const UpdateForm: React.FC<IUpdateFormProps> = ({ username, email, id }) => {
                     {commonDictionary.change}
                   </Button>
                 </div>
-
                 <FormMessage />
               </FormItem>
             )}
           />
+          <FormItem>
+            <FormLabel className="flex items-center">
+              <MdVerified className="size-6 text-green-500 mr-2" />
+              {commonDictionary.email}
+            </FormLabel>
+            <Hint descrption={dictionary.email_tip} asChild>
+              <div className="w-full">
+                <Input
+                  disabled={true}
+                  placeholder={commonDictionary.usename_placeholder}
+                  className="border-none w-full"
+                  value={email}
+                />
+              </div>
+            </Hint>
+          </FormItem>
         </div>
         <div className="flex gap-10 w-1/2">
           <Button
@@ -155,7 +170,7 @@ const UpdateForm: React.FC<IUpdateFormProps> = ({ username, email, id }) => {
             variant="outline"
             onClick={onReset}
           >
-            {dictionary.cancel}
+            {commonDictionary.cancel}
           </Button>
           <Button className="w-full" type="submit" disabled={ispending}>
             {ispending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
@@ -163,29 +178,6 @@ const UpdateForm: React.FC<IUpdateFormProps> = ({ username, email, id }) => {
           </Button>
         </div>
       </form>
-      {/* <FormField
-        control={form.control}
-        name="email"
-        render={({ field }) => (
-          <FormItem className="mt-8">
-            <FormLabel className="flex items-center">
-              <MdVerified className="mr-2 size-4 text-green-500" />
-              {commonDictionary.email}
-            </FormLabel>
-            <FormControl>
-              <Input
-                {...field}
-                disabled={ispending}
-                placeholder={commonDictionary.email_placeholder}
-                type="email"
-                className="border-primary"
-                autoComplete="email"
-              />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      /> */}
     </Form>
   );
 };
