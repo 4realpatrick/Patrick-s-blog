@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/form";
 // Hooks
 import { useForm } from "react-hook-form";
-import { useTransition } from "react";
+import { useContext, useTransition } from "react";
 import useHandlerProviderError from "@/hooks/use-handle-provider-error";
 // Utils
 import * as z from "zod";
@@ -23,15 +23,14 @@ import { LoginSchema } from "@/schemas";
 import fetchHandler from "@/lib/fetch-handler";
 // Actions
 import { login } from "@/actions/login";
-// Types
-import { TDictionary } from "@/lib/dictionary";
+// Context
+import { DictionaryContext } from "@/components/dictionary-provider";
 
-const LoginForm = ({
-  dictionary,
-}: {
-  dictionary: TDictionary["pages"]["login"];
-}) => {
+const LoginForm = () => {
   const [ispending, startTransition] = useTransition();
+  const {
+    pages: { login: dictionary },
+  } = useContext(DictionaryContext);
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {

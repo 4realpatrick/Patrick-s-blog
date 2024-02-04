@@ -31,7 +31,7 @@ const RegisterPage = () => {
         </>
       }
     >
-      <RegisterForm dictionary={registerDictionary} />
+      <RegisterForm />
       <Separator>{registerDictionary.separator_text}</Separator>
       <Social />
     </RegisterFrame>

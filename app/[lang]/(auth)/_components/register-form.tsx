@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/form";
 // Hooks
 import { useForm } from "react-hook-form";
-import { useTransition } from "react";
+import { useContext, useTransition } from "react";
 import useHandlerProviderError from "@/hooks/use-handle-provider-error";
 // Utils
 import * as z from "zod";
@@ -23,15 +23,14 @@ import fetchHandler from "@/lib/fetch-handler";
 import { RegisterSchema } from "@/schemas";
 // Actions
 import { register } from "@/actions/register";
-// Types
-import { TDictionary } from "@/lib/dictionary";
+// Context
+import { DictionaryContext } from "@/components/dictionary-provider";
 
-const RegisterForm = ({
-  dictionary,
-}: {
-  dictionary: TDictionary["pages"]["register"];
-}) => {
+const RegisterForm = () => {
   const [ispending, startTransition] = useTransition();
+  const {
+    pages: { register: dictionary },
+  } = useContext(DictionaryContext);
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
     defaultValues: {
@@ -40,7 +39,6 @@ const RegisterForm = ({
       name: "",
     },
   });
-
   const onSubmit = (value: z.infer<typeof RegisterSchema>) => {
     startTransition(() => {
       register(value).then(fetchHandler);

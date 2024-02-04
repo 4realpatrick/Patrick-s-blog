@@ -33,7 +33,7 @@ const LoginPage = () => {
         </>
       }
     >
-      <LoginForm dictionary={loginDictionary} />
+      <LoginForm />
       <Separator>{loginDictionary.separator_text}</Separator>
       <Social />
       <CompositeAlert
