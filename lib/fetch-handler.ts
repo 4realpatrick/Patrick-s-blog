@@ -7,16 +7,27 @@ export default function fetchHandler(
   options: {
     description?: string;
     withTime?: boolean;
+    duration?: number;
+    callback?: (isSuccess: boolean) => void;
   } = {}
 ) {
   // 防止Server返回值有误
   if (!response) return;
   const { success, message, type } = response;
   if (!message) return;
-  const { description = "", withTime = true } = options;
+  const {
+    description = "",
+    withTime = true,
+    duration = 3000,
+    callback,
+  } = options;
   const realDesc = description + withTime ? getRegularTime() : "";
   const toastType = !!type ? type : success ? "success" : "error";
-  return toast[toastType](message, {
+  toast[toastType](message, {
     description: realDesc,
+    duration,
+    onAutoClose(toast) {
+      callback?.(success);
+    },
   });
 }
