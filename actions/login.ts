@@ -8,9 +8,11 @@ import { AuthError } from "next-auth";
 import { generateVerificationToken } from "@/lib/tokens";
 import { getUserByEmail } from "@/data/user";
 import { sendVerificationEmail } from "@/lib/mail";
+import { Locale } from "@/i18n.config";
 
 export const login = async (
-  values: z.infer<typeof LoginSchema>
+  values: z.infer<typeof LoginSchema>,
+  locale: Locale
 ): Promise<ICommonResponse> => {
   try {
     const validatedFields = LoginSchema.safeParse(values);
@@ -60,7 +62,7 @@ export const login = async (
     return await signIn("credentials", {
       email,
       password,
-      redirectTo: DEFAULT_LOGIN_REDIRECT,
+      redirectTo: `/${locale}${DEFAULT_LOGIN_REDIRECT}`,
     });
   } catch (error) {
     if (error instanceof AuthError) {

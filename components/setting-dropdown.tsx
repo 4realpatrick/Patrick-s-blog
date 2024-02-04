@@ -110,7 +110,13 @@ export default function SettingDropdown({
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         {session.data?.user ? (
-          <DropdownMenuItem onClick={() => signOut()}>
+          <DropdownMenuItem
+            onClick={() =>
+              signOut({
+                callbackUrl: `/${locale}/login`,
+              })
+            }
+          >
             <TbLogin2 className="mr-2 size-4" />
             <span>{dictionary.signout}</span>
           </DropdownMenuItem>
