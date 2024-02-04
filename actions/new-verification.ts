@@ -20,7 +20,7 @@ export const newVerification = async (
         message: "Token不存在",
       };
     }
-    const hasExpired = new Date(existingToken.token) < new Date();
+    const hasExpired = new Date(existingToken.expires) < new Date();
 
     // token过期
     if (hasExpired) {
