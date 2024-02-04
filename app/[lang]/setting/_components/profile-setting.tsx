@@ -10,8 +10,6 @@ import {
   DictionaryContext,
   LocaleContext,
 } from "@/components/dictionary-provider";
-// Types
-import { TDictionary } from "@/lib/dictionary";
 // Hooks
 import { useSession } from "next-auth/react";
 import { useContext } from "react";
