@@ -2,22 +2,30 @@
 import Locked from "@/components/svg-components/locked";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Avatar from "@/components/avatar";
+import Separator from "@/components/ui/separator";
+import UpdateForm from "./update-form";
 // Context
-import { LocaleContext } from "@/components/dictionary-provider";
+import {
+  DictionaryContext,
+  LocaleContext,
+} from "@/components/dictionary-provider";
 // Types
 import { TDictionary } from "@/lib/dictionary";
 // Hooks
 import { useSession } from "next-auth/react";
 import { useContext } from "react";
 
-const ProfileSetting = ({
-  dictionary,
-}: {
-  dictionary: TDictionary["pages"]["setting"]["profile"];
-}) => {
+const ProfileSetting = () => {
   const { data } = useSession();
   const locale = useContext(LocaleContext);
-  if (!data?.user)
+  const {
+    pages: {
+      setting: { profile: dictionary },
+    },
+    common: commonDictionary,
+  } = useContext(DictionaryContext);
+  if (!data?.user) {
     return (
       <div className="size-full flex justify-center items-center flex-col gap-8">
         <Locked className="size-[40%]" />
@@ -27,7 +35,24 @@ const ProfileSetting = ({
         </Button>
       </div>
     );
-  return <div>profile-setting</div>;
+  }
+  const { user } = data;
+
+  return (
+    <div className="p-8 space-y-8">
+      <h1 className="text-2xl font-bold">{dictionary.title}</h1>
+      <div className="flex items-center gap-x-8">
+        <Avatar username={user.name!} src={user.image || "/male1.svg"} />
+        <Button size="lg" className="text-lg">
+          {commonDictionary.change}
+        </Button>
+      </div>
+      <Separator useTheme={false} />
+      <div className="w-1/2">
+        <UpdateForm username={user.name!} email={user.email!} id={user.id!} />
+      </div>
+    </div>
+  );
 };
 
 export default ProfileSetting;
