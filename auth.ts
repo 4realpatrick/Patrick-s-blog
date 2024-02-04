@@ -40,7 +40,6 @@ export const {
       return true;
     },
     // @ts-ignore offcial bug wait for fix https://github.com/nextauthjs/next-auth/pull/9756/files
-
     async session({ token, session }) {
       if (token.sub && session.user) {
         session.user.id = token.sub;
@@ -50,10 +49,14 @@ export const {
       }
       return session;
     },
-    async jwt({ token }) {
+    async jwt({ token, trigger, session }) {
       if (!token.sub) return token;
       const existingUser = await getUserById(token.sub);
       if (!existingUser) return token;
+      // 个人资料修改后update session
+      if (trigger === "update") {
+        token.name = session?.name;
+      }
       token.role = existingUser.role;
       return token;
     },

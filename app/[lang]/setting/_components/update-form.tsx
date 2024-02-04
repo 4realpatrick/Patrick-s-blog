@@ -14,13 +14,19 @@ import {
 import { MdVerified } from "react-icons/md";
 // Hooks
 import { useForm } from "react-hook-form";
-import { useCallback, useContext, useState, useTransition } from "react";
+import {
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+  useTransition,
+} from "react";
 import useHandlerProviderError from "@/hooks/use-handle-provider-error";
 // Utils
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import fetchHandler from "@/lib/fetch-handler";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 // Schema
 import { UpdateSchema } from "@/schemas";
 // Actions
@@ -46,6 +52,7 @@ const UpdateForm: React.FC<IUpdateFormProps> = ({ username, email, id }) => {
     common: commonDictionary,
   } = useContext(DictionaryContext);
   const locale = useContext(LocaleContext);
+  const { update } = useSession();
   const form = useForm<z.infer<typeof UpdateSchema>>({
     resolver: zodResolver(UpdateSchema),
     defaultValues: {
@@ -53,7 +60,10 @@ const UpdateForm: React.FC<IUpdateFormProps> = ({ username, email, id }) => {
       name: username,
     },
   });
-
+  // trigger mannual setter when session update
+  useEffect(() => {
+    form.setValue("name", username);
+  }, [username]);
   const onSubmit = (value: z.infer<typeof UpdateSchema>) => {
     if (isPwdEdit && !value.password) {
       return form.setError("password", {
@@ -62,7 +72,13 @@ const UpdateForm: React.FC<IUpdateFormProps> = ({ username, email, id }) => {
     }
     startTransition(() => {
       updateProfile(value, id)
-        .then((res) => {
+        .then(async (res) => {
+          if (res.success) {
+            // 更新session
+            await update({
+              name: value.name,
+            });
+          }
           fetchHandler(res, {
             callback(isSuccess) {
               if (!isSuccess) {
