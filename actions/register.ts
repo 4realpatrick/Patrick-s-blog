@@ -53,8 +53,10 @@ export const register = async (
         password: hashedPassword,
       },
     });
+
     // 创建激活邮箱token
     const verificationToken = await generateVerificationToken(email);
+
     // 发送邮件
     const { error } = await sendVerificationEmail(
       verificationToken.email,
@@ -63,7 +65,12 @@ export const register = async (
     );
 
     if (error) {
-      throw Error(error?.message);
+      return {
+        code: EStatusCode.INTERNAL_SERVER_ERROR,
+        type: "success",
+        success: false,
+        message: error.message || "服务器内部错误",
+      };
     }
     return {
       code: EStatusCode.OK,

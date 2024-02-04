@@ -53,6 +53,12 @@
     "error": {
       "title": "Something went wrong with OAuth",
       "to_login": "Back to login"
+    },
+    "newVerification": {
+      "success": "Verified success, redirecting to login page",
+      "title": "One more step, verifying your email",
+      "miss_token": "Missing token, check the URL",
+      "homepage": "Homepage"
     }
   },
   "components": {

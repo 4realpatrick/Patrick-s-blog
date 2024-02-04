@@ -52,6 +52,12 @@
     "error": {
       "title": "OAuth的请求被吃掉了(国内连接不稳定，可以使用邮箱登录)",
       "to_login": "回到登录"
+    },
+    "newVerification": {
+      "success": "激活成功，正在重定向到登录页",
+      "title": "最后一步, 激活您的邮箱",
+      "miss_token": "缺少Token, 请检查链接是否正确",
+      "homepage": "回到首页"
     }
   },
   "components": {
