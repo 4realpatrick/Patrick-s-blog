@@ -18,23 +18,23 @@ const SettingPage = () => {
     return [
       {
         title: setting.profile.title,
-        id: "hotels",
+        id: "profile",
         icon: CgProfile,
         color: "#67bb67",
-        content: <ProfileSetting dictionary={setting.profile} />,
+        content: <ProfileSetting />,
       },
       {
         title: setting.general.title,
-        id: "flights",
-        icon: CgProfile,
+        id: "general",
+        icon: IoMdSettings,
         color: "#5d5dff",
-        content: <GenralSetting dictionary={setting.general} />,
+        content: <GenralSetting />,
       },
     ];
   }, []);
   return (
     <div className="flex justify-center items-center h-full">
-      <SettingTab tabs={tabs} defaultIndex={1} />
+      <SettingTab tabs={tabs} />
     </div>
   );
 };

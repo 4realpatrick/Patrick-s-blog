@@ -17,6 +17,7 @@ import { DictionaryContext, LocaleContext } from "./dictionary-provider";
 const Navbar = () => {
   const {
     components: { navbar: dictionary },
+    common: commonDictionary,
   } = useContext(DictionaryContext);
   const locale = useContext(LocaleContext);
   return (
@@ -27,7 +28,7 @@ const Navbar = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <Hint descrption={dictionary.home} asChild>
+        <Hint descrption={commonDictionary.home} asChild>
           <Link className="flex items-center" href={`/${locale}/`}>
             <Logo className="transition-[fill]" />
             <span className="pl-4 text-xl text-primary tracking-wider hidden md:inline-block transition-[background]">
@@ -53,7 +54,7 @@ const Navbar = () => {
               </Link>
             </Button>
           ))}
-          <SettingDropdown dictionary={dictionary} />
+          <SettingDropdown dictionary={commonDictionary} />
         </div>
       </m.nav>
     </LazyMotion>

@@ -17,12 +17,6 @@
       "title": "创建一个账户",
       "description": "已经有账户了？",
       "jump_link": "点击登录",
-      "usename": "用户名",
-      "usename_placeholder": "请输入用户名",
-      "email": "邮箱",
-      "email_placeholder": "请输入邮箱",
-      "password": "密码",
-      "password_placeholder": "******",
       "register_btn": "创建账户",
       "separator_text": "或者"
     },
@@ -46,7 +40,9 @@
       "profile": {
         "title": "个人资料",
         "unauthorized": "您需要先登录才能查看个人资料",
-        "login": "登录"
+        "login": "登录",
+        "update_profile": "更新档案",
+        "cancel": "取消"
       }
     },
     "error": {
@@ -63,13 +59,6 @@
   "components": {
     "navbar": {
       "title": "Patrick的博客",
-      "home": "首页",
-      "menu": "菜单",
-      "contact": "联系我",
-      "setting": "设置",
-      "login": "登录",
-      "more": "更多",
-      "signout": "退出登录",
       "routes": ["CSS", "JS", "首页"]
     },
     "language_controller": {
@@ -81,6 +70,22 @@
     }
   },
   "common": {
+    "home": "首页",
+    "menu": "菜单",
+    "contact": "联系我",
+    "setting": "设置",
+    "more": "更多",
+    "signout": "退出登录",
+    "usename": "用户名",
+    "usename_placeholder": "请输入用户名",
+    "email": "邮箱",
+    "email_placeholder": "请输入邮箱",
+    "password": "密码",
+    "password_placeholder": "******",
+    "password_error": "密码最少需要6位及其以上",
+    "cancel": "取消",
+    "login": "登录",
+    "change": "更改",
     "provider_error": {
       "OAuthAccountNotLinked": "邮箱已经被占用,请检查是否使用其他方式登录过"
     }

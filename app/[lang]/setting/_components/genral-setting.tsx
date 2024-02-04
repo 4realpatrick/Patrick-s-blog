@@ -4,17 +4,18 @@ import { ThemeController } from "@/components/theme/theme-controller";
 import { MdLanguage } from "react-icons/md";
 import { IoIosColorPalette } from "react-icons/io";
 // Hooks
-import { useMemo } from "react";
+import { useContext, useMemo } from "react";
 // Context
 import CompositeAlert from "@/components/composite-alert";
-// Types
-import { TDictionary } from "@/lib/dictionary";
+// Context
+import { DictionaryContext } from "@/components/dictionary-provider";
 
-const GenralSetting = ({
-  dictionary,
-}: {
-  dictionary: TDictionary["pages"]["setting"]["general"];
-}) => {
+const GenralSetting = () => {
+  const {
+    pages: {
+      setting: { general: dictionary },
+    },
+  } = useContext(DictionaryContext);
   const settings = useMemo(() => {
     return [
       {

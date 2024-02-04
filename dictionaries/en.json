@@ -17,12 +17,6 @@
       "title": "Create an account",
       "description": "Have an account?",
       "jump_link": "Log in now",
-      "usename": "username",
-      "usename_placeholder": "Please enter your username",
-      "email": "Email Address",
-      "email_placeholder": "Please enter your email address",
-      "password": "Password",
-      "password_placeholder": "******",
       "register_btn": "Create",
       "separator_text": "Or"
     },
@@ -47,7 +41,9 @@
       "profile": {
         "title": "Profile",
         "unauthorized": "You need to login first",
-        "login": "Login"
+        "login": "Login",
+        "update_profile": "Update profile",
+        "cancel": "Cancel"
       }
     },
     "error": {
@@ -64,13 +60,7 @@
   "components": {
     "navbar": {
       "title": "Patrick's Blog",
-      "home": "Homepage",
-      "menu": "Menu",
-      "contact": "Contact me",
-      "setting": "Setting",
-      "login": "Login",
-      "more": "More",
-      "signout": "Sign out",
+
       "routes": ["CSS", "JS", "Homepage"]
     },
     "language_controller": {
@@ -82,6 +72,22 @@
     }
   },
   "common": {
+    "home": "Homepage",
+    "menu": "Menu",
+    "contact": "Contact me",
+    "setting": "Setting",
+    "more": "More",
+    "signout": "Sign out",
+    "usename": "username",
+    "usename_placeholder": "Please enter your username",
+    "email": "Email Address",
+    "email_placeholder": "Please enter your email address",
+    "password": "Password",
+    "password_placeholder": "******",
+    "password_error": "Password need 6 chars at least",
+    "cancel": "Cancel",
+    "login": "Login",
+    "change": "Change",
     "provider_error": {
       "OAuthAccountNotLinked": "Email already in use with different provider, please check other providers"
     }

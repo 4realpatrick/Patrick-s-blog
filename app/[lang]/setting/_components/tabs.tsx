@@ -1,10 +1,20 @@
 "use client";
+// Cmp
+import { TbLogin2 } from "react-icons/tb";
 // Hooks
-import { useState } from "react";
+import { useContext, useState } from "react";
 // Utils
 import { LazyMotion, Variants, domAnimation, m, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { signOut } from "next-auth/react";
+// Types
 import { IconType } from "react-icons/lib";
+// Context
+import {
+  DictionaryContext,
+  LocaleContext,
+} from "@/components/dictionary-provider";
+
 // Types
 interface ITabsProps {
   tabs: {
@@ -33,12 +43,13 @@ const tabContentVariants: Variants = {
 
 const SettingTab: React.FC<ITabsProps> = ({ tabs, defaultIndex = 0 }) => {
   const [activeTabIndex, setActiveTabIndex] = useState(defaultIndex);
-
+  const { common } = useContext(DictionaryContext);
+  const locale = useContext(LocaleContext);
   return (
     <LazyMotion features={domAnimation}>
       <div className="rounded-[40px] flex size-full">
         <m.ul
-          className="p-8 m-[0_auto_20px] list-none max-w-[400px] h-full shadow-xl rounded-xl space-y-8 bg-background/80"
+          className="p-8 m-[0_auto_20px] list-none max-w-[400px] h-full shadow-xl rounded-xl gap-8 bg-background/80 flex flex-col"
           role="tablist"
           variants={tabContentVariants}
           initial="initial"
@@ -46,37 +57,49 @@ const SettingTab: React.FC<ITabsProps> = ({ tabs, defaultIndex = 0 }) => {
           exit="exit"
           transition={{ duration: 0.5 }}
         >
-          {tabs.map((tab, index) => {
-            const isActive = activeTabIndex === index;
-            return (
-              <m.li
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 1 }}
-                key={tab.id}
-                className={cn(
-                  "relative w-full cursor-pointer",
-                  isActive && "text-primary"
-                )}
-                role="presentation"
-              >
-                <a
-                  onClick={() => setActiveTabIndex(index)}
-                  className="p-4 flex items-center text-lg overflow-hidden relative"
+          <div className="flex-1 space-y-8">
+            {tabs.map((tab, index) => {
+              const isActive = activeTabIndex === index;
+              return (
+                <li
+                  key={tab.id}
+                  className={cn(
+                    "relative w-full cursor-pointer rounded-lg transition-[background]",
+                    isActive && "text-primary",
+                    !isActive && "hover:bg-primary/10"
+                  )}
+                  role="presentation"
                 >
-                  {tab.icon({ className: "size-6" })}
-                  <span className={cn("ml-3", isActive && "text-primary")}>
-                    {tab.title}
-                  </span>
-                </a>
-                {isActive && (
-                  <motion.span
-                    layoutId="indicator"
-                    className="absolute h-full right-0 top-0 w-[2px] bg-primary"
-                  />
-                )}
-              </m.li>
-            );
-          })}
+                  <a
+                    onClick={() => setActiveTabIndex(index)}
+                    className="p-4 flex items-center text-lg overflow-hidden relative"
+                  >
+                    {tab.icon({ className: "size-6" })}
+                    <span className={cn("ml-3", isActive && "text-primary")}>
+                      {tab.title}
+                    </span>
+                  </a>
+                  {isActive && (
+                    <motion.span
+                      layoutId="indicator"
+                      className="absolute h-full right-0 top-0 w-[2px] bg-primary"
+                    />
+                  )}
+                </li>
+              );
+            })}
+          </div>
+          <li
+            className="w-full text-lg flex items-center p-4 self-end hover:bg-primary/10 transition-[background] rounded-lg cursor-pointer"
+            onClick={() =>
+              signOut({
+                callbackUrl: `/${locale}/login`,
+              })
+            }
+          >
+            <TbLogin2 className="size-6 mr-3" />
+            {common.signout}
+          </li>
         </m.ul>
         {tabs.map(
           (tab, index) =>

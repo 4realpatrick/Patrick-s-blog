@@ -57,7 +57,7 @@ const contacts = [
 export default function SettingDropdown({
   dictionary,
 }: {
-  dictionary: TDictionary["components"]["navbar"];
+  dictionary: TDictionary["common"];
 }) {
   const session = useSession();
   const locale = useContext(LocaleContext);

@@ -30,6 +30,7 @@ const RegisterForm = () => {
   const [ispending, startTransition] = useTransition();
   const {
     pages: { register: dictionary },
+    common: commonDictionary,
   } = useContext(DictionaryContext);
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
@@ -54,12 +55,12 @@ const RegisterForm = () => {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{dictionary.usename}</FormLabel>
+                <FormLabel>{commonDictionary.usename}</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
                     disabled={ispending}
-                    placeholder={dictionary.usename_placeholder}
+                    placeholder={commonDictionary.usename_placeholder}
                     className="border-primary"
                   />
                 </FormControl>
@@ -72,12 +73,12 @@ const RegisterForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{dictionary.email}</FormLabel>
+                <FormLabel>{commonDictionary.email}</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
                     disabled={ispending}
-                    placeholder={dictionary.email_placeholder}
+                    placeholder={commonDictionary.email_placeholder}
                     type="email"
                     className="border-primary"
                     autoComplete="email"
@@ -92,12 +93,12 @@ const RegisterForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{dictionary.password}</FormLabel>
+                <FormLabel>{commonDictionary.password}</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
                     disabled={ispending}
-                    placeholder={dictionary.password_placeholder}
+                    placeholder={commonDictionary.password_placeholder}
                     type="password"
                     className="border-primary"
                     autoComplete="current-password"
