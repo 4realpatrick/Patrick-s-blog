@@ -11,6 +11,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import UnderlineLink from "@/components/underline-link";
 // Hooks
 import { useForm } from "react-hook-form";
 import { useContext, useTransition } from "react";
@@ -95,7 +96,9 @@ const LoginForm = () => {
             )}
           />
         </div>
-        <Button variant="ghost"></Button>
+        <UnderlineLink href={`/${locale}/reset`} className="!mt-4 inline-block">
+          {dictionary.forget_password}
+        </UnderlineLink>
         <Button className="w-full" type="submit" disabled={ispending}>
           {ispending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           {commonDictionary.login}

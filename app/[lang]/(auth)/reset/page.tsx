@@ -1,7 +1,7 @@
-import React from "react";
+import ResetForm from "../_components/reset-form";
 
-const page = () => {
-  return <div>page</div>;
+const ResetPage = () => {
+  return <ResetForm />;
 };
 
-export default page;
+export default ResetPage;

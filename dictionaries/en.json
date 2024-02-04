@@ -5,7 +5,8 @@
       "description": "Don't have an account?",
       "jump_link": "Sign Up",
       "alert_title": "You can view all articles without login, but there's some function limitation",
-      "alert_description": "For example, commenting, liking, and viewing records"
+      "alert_description": "For example, commenting, liking, and viewing records",
+      "forget_password": "Forget password?"
     },
     "register": {
       "title": "Create an account",
@@ -34,9 +35,8 @@
       "profile": {
         "title": "Profile",
         "unauthorized": "You need to login first",
-        "login": "Login",
         "update_profile": "Update profile",
-        "cancel": "Cancel"
+        "email_tip": "Email address can't be modified after register"
       }
     },
     "error": {
@@ -48,6 +48,20 @@
       "title": "One more step, verifying your email",
       "miss_token": "Missing token, check the URL",
       "homepage": "Homepage"
+    },
+    "reset": {
+      "title": "Forget your password?",
+      "description": "Enter your email address below, system will send you an reset email ",
+      "action_btn": "Send reset email",
+      "cancel_btn": "Back to login"
+    },
+    "newPassword": {
+      "title": "We've verify your token",
+      "description": "Enter your new password",
+      "action_btn": "Reset password",
+      "verifying": "Verifying token...",
+      "to_login": "Back to login",
+      "success": "Password reset successfully, redirecting..."
     }
   },
   "components": {

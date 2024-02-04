@@ -4,8 +4,9 @@
       "title": "欢迎回来",
       "description": "还没有账户吗？",
       "jump_link": "点击注册",
-      "alert_title": "您无需登录亦可浏览此网站的所有文章，只是部分功能会有所限制",
-      "alert_description": "例如评论、点赞、查看记录等"
+      "alert_title": "您无需登录亦可浏览此网站的所有文章, 只是部分功能会有所限制",
+      "alert_description": "例如评论、点赞、查看记录等",
+      "forget_password": "忘记密码？"
     },
     "register": {
       "title": "创建一个账户",
@@ -28,25 +29,38 @@
         "language": "语言",
         "language_description": "更改应用的语言(目前仅支持中英文)",
         "alert_title": "小贴士",
-        "alert_description": "在没有登录的情况下，设置是保存在浏览器缓存的，下一次进入网站时有可能有些设置会与上次退出时不同"
+        "alert_description": "在没有登录的情况下, 设置是保存在浏览器缓存的, 下一次进入网站时有可能有些设置会与上次退出时不同"
       },
       "profile": {
         "title": "个人资料",
         "unauthorized": "您需要先登录才能查看个人资料",
-        "login": "登录",
         "update_profile": "更新档案",
-        "cancel": "取消"
+        "email_tip": "注册后无法修改邮箱"
       }
     },
     "error": {
-      "title": "OAuth的请求被吃掉了(国内连接不稳定，可以使用邮箱登录)",
+      "title": "OAuth的请求被吃掉了(国内连接可能不稳定, 可以使用邮箱登录)",
       "to_login": "回到登录"
     },
     "newVerification": {
-      "success": "激活成功，正在重定向到登录页",
+      "success": "激活成功, 正在重定向到登录页",
       "title": "最后一步, 激活您的邮箱",
       "miss_token": "缺少Token, 请检查链接是否正确",
       "homepage": "回到首页"
+    },
+    "reset": {
+      "title": "忘记密码了?",
+      "description": "请输入您注册时使用的邮箱, 系统会发送一封邮件到您的邮箱, 里面包含重置密码的链接",
+      "action_btn": "发送重置邮件",
+      "cancel_btn": "回到登录页"
+    },
+    "newPassword": {
+      "title": "我们已经验证您的token",
+      "description": "请输入您的新密码",
+      "action_btn": "重置密码",
+      "verifying": "正在验证token...",
+      "to_login": "回到登录",
+      "success": "密码重置成功, 正在重定向..."
     }
   },
   "components": {
