@@ -20,3 +20,15 @@ export const RegisterSchema = z.object({
     message: "用户名最少需要3位及其以上",
   }),
 });
+
+export const UpdateSchema = z.object({
+  name: z.string().min(3, {
+    message: "用户名最少需要3位及其以上",
+  }),
+  password: z
+    .string()
+    .min(6, {
+      message: "密码最少需要6位及其以上",
+    })
+    .or(z.string().max(0)),
+});
