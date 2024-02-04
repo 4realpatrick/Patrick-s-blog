@@ -4,12 +4,6 @@
       "title": "Welcome back",
       "description": "Don't have an account?",
       "jump_link": "Sign Up",
-      "email": "Email Address",
-      "email_placeholder": "Please enter your email address",
-      "password": "Password",
-      "password_placeholder": "******",
-      "login_btn": "Login",
-      "separator_text": "Or",
       "alert_title": "You can view all articles without login, but there's some function limitation",
       "alert_description": "For example, commenting, liking, and viewing records"
     },
@@ -17,8 +11,7 @@
       "title": "Create an account",
       "description": "Have an account?",
       "jump_link": "Log in now",
-      "register_btn": "Create",
-      "separator_text": "Or"
+      "register_btn": "Create"
     },
     "setting": {
       "general": {
@@ -60,7 +53,6 @@
   "components": {
     "navbar": {
       "title": "Patrick's Blog",
-
       "routes": ["CSS", "JS", "Homepage"]
     },
     "language_controller": {
@@ -88,6 +80,7 @@
     "cancel": "Cancel",
     "login": "Login",
     "change": "Change",
+    "or": "Or",
     "provider_error": {
       "OAuthAccountNotLinked": "Email already in use with different provider, please check other providers"
     }

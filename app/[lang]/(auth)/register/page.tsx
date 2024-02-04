@@ -15,24 +15,25 @@ import {
 
 const RegisterPage = () => {
   const {
-    pages: { register: registerDictionary },
+    pages: { register: dictionary },
+    common: commonDictionary,
   } = useContext(DictionaryContext);
 
   const locale = useContext(LocaleContext);
   return (
     <RegisterFrame
-      title={registerDictionary.title}
+      title={dictionary.title}
       description={
         <>
-          {registerDictionary.description}
+          {dictionary.description}
           <UnderlineLink href={`/${locale}/login`} className="ml-2">
-            {registerDictionary.jump_link}
+            {dictionary.jump_link}
           </UnderlineLink>
         </>
       }
     >
       <RegisterForm />
-      <Separator>{registerDictionary.separator_text}</Separator>
+      <Separator>{commonDictionary.or}</Separator>
       <Social />
     </RegisterFrame>
   );

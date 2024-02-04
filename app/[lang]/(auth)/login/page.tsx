@@ -16,30 +16,31 @@ import {
 
 const LoginPage = () => {
   const {
-    pages: { login: loginDictionary },
+    pages: { login: dictionary },
+    common: commonDictionary,
   } = useContext(DictionaryContext);
 
   const locale = useContext(LocaleContext);
 
   return (
     <LoginFrame
-      title={loginDictionary.title}
+      title={dictionary.title}
       description={
         <>
-          {loginDictionary.description}
+          {dictionary.description}
           <UnderlineLink href={`/${locale}/register`} className="ml-2">
-            {loginDictionary.jump_link}
+            {dictionary.jump_link}
           </UnderlineLink>
         </>
       }
     >
       <LoginForm />
-      <Separator>{loginDictionary.separator_text}</Separator>
+      <Separator>{commonDictionary.or}</Separator>
       <Social />
       <CompositeAlert
-        title={loginDictionary.alert_title}
+        title={dictionary.alert_title}
         className="mt-4 border-primary shadow-lg"
-        description={loginDictionary.alert_description}
+        description={dictionary.alert_description}
       />
     </LoginFrame>
   );

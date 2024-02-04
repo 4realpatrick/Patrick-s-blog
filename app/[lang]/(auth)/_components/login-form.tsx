@@ -98,7 +98,7 @@ const LoginForm = () => {
         <Button variant="ghost"></Button>
         <Button className="w-full" type="submit" disabled={ispending}>
           {ispending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          {dictionary.login_btn}
+          {commonDictionary.login}
         </Button>
       </form>
     </Form>

@@ -4,12 +4,6 @@
       "title": "欢迎回来",
       "description": "还没有账户吗？",
       "jump_link": "点击注册",
-      "email": "邮箱",
-      "email_placeholder": "请输入邮箱",
-      "password": "密码",
-      "password_placeholder": "******",
-      "login_btn": "登录",
-      "separator_text": "或者",
       "alert_title": "您无需登录亦可浏览此网站的所有文章，只是部分功能会有所限制",
       "alert_description": "例如评论、点赞、查看记录等"
     },
@@ -17,8 +11,7 @@
       "title": "创建一个账户",
       "description": "已经有账户了？",
       "jump_link": "点击登录",
-      "register_btn": "创建账户",
-      "separator_text": "或者"
+      "register_btn": "创建账户"
     },
     "setting": {
       "general": {
@@ -86,6 +79,7 @@
     "cancel": "取消",
     "login": "登录",
     "change": "更改",
+    "or": "或者",
     "provider_error": {
       "OAuthAccountNotLinked": "邮箱已经被占用,请检查是否使用其他方式登录过"
     }
