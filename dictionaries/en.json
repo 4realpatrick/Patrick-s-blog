@@ -38,7 +38,8 @@
         "update_profile": "Update profile",
         "email_tip": "Email address can't be modified after register",
         "choose_avatar": "Choose your avatar",
-        "error": "Avatar is required"
+        "error": "Avatar is required",
+        "custom": "Got a better idea?"
       }
     },
     "error": {
@@ -98,6 +99,7 @@
     "change": "Change",
     "or": "Or",
     "update": "Update",
+    "upload": "Upload",
     "provider_error": {
       "OAuthAccountNotLinked": "Email already in use with different provider, please check other providers"
     }
