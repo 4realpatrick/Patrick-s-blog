@@ -1,14 +1,21 @@
-"use client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { cn } from "@/lib/utils";
 interface IAvatarProps {
   src: string;
   username?: string;
+  className?: string;
 }
-const avatar: React.FC<IAvatarProps> = ({ src, username = "P" }) => {
+const avatar: React.FC<IAvatarProps> = ({
+  src,
+  username = "P",
+  className = "",
+}) => {
   return (
-    <Avatar className="size-[100px]">
+    <Avatar className={cn("size-24", className)}>
       <AvatarImage src={src} alt="Avatar" />
-      <AvatarFallback>{username.slice(0, 1).toUpperCase()}</AvatarFallback>
+      <AvatarFallback className="text-lg md:text-xl lg:text-2xl">
+        {username.slice(0, 1).toUpperCase()}
+      </AvatarFallback>
     </Avatar>
   );
 };
