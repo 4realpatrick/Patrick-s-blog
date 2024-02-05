@@ -11,7 +11,7 @@ const Separator: React.FC<ISeparatorProps> = memo(
     return (
       <div
         className={cn(
-          "flex whitespace-nowrap select-none before:relative before:top-1/2 before:border-t-[1px] before:translate-y-1/2 before:grow after:relative after:top-1/2 after:border-cyan-500 after:border-t-[1px] after:translate-y-1/2 after:grow",
+          "flex whitespace-nowrap select-none before:relative before:border-t-[1px] before:flex-1 after:relative after:border-cyan-500 after:border-t-[1px] after:flex-1 items-center",
           useTheme
             ? "before:border-primary after:border-primary"
             : "before:border-border after:border-border",
