@@ -13,6 +13,7 @@ import {
 // Hooks
 import { useSession } from "next-auth/react";
 import { useContext } from "react";
+import AvatarUploader from "@/components/avatar-uploader";
 
 const ProfileSetting = () => {
   const { data } = useSession();
@@ -41,9 +42,7 @@ const ProfileSetting = () => {
       <h1 className="text-2xl font-bold">{dictionary.title}</h1>
       <div className="flex items-center gap-x-8">
         <Avatar username={user.name!} src={user.image || "/male1.svg"} />
-        <Button size="lg" className="text-lg">
-          {commonDictionary.change}
-        </Button>
+        <AvatarUploader />
       </div>
       <Separator useTheme={false} />
       <div className="w-1/2">

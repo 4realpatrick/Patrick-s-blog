@@ -41,6 +41,9 @@ export const {
     },
     // @ts-ignore offcial bug wait for fix https://github.com/nextauthjs/next-auth/pull/9756/files
     async session({ token, session }) {
+      if (token.picture) {
+        session.user.image = token.picture;
+      }
       if (token.sub && session.user) {
         session.user.id = token.sub;
       }
@@ -55,7 +58,11 @@ export const {
       if (!existingUser) return token;
       // 个人资料修改后update session
       if (trigger === "update") {
-        token.name = session?.name;
+        if (session.name) {
+          token.name = session.name;
+        } else if (session.image) {
+          token.picture = session.image;
+        }
       }
       token.role = existingUser.role;
       return token;

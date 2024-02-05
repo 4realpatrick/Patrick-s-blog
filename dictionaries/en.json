@@ -36,7 +36,9 @@
         "title": "Profile",
         "unauthorized": "You need to login first",
         "update_profile": "Update profile",
-        "email_tip": "Email address can't be modified after register"
+        "email_tip": "Email address can't be modified after register",
+        "choose_avatar": "Choose your avatar",
+        "error": "Avatar is required"
       }
     },
     "error": {
@@ -95,6 +97,7 @@
     "login": "Login",
     "change": "Change",
     "or": "Or",
+    "update": "Update",
     "provider_error": {
       "OAuthAccountNotLinked": "Email already in use with different provider, please check other providers"
     }
