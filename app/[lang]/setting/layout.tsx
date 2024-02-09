@@ -7,7 +7,7 @@ const SettingLayout = async ({
   children: React.ReactNode;
   params: { lang: Locale };
 }) => {
-  return <div className="size-full p-10 bg-muted">{children}</div>;
+  return <div className="w-full min-h-[inherit] p-10 bg-muted">{children}</div>;
 };
 
 export default SettingLayout;

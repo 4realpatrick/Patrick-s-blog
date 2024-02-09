@@ -14,7 +14,7 @@ const LangLayout = async ({
   return (
     <DictionaryProvider lang={params.lang} dictionary={dictionary}>
       <Navbar />
-      <div className="w-full h-[calc(100vh-76px)]">{children}</div>
+      <div className="w-full min-h-[calc(100vh-76px)]">{children}</div>
     </DictionaryProvider>
   );
 };

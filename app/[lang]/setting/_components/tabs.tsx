@@ -49,7 +49,7 @@ const SettingTab: React.FC<ITabsProps> = ({ tabs, defaultIndex = 0 }) => {
     <LazyMotion features={domAnimation}>
       <div className="rounded-[40px] flex size-full">
         <m.ul
-          className="p-8 m-[0_auto_20px] list-none max-w-[400px] h-full shadow-xl rounded-xl gap-8 bg-background/80 flex flex-col"
+          className="p-8 m-[0_auto_20px] list-none max-w-[400px] shadow-xl rounded-xl gap-8 bg-background/80 flex flex-col"
           role="tablist"
           variants={tabContentVariants}
           initial="initial"
