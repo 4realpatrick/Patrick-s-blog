@@ -1,23 +1,28 @@
+// Cmp
 import UserAvatar from "@/components/avatar";
-import { LazyMotion, domAnimation, m } from "framer-motion";
-import { useSession } from "next-auth/react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Fragment, useContext, useState } from "react";
+import { Button } from "@/components/ui/button";
 import { AvatarFallback, AvatarImage, Avatar } from "@/components/ui/avatar";
-import { DictionaryContext } from "@/components/dictionary-provider";
 import {
   CldUploadButton,
   CldUploadWidgetInfo,
   type CldUploadWidgetResults,
 } from "next-cloudinary";
-import { Button } from "@/components/ui/button";
-import { updateAvatar } from "@/actions/upload-avatar";
+// Hooks
+import { useSession } from "next-auth/react";
+import { Fragment, useContext } from "react";
+// Context
+import { DictionaryContext } from "@/components/dictionary-provider";
+// Utils
+import { LazyMotion, domAnimation, m } from "framer-motion";
 import fetchHandler from "@/lib/fetch-handler";
+// Server actions
+import { updateAvatar } from "@/actions/upload-avatar";
 
 const AnimateAvatar = m(Avatar);
 
