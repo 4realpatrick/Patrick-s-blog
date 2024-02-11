@@ -40,6 +40,16 @@
         "choose_avatar": "Choose your avatar",
         "error": "Avatar is required",
         "custom": "Got a better idea?"
+      },
+      "danger": {
+        "title": "Danger Zone",
+        "delete_account": "Delete account",
+        "delete_account_description": "This action is irreversible, please proceed with caution",
+        "delete_account_btn": "Delete",
+        "alert_title": "Are you absolutely sure?",
+        "alert_description": "This action cannot be undone. This will permanently delete your account and remove your data from our servers. please fill your username to continue",
+        "alert_error": "usename doesn't match",
+        "alert_placeholder": "Please input full username"
       }
     },
     "error": {
@@ -100,6 +110,7 @@
     "or": "Or",
     "update": "Update",
     "upload": "Upload",
+    "sure": "Sure",
     "provider_error": {
       "OAuthAccountNotLinked": "Email already in use with different provider, please check other providers"
     }

@@ -39,6 +39,16 @@
         "choose_avatar": "选择头像",
         "error": "必须选择一个头像",
         "custom": "或者上传自己的图片(我们使用Cloudinary作为图床, 国内连接可能不稳定)"
+      },
+      "danger": {
+        "title": "危险操作",
+        "delete_account": "删除账户",
+        "delete_account_description": "删除账户后, 您将无法使用此账号再访问此网站, 请谨慎操作",
+        "delete_account_btn": "删除账户",
+        "alert_title": "你确定吗?",
+        "alert_description": "此操作无法撤回, 这将会从我们的服务器永久删除您的账户, 请输入完整账户名以确认该操作",
+        "alert_error": "输入用户名不匹配",
+        "alert_placeholder": "请输入完整用户名"
       }
     },
     "error": {
@@ -99,6 +109,7 @@
     "or": "或者",
     "update": "更新",
     "upload": "上传",
+    "sure": "确认",
     "provider_error": {
       "OAuthAccountNotLinked": "邮箱已经被占用,请检查是否使用其他方式登录过"
     }
