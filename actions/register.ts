@@ -7,9 +7,12 @@ import { ICommonResponse, EStatusCode } from "@/types";
 import { getUserByEmail, getUserByName } from "@/data/user";
 import { generateVerificationToken } from "@/lib/tokens";
 import { sendVerificationEmail } from "@/lib/mail";
+import { getResponseDictionary } from "@/lib/dictionary";
+import { getLocaleFromUrl } from "@/lib/get-locale";
 export const register = async (
   values: z.infer<typeof RegisterSchema>
 ): Promise<ICommonResponse> => {
+  const dictionary = await getResponseDictionary(getLocaleFromUrl());
   try {
     const validatedFields = RegisterSchema.safeParse(values);
     // 检查字段是否符合要求，如不符合，有可能是恶意攻击
@@ -18,7 +21,7 @@ export const register = async (
         code: EStatusCode.BAD_REQUEST,
         type: "error",
         success: false,
-        message: "无效的字段，请检查所有字段的格式",
+        message: dictionary.invalid_field,
       };
     }
     const { email, password, name } = validatedFields.data;
@@ -32,7 +35,7 @@ export const register = async (
         code: EStatusCode.FORBIDDEN,
         type: "info",
         success: false,
-        message: "该邮箱已被占用",
+        message: dictionary.register_email_occupied,
       };
     }
     const existingNameUser = await getUserByName(name);
@@ -42,7 +45,7 @@ export const register = async (
         code: EStatusCode.FORBIDDEN,
         type: "info",
         success: false,
-        message: "该用户名已被占用",
+        message: dictionary.register_username_occupied,
       };
     }
     // 创建用户
@@ -67,16 +70,16 @@ export const register = async (
     if (error) {
       return {
         code: EStatusCode.INTERNAL_SERVER_ERROR,
-        type: "success",
+        type: "error",
         success: false,
-        message: error.message || "服务器内部错误",
+        message: dictionary.reset_send_email,
       };
     }
     return {
       code: EStatusCode.OK,
       type: "success",
       success: true,
-      message: "我们向您的邮箱发送了一封激活邮件，请先激活邮箱",
+      message: dictionary.register_send_email,
     };
   } catch (error) {
     console.log("Internal error in register", error);
@@ -84,7 +87,7 @@ export const register = async (
       code: EStatusCode.INTERNAL_SERVER_ERROR,
       type: "error",
       success: false,
-      message: "服务器内部错误",
+      message: dictionary.internal_error,
     };
   }
 };

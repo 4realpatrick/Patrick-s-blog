@@ -47,7 +47,7 @@ const LoginForm = () => {
 
   const onSubmit = (value: z.infer<typeof LoginSchema>) => {
     startTransition(() => {
-      login(value, locale).then(fetchHandler);
+      login(value).then(fetchHandler);
     });
   };
   useHandlerProviderError();

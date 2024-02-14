@@ -2,18 +2,21 @@
 import { db } from "@/lib/db";
 import { ICommonResponse, EStatusCode } from "@/types";
 import { getUserById } from "@/data/user";
+import { getResponseDictionary } from "@/lib/dictionary";
+import { getLocaleFromUrl } from "@/lib/get-locale";
 
 export const updateAvatar = async (
   avatar: string,
   id: string
 ): Promise<ICommonResponse> => {
+  const dictionary = await getResponseDictionary(getLocaleFromUrl());
   try {
     if (!avatar || typeof avatar !== "string") {
       return {
         code: EStatusCode.BAD_REQUEST,
         type: "error",
         success: false,
-        message: "无效的字段，请检查所有字段的格式",
+        message: dictionary.invalid_field,
       };
     }
 
@@ -23,7 +26,7 @@ export const updateAvatar = async (
         code: EStatusCode.BAD_REQUEST,
         type: "error",
         success: false,
-        message: "用户不存在",
+        message: dictionary.user_doesnt_exist,
       };
     }
 
@@ -40,7 +43,7 @@ export const updateAvatar = async (
       code: EStatusCode.OK,
       type: "success",
       success: true,
-      message: "头像更新成功",
+      message: dictionary.update_avatar_success,
     };
   } catch (error) {
     console.log("Internal error in upload-avatar", error);
@@ -48,7 +51,7 @@ export const updateAvatar = async (
       code: EStatusCode.INTERNAL_SERVER_ERROR,
       type: "error",
       success: false,
-      message: "服务器内部错误",
+      message: dictionary.internal_error,
     };
   }
 };

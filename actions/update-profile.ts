@@ -5,10 +5,13 @@ import bcrypt from "bcryptjs";
 import { db } from "@/lib/db";
 import { ICommonResponse, EStatusCode } from "@/types";
 import { getUserById } from "@/data/user";
+import { getResponseDictionary } from "@/lib/dictionary";
+import { getLocaleFromUrl } from "@/lib/get-locale";
 export const updateProfile = async (
   values: z.infer<typeof UpdateSchema>,
   id: string
 ): Promise<ICommonResponse> => {
+  const dictionary = await getResponseDictionary(getLocaleFromUrl());
   try {
     const validatedFields = UpdateSchema.safeParse(values);
     // 检查字段是否符合要求，如不符合，有可能是恶意攻击
@@ -17,7 +20,7 @@ export const updateProfile = async (
         code: EStatusCode.BAD_REQUEST,
         type: "error",
         success: false,
-        message: "无效的字段，请检查所有字段的格式",
+        message: dictionary.invalid_field,
       };
     }
     const { password, name } = validatedFields.data;
@@ -28,7 +31,7 @@ export const updateProfile = async (
         code: EStatusCode.BAD_REQUEST,
         type: "error",
         success: false,
-        message: "用户不存在",
+        message: dictionary.user_doesnt_exist,
       };
     }
     const data: {
@@ -52,22 +55,22 @@ export const updateProfile = async (
         code: EStatusCode.OK,
         type: "success",
         success: true,
-        message: "修改成功，由于您修改了密码，需要重新登录",
+        message: dictionary.update_success_password,
       };
     }
     return {
       code: EStatusCode.OK,
       type: "success",
       success: true,
-      message: "修改成功",
+      message: dictionary.update_success,
     };
   } catch (error) {
-    console.log("Internal error in register", error);
+    console.log("Internal error in update-profile", error);
     return {
       code: EStatusCode.INTERNAL_SERVER_ERROR,
       type: "error",
       success: false,
-      message: "服务器内部错误",
+      message: dictionary.internal_error,
     };
   }
 };

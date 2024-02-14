@@ -2,7 +2,7 @@
 import { Locale } from "@/i18n.config";
 import { TDictionary } from "@/lib/dictionary";
 import { createContext } from "react";
-import defaultDictionary from "@/dictionaries/cn.json";
+import defaultDictionary from "@/dictionaries/zh.json";
 interface IDictionaryProviderProps {
   children: React.ReactNode;
   dictionary: TDictionary;

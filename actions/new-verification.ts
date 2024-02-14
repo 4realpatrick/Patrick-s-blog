@@ -3,11 +3,14 @@
 import { getUserByEmail } from "@/data/user";
 import { getVerificationTokenByToken } from "@/data/verification-token";
 import { db } from "@/lib/db";
+import { getResponseDictionary } from "@/lib/dictionary";
+import { getLocaleFromUrl } from "@/lib/get-locale";
 import { EStatusCode, ICommonResponse } from "@/types";
 
 export const newVerification = async (
   token: string
 ): Promise<ICommonResponse> => {
+  const dictionary = await getResponseDictionary(getLocaleFromUrl());
   try {
     const existingToken = await getVerificationTokenByToken(token);
 
@@ -17,7 +20,7 @@ export const newVerification = async (
         code: EStatusCode.BAD_REQUEST,
         type: "error",
         success: false,
-        message: "Token不存在",
+        message: dictionary.token_doesnt_exist,
       };
     }
     const hasExpired = new Date(existingToken.expires) < new Date();
@@ -28,7 +31,7 @@ export const newVerification = async (
         code: EStatusCode.FORBIDDEN,
         type: "error",
         success: false,
-        message: "Token已过期，请重新发送激活邮件",
+        message: dictionary.token_expired,
       };
     }
 
@@ -40,7 +43,7 @@ export const newVerification = async (
         code: EStatusCode.FORBIDDEN,
         type: "error",
         success: false,
-        message: "该token所属邮箱不存在",
+        message: dictionary.new_verification_email_doesnt_exist,
       };
     }
 
@@ -50,7 +53,7 @@ export const newVerification = async (
         code: EStatusCode.FORBIDDEN,
         type: "info",
         success: false,
-        message: "该邮箱以激活，请勿重复操作",
+        message: dictionary.new_verification_repeat_verify,
       };
     }
 
@@ -75,7 +78,7 @@ export const newVerification = async (
       code: EStatusCode.OK,
       type: "success",
       success: true,
-      message: "邮箱激活成功，正在重定向...",
+      message: dictionary.new_verification_success,
     };
   } catch (error) {
     console.log("Internal error in new-verification", error);
@@ -83,7 +86,7 @@ export const newVerification = async (
       code: EStatusCode.INTERNAL_SERVER_ERROR,
       type: "error",
       success: false,
-      message: "服务器内部错误",
+      message: dictionary.internal_error,
     };
   }
 };

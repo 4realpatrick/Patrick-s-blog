@@ -9,11 +9,14 @@ import { generateVerificationToken } from "@/lib/tokens";
 import { getUserByEmail } from "@/data/user";
 import { sendVerificationEmail } from "@/lib/mail";
 import { Locale } from "@/i18n.config";
+import { getResponseDictionary } from "@/lib/dictionary";
+import { getLocaleFromUrl } from "@/lib/get-locale";
 
 export const login = async (
-  values: z.infer<typeof LoginSchema>,
-  locale: Locale
+  values: z.infer<typeof LoginSchema>
 ): Promise<ICommonResponse> => {
+  const locale = getLocaleFromUrl();
+  const dictionary = await getResponseDictionary(locale);
   try {
     const validatedFields = LoginSchema.safeParse(values);
     // 检查字段是否符合要求，如不符合，有可能是恶意攻击
@@ -22,7 +25,7 @@ export const login = async (
         code: EStatusCode.BAD_REQUEST,
         type: "error",
         success: false,
-        message: "无效的字段，请检查所有字段的格式",
+        message: dictionary.invalid_field,
       };
     }
     const { email, password } = validatedFields.data;
@@ -33,7 +36,7 @@ export const login = async (
         code: EStatusCode.FORBIDDEN,
         type: "error",
         success: false,
-        message: "用户不存在，请检查字段是否正确",
+        message: dictionary.login_user_doesnt_exist,
       };
     }
     // 在用户没有激活邮箱时阻止登录
@@ -49,13 +52,18 @@ export const login = async (
       );
 
       if (error) {
-        throw Error(error?.message);
+        return {
+          code: EStatusCode.INTERNAL_SERVER_ERROR,
+          type: "error",
+          success: false,
+          message: dictionary.reset_send_email,
+        };
       }
       return {
         code: EStatusCode.FORBIDDEN,
         type: "info",
         success: false,
-        message: "我们向您的邮箱发送了一封激活邮件，请先激活邮箱",
+        message: dictionary.login_send_email,
       };
     }
 
@@ -72,17 +80,30 @@ export const login = async (
             code: EStatusCode.BAD_REQUEST,
             type: "error",
             success: false,
-            message: "无效的凭证，请检查用户名和密码",
+            message: dictionary.login_credential_error,
+          };
+        case "OAuthAccountNotLinked":
+          return {
+            code: EStatusCode.BAD_REQUEST,
+            type: "error",
+            success: false,
+            message: dictionary.login_OAuthAccountNotLinked,
           };
         default:
           return {
             code: EStatusCode.INTERNAL_SERVER_ERROR,
             type: "error",
             success: false,
-            message: error.cause?.err?.message ?? "服务器内部错误",
+            message: dictionary.internal_error,
           };
       }
     }
-    throw error;
+    console.log("Internal error in login", error);
+    return {
+      code: EStatusCode.INTERNAL_SERVER_ERROR,
+      type: "error",
+      success: false,
+      message: dictionary.internal_error,
+    };
   }
 };
