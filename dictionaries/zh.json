@@ -17,8 +17,15 @@
     "setting": {
       "general": {
         "title": "基本设置",
-        "theme": "主题",
+        "theme": "主题色",
         "theme_description": "更改应用的主题色",
+        "mode": "模式",
+        "mode_description": "改变应用的模式",
+        "modes": {
+          "system": "系统",
+          "light": "明亮",
+          "dark": "夜间模式"
+        },
         "themes": {
           "blue": "蓝宝石",
           "green": "苹果绿",

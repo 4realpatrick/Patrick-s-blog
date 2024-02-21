@@ -17,6 +17,13 @@
     "setting": {
       "general": {
         "title": "General settings",
+        "mode": "Mode",
+        "mode_description": "Change the mode of the App",
+        "modes": {
+          "system": "System",
+          "light": "Light",
+          "dark": "Dark"
+        },
         "theme": "Theme",
         "theme_description": "Change the theme of the App",
         "themes": {
@@ -28,7 +35,6 @@
         },
         "language": "Language",
         "language_description": "Change the language of the App (currently only supports Chinese and English)",
-
         "alert_title": "Tips",
         "alert_description": "When a user is not logged in, the settings are saved in the browser cache. If the user returns to the website later, some settings may have changed since the last time the user exited."
       },

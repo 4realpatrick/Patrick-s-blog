@@ -37,7 +37,7 @@ const SettingPage = () => {
       },
     ];
   }, []);
-  return <SettingTab tabs={tabs} />;
+  return <SettingTab tabs={tabs} defaultIndex={1} />;
 };
 
 export default SettingPage;

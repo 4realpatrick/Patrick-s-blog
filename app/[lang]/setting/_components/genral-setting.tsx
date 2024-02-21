@@ -3,12 +3,14 @@ import LanguageController from "@/components/language-controller";
 import { ThemeController } from "@/components/theme/theme-controller";
 import { MdLanguage } from "react-icons/md";
 import { IoIosColorPalette } from "react-icons/io";
+import { MdOutlineDarkMode } from "react-icons/md";
 // Hooks
 import { useContext, useMemo } from "react";
 // Context
 import CompositeAlert from "@/components/composite-alert";
 // Context
 import { DictionaryContext } from "@/components/dictionary-provider";
+import { ModeController } from "@/components/theme/mode-controller";
 
 const GenralSetting = () => {
   const {
@@ -18,6 +20,13 @@ const GenralSetting = () => {
   } = useContext(DictionaryContext);
   const settings = useMemo(() => {
     return [
+      {
+        title: dictionary.mode,
+        description: dictionary.mode_description,
+        id: "mode",
+        icon: MdOutlineDarkMode,
+        cmp: <ModeController />,
+      },
       {
         title: dictionary.theme,
         description: dictionary.theme_description,

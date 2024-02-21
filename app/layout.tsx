@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import ThemeProvider from "@/components/theme/theme-provider";
 import { SessionProvider } from "next-auth/react";
+import { ModeProvider } from "@/components/theme/mode-provider";
 
 export const metadata: Metadata = {
   title: "Patrick's blog",
@@ -15,12 +16,14 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html data-theme="light">
+    <html data-theme="light" style={{ colorScheme: "light" }}>
       <body className="w-screen sm:min-w-[800px] md:min-w-[800px] lg:min-w-[800px] xl:min-w-[800px] 2xl:min-w-[800px]">
         <SessionProvider>
-          <ThemeProvider />
-          <Toaster richColors />
-          {children}
+          <ModeProvider attribute="class" defaultTheme="system" enableSystem>
+            <ThemeProvider />
+            <Toaster richColors />
+            {children}
+          </ModeProvider>
         </SessionProvider>
       </body>
     </html>
