@@ -8,25 +8,17 @@ import {
   authRoutes,
   publicRoutes,
 } from "@/routes";
-import { NextRequest, NextResponse } from "next/server";
-import { i18n } from "./i18n.config";
-import Negotiator from "negotiator";
-import { match as matchLocale } from "@formatjs/intl-localematcher";
-
+import { NextResponse } from "next/server";
+import { Locale, i18n } from "./i18n.config";
 export const { auth } = NextAuth(authConfig);
 /**
  * @description 获取当前浏览器的语言
  * @param {NextRequest} req request
  * @returns {string} 返回当前的语言
  */
-function getLocale(req: NextRequest): string {
-  const negotiatorHears: Record<string, string> = {};
-  req.headers.forEach((value, key) => (negotiatorHears[key] = value));
-  // @ts-ignore locales are readonly
-  const locales: string[] = i18n.locales;
-  const languages = new Negotiator({ headers: negotiatorHears }).languages();
-  const locale = matchLocale(languages, locales, i18n.defaultLocale);
-  return locale;
+function getLocale(pathname: string): Locale {
+  const locale = pathname.split("/")[1] as Locale;
+  return i18n.locales.includes(locale as Locale) ? locale : "zh";
 }
 
 // Core function
@@ -36,7 +28,7 @@ export default auth((req) => {
   // 是否登录
   const isLoggedIn = !!req.auth;
   // 当前语言
-  const locale = getLocale(req);
+  const locale = getLocale(pathname);
   // 去掉locale的pathname
   const pathnameWithoutLocale = pathname.replace(/^\/[^\/]+/, "");
 
@@ -66,6 +58,8 @@ export default auth((req) => {
   if (isAuthRoute) {
     // 如果是已经登录，则不允许再访问登录或者注册页面
     if (isLoggedIn) {
+      console.log("locale:", locale);
+
       return NextResponse.redirect(
         new URL(`/${locale}${DEFAULT_LOGIN_REDIRECT}`, nextUrl)
       );
