@@ -72,6 +72,35 @@ const config = {
             width: "0",
           },
         },
+        loader_circle: {
+          "0%": {
+            top: "60px",
+            height: "5px",
+            borderRadius: "50px 50px 25px 25px",
+            transform: "scaleX(1.7)",
+          },
+          "40%": {
+            height: "20px",
+            borderRadius: "50%",
+            transform: "scaleX(1)",
+          },
+          "100%": {
+            top: "0%",
+          },
+        },
+        loader_shadow: {
+          "0%": {
+            transform: "scaleX(1.5)",
+          },
+          "40%": {
+            transform: "scaleX(1)",
+            opacity: "0.7",
+          },
+          "100%": {
+            transform: "scaleX(.2)",
+            opacity: "0.4",
+          },
+        },
         blink: {
           "50%": {
             borderColor: "transparent",
@@ -79,6 +108,8 @@ const config = {
         },
       },
       animation: {
+        "loader-circle": "loader_circle .5s alternate infinite ease",
+        "lodaer-shadow": "loader_shadow .5s alternate infinite ease",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         typing: "typing 2s steps(22), blink .5s step-end infinite alternate",
