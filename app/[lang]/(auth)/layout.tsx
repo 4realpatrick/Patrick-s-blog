@@ -9,7 +9,7 @@ const AuthLayout = async ({ children }: { children: React.ReactNode }) => {
           <Accessbility />
           {children}
         </div>
-        <div className="relative grow max-w-[1200px]">
+        <div className="relative grow max-w-[1200px] flex items-center">
           <LoginBackground />
         </div>
       </div>
