@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-
+import plugin from "tailwindcss/plugin";
 const config = {
   darkMode: ["class"],
   content: [
@@ -52,6 +52,9 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+      transitionDelay: {
+        "5000": "5000ms",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -106,8 +109,14 @@ const config = {
             borderColor: "transparent",
           },
         },
+        text: {
+          to: {
+            backgroundPosition: "200% center",
+          },
+        },
       },
       animation: {
+        "text-gradient": "text 1.5s linear infinite",
         "loader-circle": "loader_circle .5s alternate infinite ease",
         "lodaer-shadow": "loader_shadow .5s alternate infinite ease",
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -116,7 +125,38 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        ".underlineAnimation": {
+          backgroundPosition: "0% 100%",
+          backgroundRepeat: "no-repeat",
+          transitionProperty: "background-size",
+          transitionTimingFunction: "linear",
+          transitionDuration: "200ms",
+          backgroundSize: "0% 2px",
+          backgroundImage:
+            "linear-gradient(to right, var(--tw-gradient-stops))",
+          "--tw-gradient-from":
+            "hsl(var(--primary)) var(--tw-gradient-from-position)",
+          "--tw-gradient-stops":
+            "var(--tw-gradient-from), var(--tw-gradient-to)",
+          "--tw-gradient-to":
+            "hsl(var(--primary)) var(--tw-gradient-to-position)",
+          "&:hover": {
+            backgroundSize: "100% 2px",
+          },
+        },
+        ".dashedBackground": {
+          backgroundImage:
+            "radial-gradient(#000 5%, #0000 6%), radial-gradient(#000 5%, #0000 6%)",
+          backgroundPosition: "0 0, calc(var(3rem) / 2) calc(var(3rem) / 2)",
+          backgroundSize: "3rem 3rem",
+        },
+      });
+    }),
+  ],
 } satisfies Config;
 
 export default config;
