@@ -7,9 +7,7 @@ const SettingLayout = async ({
   params: { lang: Locale };
 }) => {
   return (
-    <div className="w-full h-[inherit] p-10 bg-muted flex flex-col">
-      {children}
-    </div>
+    <div className="size-full p-10 flex flex-col pt-[104px]">{children}</div>
   );
 };
 
