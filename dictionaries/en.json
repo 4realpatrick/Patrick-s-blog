@@ -1,5 +1,9 @@
 {
   "pages": {
+    "home": {
+      "title": "This is ",
+      "job_name": "A Web Developer"
+    },
     "login": {
       "title": "Welcome back",
       "description": "Don't have an account?",
@@ -97,6 +101,7 @@
     }
   },
   "common": {
+    "hello": "Hi!",
     "home": "Homepage",
     "menu": "Menu",
     "contact": "Contact me",

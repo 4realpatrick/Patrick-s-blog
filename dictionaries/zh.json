@@ -1,5 +1,9 @@
 {
   "pages": {
+    "home": {
+      "title": "这里是 ",
+      "job_name": "一个前端工程师"
+    },
     "login": {
       "title": "欢迎回来",
       "description": "还没有账户吗？",
@@ -97,6 +101,7 @@
     }
   },
   "common": {
+    "hello": "你好",
     "home": "首页",
     "menu": "菜单",
     "contact": "联系我",
