@@ -9,10 +9,7 @@ const UnderlineLink: React.FC<
   return (
     <Link
       {...rest}
-      className={cn(
-        "text-primary bg-[0%_100%] bg-no-repeat transition-[background-size] duration-200 ease-linear bg-[length:0%_2px] hover:bg-[length:100%_2px] bg-gradient-to-tr from-primary to-primary",
-        className
-      )}
+      className={cn("text-primary underlineAnimation", className)}
     >
       {children}
     </Link>
