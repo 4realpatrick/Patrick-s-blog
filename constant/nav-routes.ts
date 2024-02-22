@@ -14,10 +14,6 @@ export const getNavRoutes = (
       icon: IoLogoJavascript,
       href: "/js",
     },
-    {
-      icon: FaHome,
-      href: "/",
-    },
   ];
   return navRoutes.map((route, index) => ({
     ...route,

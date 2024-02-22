@@ -2,9 +2,9 @@
 // Cmp
 import Link from "next/link";
 import { Button } from "./ui/button";
-import Logo from "./svg-components/logo";
 import SettingDropdown from "./setting-dropdown";
 import Hint from "./hint";
+import Image from "next/image";
 // Hooks
 import { useContext } from "react";
 // Utils
@@ -23,17 +23,20 @@ const Navbar = () => {
   return (
     <LazyMotion features={domAnimation}>
       <m.nav
-        className="flex justify-between items-center pl-4 py-4 sticky top-0 w-full z-50 bg-background"
+        className="flex justify-between items-center pl-4 py-4 fixed top-0 w-full z-50 bg-transparent shadow-md"
         initial={{ y: -76, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
         <Hint descrption={commonDictionary.home} asChild>
           <Link className="flex items-center" href={`/${locale}/`}>
-            <Logo className="transition-[fill]" />
-            <span className="pl-4 text-xl text-primary tracking-wider hidden md:inline-block transition-[background]">
-              {dictionary.title}
-            </span>
+            <Image
+              src="/owner.jpg"
+              width={40}
+              height={40}
+              alt="avatar"
+              className="rounded-full"
+            />
           </Link>
         </Hint>
         <div className="flex justify-end gap-x-8 pr-8">
