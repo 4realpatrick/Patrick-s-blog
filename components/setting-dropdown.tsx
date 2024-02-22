@@ -30,7 +30,7 @@ import { useContext } from "react";
 import { LocaleContext } from "./dictionary-provider";
 import { cn } from "@/lib/utils";
 
-const contacts = [
+export const contacts = [
   {
     id: "bilibili",
     icon: FaBilibili,
@@ -81,10 +81,14 @@ export default function SettingDropdown({
               <DropdownMenuSubContent>
                 {contacts.map((contact) => (
                   <DropdownMenuItem key={contact.id}>
-                    {contact.icon({
-                      className: cn("mr-2 size-4", contact.iconClass),
-                    })}
-                    <Link href={contact.href} target="_blank">
+                    <Link
+                      href={contact.href}
+                      target="_blank"
+                      className="flex items-center"
+                    >
+                      {contact.icon({
+                        className: cn("mr-2 size-4", contact.iconClass),
+                      })}
                       {contact.title}
                     </Link>
                   </DropdownMenuItem>
