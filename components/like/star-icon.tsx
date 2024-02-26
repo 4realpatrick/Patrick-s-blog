@@ -29,6 +29,7 @@ export function StarIcon({
       ))}
       <group dispose={null}>
         <motion.mesh
+          // @ts-ignore
           geometry={nodes.Star.geometry}
           rotation={[Math.PI / 2, 0, degreesToRadians(360)]}
           scale={1}
@@ -59,7 +60,7 @@ export function StarIcon({
             color="#ffdd00"
             emissive="#ff9500"
             specular="#fff"
-            shininess="100"
+            shininess={100}
           />
         </motion.mesh>
       </group>
