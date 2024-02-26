@@ -3,6 +3,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import authConfig from "@/auth.config";
 import { db } from "./lib/db";
 import { getUserById } from "./data/user";
+import { Role } from "@prisma/client";
 
 // https://authjs.dev/guides/upgrade-to-v5#edge-compatibility
 
@@ -39,7 +40,6 @@ export const {
 
       return true;
     },
-    // @ts-ignore offcial bug wait for fix https://github.com/nextauthjs/next-auth/pull/9756/files
     async session({ token, session }) {
       if (token.picture) {
         session.user.image = token.picture;
@@ -48,7 +48,7 @@ export const {
         session.user.id = token.sub;
       }
       if (token.role && session.user) {
-        session.user.role = token.role;
+        session.user.role = token.role as Role;
       }
       return session;
     },
