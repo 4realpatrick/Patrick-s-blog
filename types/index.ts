@@ -9,7 +9,7 @@ export enum EStatusCode {
   INTERNAL_SERVER_ERROR = 500,
 }
 
-export interface ICommonResponse<T = any> {
+export interface ICommonResponse<T = never> {
   code: EStatusCode;
   success: boolean;
   type?: Exclude<ToastT["type"], "loading" | "action" | "default" | "normal">;
