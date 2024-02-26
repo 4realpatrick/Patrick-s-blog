@@ -21,11 +21,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 // Utils
-import { useSession, signOut } from "next-auth/react";
+import { signOut } from "next-auth/react";
 // Types
 import { TDictionary } from "@/lib/dictionary";
 // Hooks
 import { useContext } from "react";
+import { useConrrentUser } from "@/hooks/use-current-user";
 // Context
 import { LocaleContext } from "./dictionary-provider";
 import { cn } from "@/lib/utils";
@@ -59,7 +60,7 @@ export default function SettingDropdown({
 }: {
   dictionary: TDictionary["common"];
 }) {
-  const session = useSession();
+  const user = useConrrentUser();
   const locale = useContext(LocaleContext);
   return (
     <DropdownMenu>
@@ -113,7 +114,7 @@ export default function SettingDropdown({
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        {session.data?.user ? (
+        {user ? (
           <DropdownMenuItem
             onClick={() =>
               signOut({

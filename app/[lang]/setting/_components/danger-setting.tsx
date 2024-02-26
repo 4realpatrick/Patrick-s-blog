@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 // Hooks
 import { useContext, useState, useTransition } from "react";
-import { signOut, useSession } from "next-auth/react";
+import { useConrrentUser } from "@/hooks/use-current-user";
 // Context
 import {
   DictionaryContext,
@@ -23,6 +23,7 @@ import {
 // Utils
 import { toast } from "sonner";
 import fetchHandler from "@/lib/fetch-handler";
+import { signOut } from "next-auth/react";
 // Server actions
 import { deleteAccount } from "@/actions/delete-account";
 
@@ -37,9 +38,8 @@ const DangerSetting = () => {
   const locale = useContext(LocaleContext);
   const [inputVal, setInputVal] = useState("");
   const [open, setOpen] = useState(false);
-  const session = useSession();
-  if (!session.data?.user) return null;
-  const { user } = session.data;
+  const user = useConrrentUser();
+  if (!user) return null;
 
   const handleDelete = () => {
     if (inputVal !== user.name) {

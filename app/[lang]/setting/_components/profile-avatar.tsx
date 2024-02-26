@@ -16,6 +16,7 @@ import {
 // Hooks
 import { useSession } from "next-auth/react";
 import { Fragment, useContext } from "react";
+import { useConrrentUser } from "@/hooks/use-current-user";
 // Context
 import { DictionaryContext } from "@/components/dictionary-provider";
 // Utils
@@ -27,18 +28,18 @@ import { updateAvatar } from "@/actions/upload-avatar";
 const AnimateAvatar = m(Avatar);
 
 const ProfileAvatar = () => {
-  const { data, update } = useSession();
+  const { update } = useSession();
   const {
     pages: {
       setting: { profile: dictionary },
     },
     common: commonDictionary,
   } = useContext(DictionaryContext);
-  if (!data?.user) return null;
-  const { user } = data;
+  const user = useConrrentUser();
+  if (!user) return null;
   const handleUpload = async (result: CldUploadWidgetResults) => {
     const info = result.info as CldUploadWidgetInfo;
-    const res = await updateAvatar(info.secure_url, data.user.id!);
+    const res = await updateAvatar(info.secure_url, user.id!);
     fetchHandler(res);
     if (res.success) {
       await update({
@@ -47,7 +48,7 @@ const ProfileAvatar = () => {
     }
   };
   const handleSelect = async (path: string) => {
-    const res = await updateAvatar(path, data.user.id!);
+    const res = await updateAvatar(path, user.id!);
     fetchHandler(res);
     if (res.success) {
       await update({
@@ -59,7 +60,7 @@ const ProfileAvatar = () => {
   return (
     <LazyMotion features={domAnimation}>
       <div className="flex items-center gap-x-8 w-1/2">
-        <UserAvatar username={user.name!} src={user.image || "/male1.svg"} />
+        <UserAvatar username={user.name!} src={user.image!} />
       </div>
       <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
@@ -67,7 +68,7 @@ const ProfileAvatar = () => {
           <AccordionContent className="space-y-6">
             <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 lg:grid-cols-7">
               {Array.from({ length: 20 }).map((v, index) => {
-                const path = `/avatar${index + 1}.svg`;
+                const path = `/avatars/avatar${index + 1}.svg`;
                 return (
                   <Fragment key={path}>
                     <AnimateAvatar
