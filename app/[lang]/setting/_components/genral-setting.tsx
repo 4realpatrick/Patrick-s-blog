@@ -52,7 +52,7 @@ const GenralSetting = () => {
       />
       {settings.map((setting) => (
         <div
-          className="flex bg-primary/5 p-4 rounded-md transition-[background]"
+          className="flex bg-primary/20 p-4 rounded-md transition-[background]"
           key={setting.id}
         >
           {setting.icon({ className: "size-6 mr-4 mt-1 text-primary" })}
