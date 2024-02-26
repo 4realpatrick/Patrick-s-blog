@@ -16,21 +16,21 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      data-theme="light"
-      style={{ colorScheme: "light" }}
-      // prevent error: Extra attributes from the server https://github.com/pacocoursey/next-themes?tab=readme-ov-file#with-app
-      suppressHydrationWarning
-    >
-      <body className="w-screen sm:min-w-[800px] md:min-w-[800px] lg:min-w-[800px] xl:min-w-[800px] 2xl:min-w-[800px]">
-        <SessionProvider>
+    <SessionProvider>
+      <html
+        data-theme="light"
+        style={{ colorScheme: "light" }}
+        // prevent error: Extra attributes from the server https://github.com/pacocoursey/next-themes?tab=readme-ov-file#with-app
+        suppressHydrationWarning
+      >
+        <body className="w-screen sm:min-w-[800px] md:min-w-[800px] lg:min-w-[800px] xl:min-w-[800px] 2xl:min-w-[800px]">
           <ModeProvider attribute="class" defaultTheme="system" enableSystem>
             <ThemeProvider />
             <Toaster richColors />
             {children}
           </ModeProvider>
-        </SessionProvider>
-      </body>
-    </html>
+        </body>
+      </html>
+    </SessionProvider>
   );
 }

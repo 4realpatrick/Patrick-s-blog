@@ -52,17 +52,14 @@ export const {
       }
       return session;
     },
-    async jwt({ token, trigger, session }) {
+    async jwt({ token, trigger }) {
       if (!token.sub) return token;
       const existingUser = await getUserById(token.sub);
       if (!existingUser) return token;
       // 个人资料修改后update session
       if (trigger === "update") {
-        if (session.name) {
-          token.name = session.name;
-        } else if (session.image) {
-          token.picture = session.image;
-        }
+        token.name = existingUser.name;
+        token.picture = existingUser.image;
       }
       token.role = existingUser.role;
       return token;
