@@ -1,6 +1,10 @@
+// Cmp
 import DictionaryProvider from "@/components/dictionary-provider";
 import Navbar from "@/components/navbar";
+import ToTop from "@/components/to-top";
+// Types
 import { Locale } from "@/i18n.config";
+// Utils
 import { getDictionary } from "@/lib/dictionary";
 
 const LangLayout = async ({
@@ -15,6 +19,7 @@ const LangLayout = async ({
     <DictionaryProvider lang={params.lang} dictionary={dictionary}>
       <Navbar />
       <div className="size-full">{children}</div>
+      <ToTop />
     </DictionaryProvider>
   );
 };
