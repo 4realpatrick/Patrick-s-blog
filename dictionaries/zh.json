@@ -123,6 +123,7 @@
     "update": "更新",
     "upload": "上传",
     "sure": "确认",
+    "to_top": "回到顶部",
     "provider_error": {
       "OAuthAccountNotLinked": "邮箱已经被占用,请检查是否使用其他方式登录过"
     }
