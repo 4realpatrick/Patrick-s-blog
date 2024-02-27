@@ -2,7 +2,8 @@
   "pages": {
     "home": {
       "title": "This is ",
-      "job_name": "A Web Developer"
+      "job_name": "A Web Developer",
+      "habbit_intro": "I love playing video games, including all major FPS like COD、Counter Strike、RON, and some single player games, Resident Evil、Dying Light etc..."
     },
     "login": {
       "title": "Welcome back",
