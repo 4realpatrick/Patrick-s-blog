@@ -8,7 +8,6 @@ import {
   authRoutes,
   publicRoutes,
 } from "@/routes";
-import { NextResponse } from "next/server";
 import { Locale, i18n } from "./i18n.config";
 export const { auth } = NextAuth(authConfig);
 /**
