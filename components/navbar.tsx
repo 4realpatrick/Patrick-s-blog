@@ -19,6 +19,7 @@ import {
 import { getNavRoutes } from "@/constant/nav-routes";
 // Context
 import { DictionaryContext, LocaleContext } from "./dictionary-provider";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const {
@@ -32,6 +33,8 @@ const Navbar = () => {
     damping: 30,
     restDelta: 0.001,
   });
+  const pathname = usePathname();
+  const isHome = pathname.split("/")[2] === undefined;
 
   return (
     <LazyMotion features={domAnimation}>
@@ -42,7 +45,10 @@ const Navbar = () => {
         transition={{ duration: 0.5 }}
       >
         <Hint descrption={commonDictionary.home} asChild>
-          <Link className="flex items-center" href={`/${locale}/`}>
+          <Link
+            className="flex items-center hover:scale-105 transition-transform"
+            href={`/${locale}/`}
+          >
             <Image
               src="/owner.jpg"
               width={40}
@@ -72,10 +78,12 @@ const Navbar = () => {
           ))}
           <SettingDropdown dictionary={commonDictionary} />
         </div>
-        <m.div
-          className="absolute bottom-0 left-0 right-0 h-2 origin-[0%] bg-primary"
-          style={{ scaleX }}
-        ></m.div>
+        {isHome && (
+          <m.div
+            className="absolute bottom-0 left-0 right-0 h-2 origin-[0%] bg-primary"
+            style={{ scaleX }}
+          ></m.div>
+        )}
       </m.nav>
     </LazyMotion>
   );
