@@ -8,7 +8,13 @@ import Image from "next/image";
 // Hooks
 import { useContext } from "react";
 // Utils
-import { m, LazyMotion, domAnimation } from "framer-motion";
+import {
+  m,
+  LazyMotion,
+  domAnimation,
+  useScroll,
+  useSpring,
+} from "framer-motion";
 // Constant
 import { getNavRoutes } from "@/constant/nav-routes";
 // Context
@@ -20,10 +26,17 @@ const Navbar = () => {
     common: commonDictionary,
   } = useContext(DictionaryContext);
   const locale = useContext(LocaleContext);
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
   return (
     <LazyMotion features={domAnimation}>
       <m.nav
-        className="flex justify-between items-center pl-4 py-4 fixed top-0 w-full z-50 bg-transparent shadow-md"
+        className="flex justify-between items-center pl-4 py-4 fixed top-0 w-full z-50 bg-background shadow-md"
         initial={{ y: -76, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
@@ -59,6 +72,10 @@ const Navbar = () => {
           ))}
           <SettingDropdown dictionary={commonDictionary} />
         </div>
+        <m.div
+          className="absolute bottom-0 left-0 right-0 h-2 origin-[0%] bg-primary"
+          style={{ scaleX }}
+        ></m.div>
       </m.nav>
     </LazyMotion>
   );
