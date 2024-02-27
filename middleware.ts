@@ -43,11 +43,11 @@ export default auth((req) => {
 
   // 如果是用以authentication的请求都允许
   if (isApiAuthRoute) {
-    return null;
+    return;
   }
   // 如果url缺少locale
   if (isPathnameMissingLocale) {
-    return NextResponse.redirect(
+    return Response.redirect(
       new URL(
         `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}${search}`,
         nextUrl
@@ -58,20 +58,18 @@ export default auth((req) => {
   if (isAuthRoute) {
     // 如果是已经登录，则不允许再访问登录或者注册页面
     if (isLoggedIn) {
-      console.log("locale:", locale);
-
-      return NextResponse.redirect(
+      return Response.redirect(
         new URL(`/${locale}${DEFAULT_LOGIN_REDIRECT}`, nextUrl)
       );
     }
     // 允许
-    return null;
+    return;
   }
   // 如果没有登录，且当前不是在为登录就可以访问的地址则重定向到登录
   // if (!isLoggedIn && !isPublicRoute) {
   //   return Response.redirect(new URL("/login", nextUrl));
   // }
-  return null;
+  return;
 });
 
 // 哪些
