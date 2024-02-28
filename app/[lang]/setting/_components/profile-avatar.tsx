@@ -20,7 +20,7 @@ import { useConrrentUser } from "@/hooks/use-current-user";
 // Context
 import { DictionaryContext } from "@/components/dictionary-provider";
 // Utils
-import { LazyMotion, domAnimation, m } from "framer-motion";
+import { m } from "framer-motion";
 import fetchHandler from "@/lib/fetch-handler";
 // Server actions
 import { updateAvatar } from "@/actions/upload-avatar";
@@ -58,7 +58,7 @@ const ProfileAvatar = () => {
   };
 
   return (
-    <LazyMotion features={domAnimation}>
+    <>
       <div className="flex items-center gap-x-8 w-1/2">
         <UserAvatar username={user.name!} src={user.image!} />
       </div>
@@ -106,7 +106,7 @@ const ProfileAvatar = () => {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-    </LazyMotion>
+    </>
   );
 };
 

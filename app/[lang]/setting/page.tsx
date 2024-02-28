@@ -10,6 +10,8 @@ import DangerSetting from "./_components/danger-setting";
 import { useContext, useMemo } from "react";
 // Context
 import { DictionaryContext } from "@/components/dictionary-provider";
+// Utils
+import { LazyMotion, domAnimation } from "framer-motion";
 
 const SettingPage = () => {
   const {
@@ -37,7 +39,11 @@ const SettingPage = () => {
       },
     ];
   }, []);
-  return <SettingTab tabs={tabs} defaultIndex={1} />;
+  return (
+    <LazyMotion features={domAnimation}>
+      <SettingTab tabs={tabs} defaultIndex={1} />
+    </LazyMotion>
+  );
 };
 
 export default SettingPage;

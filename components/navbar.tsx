@@ -7,6 +7,7 @@ import Hint from "./hint";
 import Image from "next/image";
 // Hooks
 import { useContext } from "react";
+import { usePathname } from "next/navigation";
 // Utils
 import {
   m,
@@ -19,7 +20,6 @@ import {
 import { getNavRoutes } from "@/constant/nav-routes";
 // Context
 import { DictionaryContext, LocaleContext } from "./dictionary-provider";
-import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const {

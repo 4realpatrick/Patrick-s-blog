@@ -1,13 +1,15 @@
-import { LazyMotion, domAnimation } from "framer-motion";
 import Intro from "./intro";
 import Habbit from "./habbit";
+import DrawOutlineButton from "../buttons/draw-outline-button";
+import SpotlightButton from "../buttons/spotlight-button";
 
 const Home = () => {
   return (
-    <LazyMotion features={domAnimation}>
+    <>
       <Intro />
       <Habbit />
-    </LazyMotion>
+      <SpotlightButton>123123</SpotlightButton>
+    </>
   );
 };
 
