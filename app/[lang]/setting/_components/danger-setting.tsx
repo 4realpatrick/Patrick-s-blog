@@ -59,7 +59,7 @@ const DangerSetting = () => {
     });
   };
   return (
-    <div className="p-8 space-y-4">
+    <div className="space-y-4">
       <h1 className="text-2xl font-bold">{dictionary.title}</h1>
       <div className="flex bg-destructive/20 p-4 rounded-md transition-[background]">
         <CgDanger className="size-6 mr-4 mt-1 text-destructive" />

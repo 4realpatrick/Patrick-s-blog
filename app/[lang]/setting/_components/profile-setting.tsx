@@ -41,7 +41,7 @@ const ProfileSetting = () => {
   }
 
   return (
-    <div className="p-8 space-y-8">
+    <div className="space-y-8">
       <h1 className="text-2xl font-bold">{dictionary.title}</h1>
       <ProfileAvatar />
       <div className="w-1/2">

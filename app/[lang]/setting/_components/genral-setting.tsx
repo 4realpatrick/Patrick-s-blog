@@ -44,7 +44,7 @@ const GenralSetting = () => {
     ];
   }, []);
   return (
-    <div className="p-8 space-y-4">
+    <div className="space-y-4">
       <h1 className="text-2xl font-bold">{dictionary.title}</h1>
       <CompositeAlert
         title={dictionary.alert_title}

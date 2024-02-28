@@ -46,9 +46,9 @@ const SettingTab: React.FC<ITabsProps> = ({ tabs, defaultIndex = 0 }) => {
   const { common } = useContext(DictionaryContext);
   const locale = useContext(LocaleContext);
   return (
-    <div className="flex flex-1">
+    <div className="flex items-center flex-1 flex-col space-y-8 pt-4 lg:flex-row lg:space-x-12 lg:space-y-0 lg:pt-8 lg:items-stretch pb-10">
       <m.ul
-        className="p-8 list-none max-w-[400px] shadow-xl rounded-xl gap-8 bg-background flex flex-col min-h-full"
+        className="flex gap-2 lg:flex-col lg:gap-4 w-full lg:w-auto bg-background lg:shadow-md rounded-md lg:py-4 lg:px-6"
         role="tablist"
         variants={tabContentVariants}
         initial="initial"
@@ -62,33 +62,28 @@ const SettingTab: React.FC<ITabsProps> = ({ tabs, defaultIndex = 0 }) => {
             <li
               key={tab.id}
               className={cn(
-                "relative w-full cursor-pointer rounded-lg transition-[background]",
-                isActive && "text-primary",
-                !isActive && "hover:bg-primary/10"
+                "inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:text-accent-foreground h-9 lg:px-4 py-6 justify-start relative cursor-pointer",
+                !isActive && "hover:bg-muted"
               )}
               role="presentation"
+              onClick={() => setActiveTabIndex(index)}
             >
-              <a
-                onClick={() => setActiveTabIndex(index)}
-                className="p-4 flex items-center text-lg overflow-hidden relative"
-              >
+              <a className="p-4 flex items-center text-base overflow-hidden relative font-normal">
                 {tab.icon({ className: "size-6" })}
-                <span className={cn("ml-3", isActive && "text-primary")}>
-                  {tab.title}
-                </span>
+                <span className="ml-3">{tab.title}</span>
               </a>
               {isActive && (
                 <motion.span
                   layoutId="indicator"
-                  className="absolute h-full right-0 top-0 w-[2px] bg-primary"
+                  className="absolute w-full h-[2px] bottom-0 lg:h-full lg:left-0 lg:w-[2px] bg-primary rounded-md"
                 />
               )}
             </li>
           );
         })}
-        <div className="flex-1 flex flex-col justify-end">
+        <div className="flex-1 flex flex-col justify-end items-end lg:items-start pr-8 lg:pr-0">
           <li
-            className="w-full text-lg flex items-center p-4 self-end hover:bg-primary/10 transition-[background] rounded-lg cursor-pointer"
+            className="inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:text-accent-foreground h-9 lg:px-4 py-6 justify-start relative cursor-pointer hover:bg-muted lg:w-full px-4"
             onClick={() =>
               signOut({
                 callbackUrl: `/${locale}/login`,
@@ -100,6 +95,7 @@ const SettingTab: React.FC<ITabsProps> = ({ tabs, defaultIndex = 0 }) => {
           </li>
         </div>
       </m.ul>
+
       {tabs.map(
         (tab, index) =>
           activeTabIndex === index && (
@@ -111,7 +107,7 @@ const SettingTab: React.FC<ITabsProps> = ({ tabs, defaultIndex = 0 }) => {
               initial="initial"
               animate="enter"
               exit="exit"
-              className="flex-1 rounded-xl ml-10 p-10 w-full bg-background/50"
+              className="flex-1 rounded-xl ml-10 px-10 w-full bg-background/50"
               transition={{
                 duration: 0.5,
                 delay: 0.5,

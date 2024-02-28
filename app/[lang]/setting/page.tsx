@@ -6,16 +6,19 @@ import { IoMdSettings } from "react-icons/io";
 import GenralSetting from "./_components/genral-setting";
 import ProfileSetting from "./_components/profile-setting";
 import DangerSetting from "./_components/danger-setting";
+import Separator from "@/components/ui/separator";
 // Hooks
 import { useContext, useMemo } from "react";
 // Context
 import { DictionaryContext } from "@/components/dictionary-provider";
 // Utils
-import { LazyMotion, domAnimation } from "framer-motion";
+import { LazyMotion, domAnimation, m } from "framer-motion";
+import { showup } from "@/constant/animations";
 
 const SettingPage = () => {
   const {
     pages: { setting },
+    common: commonDictionary,
   } = useContext(DictionaryContext);
   const tabs = useMemo(() => {
     return [
@@ -41,6 +44,13 @@ const SettingPage = () => {
   }, []);
   return (
     <LazyMotion features={domAnimation}>
+      <m.div className="space-y-0.5 pt-10" {...showup()}>
+        <h2 className="text-2xl font-bold tracking-tight">
+          {commonDictionary.setting}
+        </h2>
+        <p className="text-muted-foreground">{setting.description}</p>
+        <Separator useTheme={false} className="!mt-8" />
+      </m.div>
       <SettingTab tabs={tabs} defaultIndex={1} />
     </LazyMotion>
   );
