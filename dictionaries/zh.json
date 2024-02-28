@@ -20,6 +20,7 @@
       "register_btn": "创建账户"
     },
     "setting": {
+      "description": "管理您的账户设置及偏好",
       "general": {
         "title": "基本设置",
         "theme": "主题色",
@@ -30,13 +31,6 @@
           "system": "系统",
           "light": "明亮",
           "dark": "夜间模式"
-        },
-        "themes": {
-          "blue": "蓝宝石",
-          "green": "苹果绿",
-          "red": "胭脂红",
-          "violet": "紫罗兰",
-          "yellow": "活力黄"
         },
         "language": "语言",
         "language_description": "更改应用的语言(目前仅支持中英文)",
@@ -99,7 +93,8 @@
         "zh": "中文(zh)",
         "en": "英文(en)"
       }
-    }
+    },
+    "theme_controller": {}
   },
   "common": {
     "hello": "你好",
@@ -124,6 +119,13 @@
     "upload": "上传",
     "sure": "确认",
     "to_top": "回到顶部",
+    "themes": {
+      "blue": "蓝宝石",
+      "green": "苹果绿",
+      "red": "胭脂红",
+      "violet": "紫罗兰",
+      "yellow": "活力黄"
+    },
     "provider_error": {
       "OAuthAccountNotLinked": "邮箱已经被占用,请检查是否使用其他方式登录过"
     }

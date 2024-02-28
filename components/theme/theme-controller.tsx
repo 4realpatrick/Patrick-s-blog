@@ -29,11 +29,7 @@ export function ThemeController({
 }: IThemeControllerProps) {
   const [mounted, setMounted] = useState(false);
   const [curTheme, setCurTheme] = useState<TTheme>(getThemeFromLocal());
-  const {
-    pages: {
-      setting: { general },
-    },
-  } = useContext(DictionaryContext);
+  const { common: commonDictionary } = useContext(DictionaryContext);
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -62,7 +58,7 @@ export function ThemeController({
               className="justify-between"
               key={theme}
             >
-              <span>{general.themes[theme]}</span>
+              <span>{commonDictionary.themes[theme]}</span>
               <div
                 className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent hover:bg-primary/80 rotate-90 justify-end`}
                 style={{ background: theme }}

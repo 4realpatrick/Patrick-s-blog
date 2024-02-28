@@ -20,6 +20,7 @@
       "register_btn": "Create"
     },
     "setting": {
+      "description": "Manage your account settings and preferences.",
       "general": {
         "title": "General settings",
         "mode": "Mode",
@@ -31,13 +32,6 @@
         },
         "theme": "Theme",
         "theme_description": "Change the theme of the App",
-        "themes": {
-          "blue": "Blue",
-          "green": "Green",
-          "red": "Red",
-          "violet": "Violet",
-          "yellow": "Yellow"
-        },
         "language": "Language",
         "language_description": "Change the language of the App (currently only supports Chinese and English)",
         "alert_title": "Tips",
@@ -106,7 +100,7 @@
     "home": "Homepage",
     "menu": "Menu",
     "contact": "Contact me",
-    "setting": "Setting",
+    "setting": "Settings",
     "more": "More",
     "signout": "Sign out",
     "usename": "username",
@@ -124,6 +118,13 @@
     "upload": "Upload",
     "sure": "Sure",
     "to_top": "Back to top",
+    "themes": {
+      "blue": "Blue",
+      "green": "Green",
+      "red": "Red",
+      "violet": "Violet",
+      "yellow": "Yellow"
+    },
     "provider_error": {
       "OAuthAccountNotLinked": "Email already in use with different provider, please check other providers"
     }
