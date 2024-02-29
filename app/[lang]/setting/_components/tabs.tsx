@@ -6,7 +6,7 @@ import { useContext, useState } from "react";
 // Utils
 import { Variants, m, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 // Types
 import { IconType } from "react-icons/lib";
 // Context
@@ -45,6 +45,7 @@ const SettingTab: React.FC<ITabsProps> = ({ tabs, defaultIndex = 0 }) => {
   const [activeTabIndex, setActiveTabIndex] = useState(defaultIndex);
   const { common } = useContext(DictionaryContext);
   const locale = useContext(LocaleContext);
+  const session = useSession();
   return (
     <div className="flex items-center flex-1 flex-col space-y-8 pt-4 lg:flex-row lg:space-x-12 lg:space-y-0 lg:pt-8 lg:items-stretch pb-10">
       <m.ul
@@ -81,19 +82,21 @@ const SettingTab: React.FC<ITabsProps> = ({ tabs, defaultIndex = 0 }) => {
             </li>
           );
         })}
-        <div className="flex-1 flex flex-col justify-end items-end lg:items-start pr-8 lg:pr-0">
-          <li
-            className="inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:text-accent-foreground h-9 lg:px-4 py-6 justify-start relative cursor-pointer hover:bg-muted lg:w-full px-4"
-            onClick={() =>
-              signOut({
-                callbackUrl: `/${locale}/login`,
-              })
-            }
-          >
-            <TbLogin2 className="size-6 mr-3" />
-            {common.signout}
-          </li>
-        </div>
+        {session.data?.user && (
+          <div className="flex-1 flex flex-col justify-end items-end lg:items-start pr-8 lg:pr-0">
+            <li
+              className="inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:text-accent-foreground h-9 lg:px-4 py-6 justify-start relative cursor-pointer hover:bg-muted lg:w-full px-4"
+              onClick={() =>
+                signOut({
+                  callbackUrl: `/${locale}/login`,
+                })
+              }
+            >
+              <TbLogin2 className="size-6 mr-3" />
+              {common.signout}
+            </li>
+          </div>
+        )}
       </m.ul>
 
       {tabs.map(
