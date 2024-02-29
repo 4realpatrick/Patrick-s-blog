@@ -23,11 +23,12 @@
       "description": "管理您的账户设置及偏好",
       "general": {
         "title": "基本设置",
-        "theme": "主题色",
-        "theme_description": "更改应用的主题色",
-        "mode": "模式",
-        "mode_description": "改变应用的模式",
-        "modes": {
+        "description": "自定义应用的外观, 包括主题、主题色以及语言",
+        "theme_color": "主题色",
+        "theme_color_description": "更改应用的主题色",
+        "theme": "模式",
+        "theme_description": "改变应用的模式",
+        "themes": {
           "system": "系统",
           "light": "明亮",
           "dark": "夜间模式"
@@ -129,7 +130,7 @@
     "sure": "确认",
     "to_top": "回到顶部",
     "avatar": "头像",
-    "themes": {
+    "theme_colors": {
       "blue": "蓝宝石",
       "green": "苹果绿",
       "red": "胭脂红",

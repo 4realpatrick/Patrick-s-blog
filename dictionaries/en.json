@@ -23,15 +23,16 @@
       "description": "Manage your account settings and preferences.",
       "general": {
         "title": "General settings",
-        "mode": "Mode",
-        "mode_description": "Change the mode of the App",
-        "modes": {
+        "description": "Customize the appearance of the app, including Theme, Theme color and language.",
+        "theme": "Theme",
+        "theme_description": "Change the theme of the App",
+        "themes": {
           "system": "System",
           "light": "Light",
           "dark": "Dark"
         },
-        "theme": "Theme",
-        "theme_description": "Change the theme of the App",
+        "theme_color": "Theme",
+        "theme_color_description": "Change the theme of the App",
         "language": "Language",
         "language_description": "Change the language of the App (currently only supports Chinese and English)",
         "alert_title": "Tips",
@@ -128,7 +129,7 @@
     "sure": "Sure",
     "to_top": "Back to top",
     "avatar": "Avatar",
-    "themes": {
+    "theme_colors": {
       "blue": "Blue",
       "green": "Green",
       "red": "Red",

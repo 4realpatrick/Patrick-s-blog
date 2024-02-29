@@ -1,19 +1,8 @@
 "use client";
-import { BLOG_THEME_KEY } from "@/constant/theme";
-import { useEffect, useState } from "react";
+import { ThemeProvider as NextModeProvider } from "next-themes";
 
-const ThemeProvider = () => {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  useEffect(() => {
-    if (mounted) {
-      const theme = localStorage.getItem(BLOG_THEME_KEY);
-      document.documentElement.setAttribute("data-theme", theme || "blue");
-    }
-  }, [mounted]);
-  return null;
-};
+import { type ThemeProviderProps } from "next-themes/dist/types";
 
-export default ThemeProvider;
+export function ThemeProvider({ children, ...rest }: ThemeProviderProps) {
+  return <NextModeProvider {...rest}>{children}</NextModeProvider>;
+}

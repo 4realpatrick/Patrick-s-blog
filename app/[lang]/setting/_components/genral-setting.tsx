@@ -1,6 +1,6 @@
 // Cmp
 import LanguageController from "@/components/language-controller";
-import { ThemeController } from "@/components/theme/theme-controller";
+import { ThemeColorController } from "@/components/theme/theme-color-controller";
 import { MdLanguage } from "react-icons/md";
 import { IoIosColorPalette } from "react-icons/io";
 import { MdOutlineDarkMode } from "react-icons/md";
@@ -10,7 +10,8 @@ import { useContext, useMemo } from "react";
 import CompositeAlert from "@/components/composite-alert";
 // Context
 import { DictionaryContext } from "@/components/dictionary-provider";
-import { ModeController } from "@/components/theme/mode-controller";
+import { ThemeController } from "@/components/theme/theme-controller";
+import Separator from "@/components/ui/separator";
 
 const GenralSetting = () => {
   const {
@@ -21,18 +22,18 @@ const GenralSetting = () => {
   const settings = useMemo(() => {
     return [
       {
-        title: dictionary.mode,
-        description: dictionary.mode_description,
-        id: "mode",
-        icon: MdOutlineDarkMode,
-        cmp: <ModeController />,
-      },
-      {
         title: dictionary.theme,
         description: dictionary.theme_description,
+        id: "mode",
+        icon: MdOutlineDarkMode,
+        cmp: <ThemeController />,
+      },
+      {
+        title: dictionary.theme_color,
+        description: dictionary.theme_color_description,
         id: "theme",
         icon: IoIosColorPalette,
-        cmp: <ThemeController />,
+        cmp: <ThemeColorController />,
       },
       {
         title: dictionary.language,
@@ -45,11 +46,18 @@ const GenralSetting = () => {
   }, []);
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-bold">{dictionary.title}</h1>
+      <h3 className="text-lg font-medium">{dictionary.title}</h3>
+      <p className="text-sm text-muted-foreground">{dictionary.description}</p>
+      <Separator useTheme={false} className="my-6" />
       <CompositeAlert
         title={dictionary.alert_title}
         description={dictionary.alert_description}
       />
+      <div className="space-y-8">
+        <div className="space-y-2">
+          <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"></label>
+        </div>
+      </div>
       {settings.map((setting) => (
         <div
           className="flex bg-primary/20 p-4 rounded-md transition-[background]"

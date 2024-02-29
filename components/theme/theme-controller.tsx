@@ -1,7 +1,7 @@
 "use client";
 // Cmp
-import { Button, ButtonProps } from "@/components/ui/button";
-import { CgColorPicker } from "react-icons/cg";
+import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import { Button } from "../ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,60 +9,39 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-// Constant
-import {
-  BLOG_THEME_KEY,
-  THEME_ARRAY,
-  TTheme,
-  getThemeFromLocal,
-} from "@/constant/theme";
-import { ColorWheelIcon } from "@radix-ui/react-icons";
-
 // Hooks
-import { useContext, useEffect, useState } from "react";
-import { DictionaryContext } from "../dictionary-provider";
-interface IThemeControllerProps {
-  variant?: ButtonProps["variant"];
-}
-export function ThemeController({
-  variant = "default",
-}: IThemeControllerProps) {
-  const [mounted, setMounted] = useState(false);
-  const [curTheme, setCurTheme] = useState<TTheme>(getThemeFromLocal());
-  const { common: commonDictionary } = useContext(DictionaryContext);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  useEffect(() => {
-    if (mounted) {
-      localStorage.setItem(BLOG_THEME_KEY, curTheme);
-      document.documentElement.setAttribute("data-theme", curTheme);
-    }
-  }, [curTheme, mounted]);
-  if (!mounted) return null;
+import { useContext } from "react";
+import { useTheme as useMode } from "next-themes";
+// Constant
+import { MODE_ARRAY } from "@/constant/theme";
+// Context
+import { DictionaryContext } from "@/components/dictionary-provider";
+
+export function ThemeController() {
+  const { theme: mode, setTheme: setMode } = useMode();
+  const {
+    pages: {
+      setting: { general },
+    },
+  } = useContext(DictionaryContext);
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild className="hidden md:block">
-        <Button variant={variant}>
-          <CgColorPicker />
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" size="icon">
+          <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-30">
-        <DropdownMenuRadioGroup
-          value={curTheme}
-          onValueChange={(val: string) => setCurTheme(val as TTheme)}
-        >
-          {THEME_ARRAY.map((theme) => (
+      <DropdownMenuContent align="end">
+        <DropdownMenuRadioGroup value={mode} onValueChange={setMode}>
+          {MODE_ARRAY.map((mode) => (
             <DropdownMenuRadioItem
-              value={theme}
+              value={mode}
               className="justify-between"
-              key={theme}
+              key={mode}
             >
-              <span>{commonDictionary.themes[theme]}</span>
-              <div
-                className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent hover:bg-primary/80 rotate-90 justify-end`}
-                style={{ background: theme }}
-              ></div>
+              {general.themes[mode]}
             </DropdownMenuRadioItem>
           ))}
         </DropdownMenuRadioGroup>

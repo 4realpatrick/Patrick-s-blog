@@ -1,9 +1,9 @@
 import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
 import "./globals.css";
-import ThemeProvider from "@/components/theme/theme-provider";
+import ThemeColorProvider from "@/components/theme/theme-color-provider";
 import { SessionProvider } from "next-auth/react";
-import { ModeProvider } from "@/components/theme/mode-provider";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 
 export const metadata: Metadata = {
   title: "Patrick's blog",
@@ -24,11 +24,11 @@ export default async function RootLayout({
         suppressHydrationWarning
       >
         <body className="w-screen sm:min-w-[800px] md:min-w-[800px] lg:min-w-[800px] xl:min-w-[800px] 2xl:min-w-[800px]">
-          <ModeProvider attribute="class" defaultTheme="system" enableSystem>
-            <ThemeProvider />
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <ThemeColorProvider />
             <Toaster richColors />
             {children}
-          </ModeProvider>
+          </ThemeProvider>
         </body>
       </html>
     </SessionProvider>

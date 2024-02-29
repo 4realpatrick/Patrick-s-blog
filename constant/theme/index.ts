@@ -1,5 +1,5 @@
 export type TTheme = "blue" | "green" | "red" | "violet" | "yellow";
-export const THEME_ARRAY: TTheme[] = [
+export const THEME_COLOR_ARRAY: TTheme[] = [
   "blue",
   "green",
   "red",
