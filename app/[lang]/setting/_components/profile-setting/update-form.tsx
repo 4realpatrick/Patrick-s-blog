@@ -1,8 +1,8 @@
 "use client";
 // Cmp
 import { Loader2 } from "lucide-react";
-import { Input } from "../../../../components/ui/input";
-import { Button } from "../../../../components/ui/button";
+import { Input } from "../../../../../components/ui/input";
+import { Button } from "../../../../../components/ui/button";
 import {
   Form,
   FormControl,
@@ -10,8 +10,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormDescription,
 } from "@/components/ui/form";
 import { MdVerified } from "react-icons/md";
+import Hint from "@/components/hint";
 // Hooks
 import { useForm } from "react-hook-form";
 import {
@@ -21,42 +23,39 @@ import {
   useState,
   useTransition,
 } from "react";
+import { useSession } from "next-auth/react";
 import useHandlerProviderError from "@/hooks/use-handle-provider-error";
 // Utils
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import fetchHandler from "@/lib/fetch-handler";
-import { signOut, useSession } from "next-auth/react";
+import { m } from "framer-motion";
 // Schema
 import { UpdateSchema } from "@/schemas";
 // Actions
 import { updateProfile } from "@/actions/update-profile";
 // Context
-import {
-  DictionaryContext,
-  LocaleContext,
-} from "@/components/dictionary-provider";
-import Hint from "@/components/hint";
+import { DictionaryContext } from "@/components/dictionary-provider";
+
 interface IUpdateFormProps {
   username: string;
   email: string;
   id: string;
 }
-const UpdateForm: React.FC<IUpdateFormProps> = ({ username, email, id }) => {
+
+const UpdateForm: React.FC<IUpdateFormProps> = ({ username, email }) => {
   const [ispending, startTransition] = useTransition();
-  const [isPwdEdit, setIsPwdEdit] = useState(false);
+  const [hasChanged, setHasChanged] = useState(false);
   const {
     pages: {
       setting: { profile: dictionary },
     },
     common: commonDictionary,
   } = useContext(DictionaryContext);
-  const locale = useContext(LocaleContext);
   const { update } = useSession();
   const form = useForm<z.infer<typeof UpdateSchema>>({
     resolver: zodResolver(UpdateSchema),
     defaultValues: {
-      password: "",
       name: username,
     },
   });
@@ -64,55 +63,39 @@ const UpdateForm: React.FC<IUpdateFormProps> = ({ username, email, id }) => {
   useEffect(() => {
     form.setValue("name", username);
   }, [username]);
-  const onSubmit = (value: z.infer<typeof UpdateSchema>) => {
-    if (isPwdEdit && !value.password) {
-      return form.setError("password", {
-        message: commonDictionary.password_error,
-      });
-    }
-    startTransition(() => {
-      updateProfile(value, id)
-        .then(async (res) => {
-          if (res.success) {
-            // 更新session
-            await update({
-              name: value.name,
-            });
-          }
-          fetchHandler(res, {
-            callback(isSuccess) {
-              if (!isSuccess) {
-                return onReset();
-              }
-              if (isSuccess && value.password) {
-                return signOut({
-                  callbackUrl: `/${locale}/login`,
-                });
-              }
-            },
-          });
-        })
-        .finally(() => {
-          setIsPwdEdit(false);
-          form.reset({
-            password: "",
-          });
-        });
-    });
+  const handleOnChange = () => {
+    setHasChanged(true);
   };
   const onReset = useCallback(() => {
     form.reset({
-      password: "",
       name: username,
     });
     form.clearErrors();
-    setIsPwdEdit(false);
-  }, [isPwdEdit, form]);
-
+    setHasChanged(false);
+  }, [form]);
+  const onSubmit = (value: z.infer<typeof UpdateSchema>) => {
+    startTransition(() => {
+      updateProfile(value).then(async (res) => {
+        if (res.success) {
+          // 更新session
+          await update({
+            name: value.name,
+          });
+        }
+        fetchHandler(res);
+        setHasChanged(false);
+      });
+    });
+  };
   useHandlerProviderError();
+
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-8"
+        onChange={handleOnChange}
+      >
         <div className="space-y-8">
           <FormField
             control={form.control}
@@ -125,38 +108,12 @@ const UpdateForm: React.FC<IUpdateFormProps> = ({ username, email, id }) => {
                     {...field}
                     disabled={ispending}
                     placeholder={commonDictionary.usename_placeholder}
-                    className="border-primary"
+                    className="border-primary rounded-sm"
                   />
                 </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{commonDictionary.password}</FormLabel>
-                <div className="flex gap-10">
-                  <FormControl>
-                    <Input
-                      {...field}
-                      disabled={ispending || !isPwdEdit}
-                      placeholder={commonDictionary.password_placeholder}
-                      type="password"
-                      className={isPwdEdit ? "border-primary" : ""}
-                      autoComplete="current-password"
-                    />
-                  </FormControl>
-                  <Button
-                    type="button"
-                    onClick={() => setIsPwdEdit((prev) => !prev)}
-                    className="w-1/5"
-                  >
-                    {commonDictionary.change}
-                  </Button>
-                </div>
+                <FormDescription>
+                  {dictionary.username_description}
+                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -171,14 +128,24 @@ const UpdateForm: React.FC<IUpdateFormProps> = ({ username, email, id }) => {
                 <Input
                   disabled={true}
                   placeholder={commonDictionary.usename_placeholder}
-                  className="border-none w-full"
+                  className="w-full"
                   value={email}
                 />
               </div>
             </Hint>
+            <FormDescription>{dictionary.email_description}</FormDescription>
           </FormItem>
         </div>
-        <div className="flex gap-10 w-1/2">
+        <m.div
+          className="flex gap-10 w-1/2"
+          initial={{ x: -100, opacity: 0, display: "none" }}
+          animate={
+            hasChanged
+              ? { x: 0, opacity: 1, display: "flex" }
+              : { x: -100, opacity: 0, transitionEnd: { display: "none" } }
+          }
+          transition={{ duration: 0.5 }}
+        >
           <Button
             className="w-full"
             type="reset"
@@ -192,7 +159,7 @@ const UpdateForm: React.FC<IUpdateFormProps> = ({ username, email, id }) => {
             {ispending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             {dictionary.update_profile}
           </Button>
-        </div>
+        </m.div>
       </form>
     </Form>
   );

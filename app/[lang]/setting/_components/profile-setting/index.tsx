@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import UpdateForm from "./update-form";
 import ProfileAvatar from "./profile-avatar";
+import Separator from "@/components/ui/separator";
+import ChangePassword from "./change-password";
 // Context
 import {
   DictionaryContext,
@@ -41,13 +43,16 @@ const ProfileSetting = () => {
   }
 
   return (
-    <div className="space-y-8">
-      <h1 className="text-2xl font-bold">{dictionary.title}</h1>
-      <ProfileAvatar />
-      <div className="w-1/2">
+    <>
+      <h3 className="text-lg font-medium">{dictionary.title}</h3>
+      <p className="text-sm text-muted-foreground">{dictionary.description}</p>
+      <Separator useTheme={false} className="my-6" />
+      <div className="space-y-10">
+        <ProfileAvatar />
         <UpdateForm username={user.name!} email={user.email!} id={user.id!} />
+        <ChangePassword />
       </div>
-    </div>
+    </>
   );
 };
 

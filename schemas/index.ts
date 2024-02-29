@@ -25,12 +25,6 @@ export const UpdateSchema = z.object({
   name: z.string().min(3, {
     message: "用户名最少需要3位及其以上",
   }),
-  password: z
-    .string()
-    .min(6, {
-      message: "密码最少需要6位及其以上",
-    })
-    .or(z.string().max(0)),
 });
 
 export const ResetSchema = z.object({
@@ -41,6 +35,18 @@ export const ResetSchema = z.object({
 
 export const NewPasswordSchema = z.object({
   password: z.string().min(6, {
+    message: "密码最少需要6位及其以上",
+  }),
+});
+
+export const UpdatePasswordSchema = z.object({
+  oldPassword: z.string().min(6, {
+    message: "密码最少需要6位及其以上",
+  }),
+  newPassword: z.string().min(6, {
+    message: "密码最少需要6位及其以上",
+  }),
+  confirmPassword: z.string().min(6, {
     message: "密码最少需要6位及其以上",
   }),
 });

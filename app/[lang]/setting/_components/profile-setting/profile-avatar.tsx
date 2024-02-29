@@ -15,7 +15,7 @@ import {
 } from "next-cloudinary";
 // Hooks
 import { useSession } from "next-auth/react";
-import { Fragment, useContext } from "react";
+import { useContext } from "react";
 import { useConrrentUser } from "@/hooks/use-current-user";
 // Context
 import { DictionaryContext } from "@/components/dictionary-provider";
@@ -60,28 +60,30 @@ const ProfileAvatar = () => {
   return (
     <>
       <div className="flex items-center gap-x-8 w-1/2">
+        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          {commonDictionary.avatar}
+        </label>
         <UserAvatar username={user.name!} src={user.image!} />
       </div>
       <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
-          <AccordionTrigger>{dictionary.choose_avatar}</AccordionTrigger>
+          <AccordionTrigger>{dictionary.change_avatar}</AccordionTrigger>
           <AccordionContent className="space-y-6">
             <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 lg:grid-cols-7">
-              {Array.from({ length: 20 }).map((v, index) => {
+              {Array.from({ length: 20 }).map((_, index) => {
                 const path = `/avatars/avatar${index + 1}.svg`;
                 return (
-                  <Fragment key={path}>
-                    <AnimateAvatar
-                      className="size-20 hover:!opacity-70 cursor-pointer relative"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.5, delay: 0.1 * index }}
-                      onClick={() => handleSelect(path)}
-                    >
-                      <AvatarImage src={path} alt="@shadcn" />
-                      <AvatarFallback>Avatar</AvatarFallback>
-                    </AnimateAvatar>
-                  </Fragment>
+                  <AnimateAvatar
+                    key={path}
+                    className="size-20 hover:!opacity-70 cursor-pointer relative"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.1 * index }}
+                    onClick={() => handleSelect(path)}
+                  >
+                    <AvatarImage src={path} alt="@shadcn" />
+                    <AvatarFallback>Avatar</AvatarFallback>
+                  </AnimateAvatar>
                 );
               })}
             </div>

@@ -1,4 +1,5 @@
 {
+  "unauthorized": "Unauthorized",
   "invalid_field": "Invalid field",
   "internal_error": "Internal error",
   "token_doesnt_exist": "Token doesn't exist",
@@ -22,5 +23,8 @@
   "reset_send_email": "We've send an reset email, please check your mail(expired after 1 hour)",
   "update_success": "Profile updated",
   "update_success_password": "Profile updated, you need to relogin after change the password",
-  "update_avatar_success": "Avatar updated"
+  "update_avatar_success": "Avatar updated",
+  "update_password_error": "The old password is incorrect",
+  "update_password_not_match": "Two password inputs are inconsistent",
+  "update_password_success": "Password updated redirecting..."
 }

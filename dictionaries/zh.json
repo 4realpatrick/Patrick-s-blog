@@ -39,10 +39,19 @@
       },
       "profile": {
         "title": "个人资料",
+        "description": "这是其他人在网站上看到的信息",
+        "username_description": "这是您对外展示的名称, 您可以使用真名或者任意名称",
+        "email_description": "这是您对外展示的邮箱, 注册后无法更改",
+        "change_password": "更改密码",
+        "password_description": "在更改密码后, 您需要重新登录",
+        "password_alert_title": "点击这里修改您的密码",
+        "old_password": "旧密码",
+        "new_password": "新密码",
+        "confirm_password": "确认新密码",
         "unauthorized": "您需要先登录才能查看个人资料",
         "update_profile": "更新档案",
         "email_tip": "注册后无法修改邮箱",
-        "choose_avatar": "选择头像",
+        "change_avatar": "更改头像",
         "error": "必须选择一个头像",
         "custom": "或者上传自己的图片(我们使用Cloudinary作为图床, 国内连接可能不稳定)"
       },
@@ -119,6 +128,7 @@
     "upload": "上传",
     "sure": "确认",
     "to_top": "回到顶部",
+    "avatar": "头像",
     "themes": {
       "blue": "蓝宝石",
       "green": "苹果绿",

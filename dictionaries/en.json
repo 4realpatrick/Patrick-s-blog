@@ -39,10 +39,19 @@
       },
       "profile": {
         "title": "Profile",
+        "description": "This is how others will see you on the site.",
+        "username_description": "This is your public display name. It can be your real name or a pseudonym.",
+        "email_description": "This is the email address that will be used for account verification and password recovery. It cannot be modified after registration.",
+        "change_password": "Change password",
+        "password_description": "Once you've change your password, you need to re-login.",
+        "password_alert_title": "Click here to change your password",
+        "old_password": "Old password",
+        "new_password": "New password",
+        "confirm_password": "Confirm your new password",
         "unauthorized": "You need to login first",
         "update_profile": "Update profile",
         "email_tip": "Email address can't be modified after register",
-        "choose_avatar": "Choose your avatar",
+        "change_avatar": "Change your avatar",
         "error": "Avatar is required",
         "custom": "Got a better idea?"
       },
@@ -118,6 +127,7 @@
     "upload": "Upload",
     "sure": "Sure",
     "to_top": "Back to top",
+    "avatar": "Avatar",
     "themes": {
       "blue": "Blue",
       "green": "Green",

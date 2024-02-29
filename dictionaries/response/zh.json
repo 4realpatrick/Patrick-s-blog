@@ -1,4 +1,5 @@
 {
+  "unauthorized": "未授权的操作",
   "invalid_field": "无效的字段",
   "internal_error": "服务器内部错误",
   "token_doesnt_exist": "Token不存在",
@@ -22,5 +23,8 @@
   "reset_send_email": "我们向您的邮箱发送了一封重置邮件, 请查收(该激活链接将于1小时后过期)",
   "update_success": "资料修改成功",
   "update_success_password": "资料修改成功, 由于您修改了密码，需要重新登录",
-  "update_avatar_success": "头像更新成功"
+  "update_avatar_success": "头像更新成功",
+  "update_password_error": "旧密码不正确",
+  "update_password_not_match": "两次密码输入不一致",
+  "update_password_success": "密码更新成功, 正在重定向..."
 }
