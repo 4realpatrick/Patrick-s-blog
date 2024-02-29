@@ -35,7 +35,7 @@ const ProfileSetting = () => {
       <div className="size-full flex justify-center items-center flex-col gap-8">
         <Locked className="size-[40%]" />
         <h1 className="text-2xl">{dictionary.unauthorized}</h1>
-        <Button className="w-[5%]">
+        <Button className=" w-1/5">
           <Link href={`/${locale}/login`}>{commonDictionary.login}</Link>
         </Button>
       </div>
