@@ -4,7 +4,7 @@ import { TbLogin2 } from "react-icons/tb";
 // Hooks
 import { useContext, useState } from "react";
 // Utils
-import { Variants, m, motion } from "framer-motion";
+import { Variants, m, motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { signOut, useSession } from "next-auth/react";
 // Types
@@ -36,13 +36,14 @@ const tabContentVariants: Variants = {
     opacity: 1,
   },
   exit: {
-    y: -10,
+    x: 50,
+    skew: 2,
     opacity: 0,
   },
 };
 
 const SettingTab: React.FC<ITabsProps> = ({ tabs, defaultIndex = 0 }) => {
-  const [activeTabIndex, setActiveTabIndex] = useState(defaultIndex);
+  const [activeTab, setActiveTab] = useState(tabs[defaultIndex]);
   const { common } = useContext(DictionaryContext);
   const locale = useContext(LocaleContext);
   const session = useSession();
@@ -58,7 +59,7 @@ const SettingTab: React.FC<ITabsProps> = ({ tabs, defaultIndex = 0 }) => {
         transition={{ duration: 0.5 }}
       >
         {tabs.map((tab, index) => {
-          const isActive = activeTabIndex === index;
+          const isActive = activeTab.id === tab.id;
           return (
             <li
               key={tab.id}
@@ -67,7 +68,7 @@ const SettingTab: React.FC<ITabsProps> = ({ tabs, defaultIndex = 0 }) => {
                 !isActive && "hover:bg-muted"
               )}
               role="presentation"
-              onClick={() => setActiveTabIndex(index)}
+              onClick={() => setActiveTab(tab)}
             >
               <a className="p-4 flex items-center text-base overflow-hidden relative font-normal">
                 {tab.icon({ className: "size-6" })}
@@ -98,27 +99,23 @@ const SettingTab: React.FC<ITabsProps> = ({ tabs, defaultIndex = 0 }) => {
           </div>
         )}
       </m.ul>
-
-      {tabs.map(
-        (tab, index) =>
-          activeTabIndex === index && (
-            <m.div
-              role="tabpanel"
-              id={tab.id}
-              key={tab.id}
-              variants={tabContentVariants}
-              initial="initial"
-              animate="enter"
-              exit="exit"
-              className="flex-1 rounded-xl ml-10 px-10 w-full bg-background py-6 border border-muted"
-              transition={{
-                duration: 0.5,
-                delay: 0.5,
-              }}
-            >
-              {tab.content}
-            </m.div>
-          )
+      {activeTab.content && (
+        <AnimatePresence mode="wait">
+          <m.div
+            key={activeTab ? activeTab.id : "empty"}
+            role="tabpanel"
+            variants={tabContentVariants}
+            initial="initial"
+            animate="enter"
+            exit="exit"
+            className="flex-1 rounded-xl ml-10 px-10 w-full bg-background py-6 border border-muted"
+            transition={{
+              duration: 0.5,
+            }}
+          >
+            {activeTab.content}
+          </m.div>
+        </AnimatePresence>
       )}
     </div>
   );
