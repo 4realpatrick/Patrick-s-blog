@@ -55,7 +55,7 @@ const GenralSetting = () => {
       />
       <div className="space-y-8">
         {settings.map((setting) => (
-          <div className="space-y-2">
+          <div className="space-y-2" key={setting.id}>
             <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
               {setting.title}
             </label>
