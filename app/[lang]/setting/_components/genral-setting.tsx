@@ -4,14 +4,14 @@ import { ThemeColorController } from "@/components/theme/theme-color-controller"
 import { MdLanguage } from "react-icons/md";
 import { IoIosColorPalette } from "react-icons/io";
 import { MdOutlineDarkMode } from "react-icons/md";
+import Separator from "@/components/ui/separator";
+import { ThemeController } from "@/components/theme/theme-controller";
 // Hooks
 import { useContext, useMemo } from "react";
 // Context
 import CompositeAlert from "@/components/composite-alert";
 // Context
 import { DictionaryContext } from "@/components/dictionary-provider";
-import { ThemeController } from "@/components/theme/theme-controller";
-import Separator from "@/components/ui/separator";
 
 const GenralSetting = () => {
   const {
@@ -26,14 +26,14 @@ const GenralSetting = () => {
         description: dictionary.theme_description,
         id: "mode",
         icon: MdOutlineDarkMode,
-        cmp: <ThemeController />,
+        cmp: <ThemeController type="expand" />,
       },
       {
         title: dictionary.theme_color,
         description: dictionary.theme_color_description,
         id: "theme",
         icon: IoIosColorPalette,
-        cmp: <ThemeColorController />,
+        cmp: <ThemeColorController type="expand" />,
       },
       {
         title: dictionary.language,
@@ -54,25 +54,18 @@ const GenralSetting = () => {
         description={dictionary.alert_description}
       />
       <div className="space-y-8">
-        <div className="space-y-2">
-          <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"></label>
-        </div>
-      </div>
-      {settings.map((setting) => (
-        <div
-          className="flex bg-primary/20 p-4 rounded-md transition-[background]"
-          key={setting.id}
-        >
-          {setting.icon({ className: "size-6 mr-4 mt-1 text-primary" })}
-          <div className="space-y-2 flex-1">
-            <h2 className="text-xl">{setting.title}</h2>
-            <div className="text-sm text-muted-foreground">
+        {settings.map((setting) => (
+          <div className="space-y-2">
+            <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+              {setting.title}
+            </label>
+            <p className="text-[0.8rem] text-muted-foreground">
               {setting.description}
-            </div>
+            </p>
+            {setting.cmp}
           </div>
-          {setting.cmp}
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

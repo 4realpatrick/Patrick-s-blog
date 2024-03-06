@@ -49,7 +49,7 @@ const SettingTab: React.FC<ITabsProps> = ({ tabs, defaultIndex = 0 }) => {
   return (
     <div className="flex items-center flex-1 flex-col space-y-8 pt-4 lg:flex-row lg:space-x-12 lg:space-y-0 lg:pt-8 lg:items-stretch pb-10">
       <m.ul
-        className="flex gap-2 lg:flex-col lg:gap-4 w-full lg:w-auto bg-background lg:shadow-md rounded-md lg:py-4 lg:px-6"
+        className="flex gap-2 lg:flex-col lg:gap-4 w-full lg:w-auto bg-background lg:shadow-md rounded-md lg:py-4 lg:px-6 border-muted border"
         role="tablist"
         variants={tabContentVariants}
         initial="initial"
@@ -110,7 +110,7 @@ const SettingTab: React.FC<ITabsProps> = ({ tabs, defaultIndex = 0 }) => {
               initial="initial"
               animate="enter"
               exit="exit"
-              className="flex-1 rounded-xl ml-10 px-10 w-full bg-background/50"
+              className="flex-1 rounded-xl ml-10 px-10 w-full bg-background py-6 border border-muted"
               transition={{
                 duration: 0.5,
                 delay: 0.5,

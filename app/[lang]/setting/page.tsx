@@ -44,12 +44,12 @@ const SettingPage = () => {
   }, []);
   return (
     <LazyMotion features={domAnimation}>
-      <m.div className="space-y-0.5 pt-10" {...showup()}>
+      <m.div className="space-y-2 pt-10" {...showup()}>
         <h2 className="text-2xl font-bold tracking-tight">
           {commonDictionary.setting}
         </h2>
         <p className="text-muted-foreground">{setting.description}</p>
-        <Separator useTheme={false} className="!mt-8" />
+        <Separator useTheme={false} className="!mt-7" />
       </m.div>
       <SettingTab tabs={tabs} defaultIndex={1} />
     </LazyMotion>

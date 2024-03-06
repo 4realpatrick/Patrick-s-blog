@@ -28,11 +28,6 @@
         "theme_color_description": "更改应用的主题色",
         "theme": "模式",
         "theme_description": "改变应用的模式",
-        "themes": {
-          "system": "系统",
-          "light": "明亮",
-          "dark": "夜间模式"
-        },
         "language": "语言",
         "language_description": "更改应用的语言(目前仅支持中英文)",
         "alert_title": "小贴士",
@@ -103,8 +98,7 @@
         "zh": "中文(zh)",
         "en": "英文(en)"
       }
-    },
-    "theme_controller": {}
+    }
   },
   "common": {
     "hello": "你好",
@@ -136,6 +130,11 @@
       "red": "胭脂红",
       "violet": "紫罗兰",
       "yellow": "活力黄"
+    },
+    "themes": {
+      "system": "跟随系统",
+      "light": "明亮模式",
+      "dark": "夜间模式"
     },
     "provider_error": {
       "OAuthAccountNotLinked": "邮箱已经被占用,请检查是否使用其他方式登录过"
