@@ -6,7 +6,7 @@ import SettingDropdown from "./setting-dropdown";
 import Hint from "./hint";
 import Image from "next/image";
 // Hooks
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { usePathname } from "next/navigation";
 // Utils
 import {
@@ -15,19 +15,22 @@ import {
   domAnimation,
   useScroll,
   useSpring,
+  useMotionValueEvent,
 } from "framer-motion";
 // Constant
 import { getNavRoutes } from "@/constant/nav-routes";
 // Context
 import { DictionaryContext, LocaleContext } from "./dictionary-provider";
+import { cn } from "@/lib/utils";
 
 const Navbar = () => {
+  const [isTop, setIsTop] = useState(true);
   const {
     components: { navbar: dictionary },
     common: commonDictionary,
   } = useContext(DictionaryContext);
   const locale = useContext(LocaleContext);
-  const { scrollYProgress } = useScroll();
+  const { scrollYProgress, scrollY } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -36,29 +39,41 @@ const Navbar = () => {
   const pathname = usePathname();
   const isHome = pathname.split("/")[2] === undefined;
 
+  useMotionValueEvent(scrollY, "change", (lastValue) => {
+    setIsTop(lastValue < 50);
+  });
+
   return (
     <LazyMotion features={domAnimation}>
       <m.nav
-        className="flex justify-between items-center pl-4 py-4 fixed top-0 w-full z-50 bg-background shadow-md"
+        className={cn(
+          "flex justify-around items-center pl-4 py-2 fixed top-0 w-full z-50 bg-background transition-all shadow-md",
+          !isTop && "backdrop-blur bg-background/80 shadow-none"
+        )}
         initial={{ y: -76, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
       >
         <Hint descrption={commonDictionary.home} asChild>
           <Link
             className="flex items-center hover:scale-105 transition-transform"
-            href={`/${locale}/`}
+            href={`/${locale}`}
           >
             <Image
               src="/owner.jpg"
               width={40}
               height={40}
               alt="avatar"
-              className="rounded-full"
+              className="rounded-full select-none"
             />
           </Link>
         </Hint>
-        <div className="flex justify-end gap-x-8 pr-8">
+        <div
+          className={cn(
+            "flex justify-end gap-x-8 p-2 transition-[border-color] duration-200",
+            !isTop && "border border-muted-foreground rounded-md"
+          )}
+        >
           {getNavRoutes(dictionary.routes).map((nav) => (
             <Button
               variant="ghost"
