@@ -53,6 +53,7 @@
       },
       "danger": {
         "title": "危险操作",
+        "description": "请谨慎使用以下操作",
         "delete_account": "删除账户",
         "delete_account_description": "删除账户后, 您将无法使用此账号再访问此网站, 请谨慎操作",
         "delete_account_btn": "删除账户",

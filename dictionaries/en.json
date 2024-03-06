@@ -53,6 +53,7 @@
       },
       "danger": {
         "title": "Danger Zone",
+        "description": "Danger operations, be careful by using these",
         "delete_account": "Delete account",
         "delete_account_description": "This action is irreversible, please proceed with caution",
         "delete_account_btn": "Delete",

@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import Separator from "@/components/ui/separator";
 // Hooks
 import { useContext, useState, useTransition } from "react";
 import { useConrrentUser } from "@/hooks/use-current-user";
@@ -60,7 +61,9 @@ const DangerSetting = () => {
   };
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-bold">{dictionary.title}</h1>
+      <h3 className="text-lg font-medium">{dictionary.title}</h3>
+      <p className="text-sm text-muted-foreground">{dictionary.description}</p>
+      <Separator useTheme={false} />
       <div className="flex bg-destructive/20 p-4 rounded-md transition-[background]">
         <CgDanger className="size-6 mr-4 mt-1 text-destructive" />
         <div className="space-y-2 flex-1">
