@@ -1,7 +1,13 @@
-import { m, LazyMotion, domAnimation } from "framer-motion";
+import { m, LazyMotion, domAnimation, MotionProps } from "framer-motion";
 import { useEffect, useRef, PropsWithChildren } from "react";
+import { ButtonProps } from "../ui/button";
+import { cn } from "@/lib/utils";
 
-const SpotlightButton = ({ children, ...rest }: PropsWithChildren<{}>) => {
+const SpotlightButton = ({
+  className = "",
+  children,
+  ...rest
+}: PropsWithChildren<MotionProps & ButtonProps>) => {
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const spotlightRef = useRef<HTMLSpanElement | null>(null);
 
@@ -37,7 +43,10 @@ const SpotlightButton = ({ children, ...rest }: PropsWithChildren<{}>) => {
     <LazyMotion features={domAnimation}>
       <m.button
         whileTap={{ scale: 0.985 }}
-        className="relative w-full max-w-xs overflow-hidden rounded-lg bg-background px-4 py-3 text-lg font-medium text-white border"
+        className={cn(
+          "relative w-full max-w-xs overflow-hidden rounded-lg bg-background px-4 py-3 text-lg font-medium text-white border",
+          className
+        )}
         {...rest}
         ref={btnRef}
       >
