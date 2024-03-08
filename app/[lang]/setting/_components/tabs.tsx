@@ -70,10 +70,10 @@ const SettingTab: React.FC<ITabsProps> = ({ tabs, defaultIndex = 0 }) => {
               role="presentation"
               onClick={() => setActiveTab(tab)}
             >
-              <a className="p-4 flex items-center text-base overflow-hidden relative font-normal">
+              <nav className="p-4 flex items-center text-base overflow-hidden relative font-normal">
                 {tab.icon({ className: "size-6" })}
                 <span className="ml-3">{tab.title}</span>
-              </a>
+              </nav>
               {isActive && (
                 <motion.span
                   layoutId="indicator"
@@ -108,7 +108,7 @@ const SettingTab: React.FC<ITabsProps> = ({ tabs, defaultIndex = 0 }) => {
             initial="initial"
             animate="enter"
             exit="exit"
-            className="flex-1 rounded-xl ml-10 px-10 w-full bg-background py-6 border border-muted"
+            className="flex-1 rounded-xl ml-0 lg:ml-10 px-10 w-full bg-background py-6 border border-muted"
             transition={{
               duration: 0.5,
             }}
