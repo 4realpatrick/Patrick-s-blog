@@ -59,7 +59,11 @@ export function ThemeColorController({
       <div className="flex gap-6">
         {THEME_COLOR_ARRAY.map((color) => {
           return (
-            <div className="px-2" onClick={() => setCurTheme(color)}>
+            <div
+              className="px-2"
+              onClick={() => setCurTheme(color)}
+              key={color}
+            >
               <div
                 className={cn(
                   "size-20 rounded-full relative transition-opacity cursor-pointer",
