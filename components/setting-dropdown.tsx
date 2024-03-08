@@ -94,11 +94,6 @@ export default function SettingDropdown({
                     </Link>
                   </DropdownMenuItem>
                 ))}
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <GoPlusCircle className="mr-2 size-4" />
-                  <span>{dictionary.more}...</span>
-                </DropdownMenuItem>
               </DropdownMenuSubContent>
             </DropdownMenuPortal>
           </DropdownMenuSub>
