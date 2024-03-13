@@ -1,4 +1,4 @@
-const DrawOutlineButton = ({
+export const DrawOutlineButton = ({
   children,
   ...rest
 }: React.DetailedHTMLProps<
@@ -26,5 +26,3 @@ const DrawOutlineButton = ({
     </button>
   );
 };
-
-export default DrawOutlineButton;

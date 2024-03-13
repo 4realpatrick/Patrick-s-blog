@@ -3,7 +3,7 @@ import { useEffect, useRef, PropsWithChildren } from "react";
 import { ButtonProps } from "../ui/button";
 import { cn } from "@/lib/utils";
 
-const SpotlightButton = ({
+export const SpotlightButton = ({
   className = "",
   children,
   ...rest
@@ -61,5 +61,3 @@ const SpotlightButton = ({
     </LazyMotion>
   );
 };
-
-export default SpotlightButton;
