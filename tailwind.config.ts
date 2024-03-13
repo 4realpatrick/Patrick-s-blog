@@ -127,7 +127,7 @@ const config = {
   },
   plugins: [
     require("tailwindcss-animate"),
-    plugin(function ({ addUtilities }) {
+    plugin(function ({ addUtilities, matchUtilities, theme }) {
       addUtilities({
         ".underlineAnimation": {
           backgroundPosition: "0% 100%",
@@ -155,6 +155,15 @@ const config = {
           backgroundSize: "3rem 3rem",
         },
       });
+      matchUtilities(
+        {
+          "translate-z": (value) => ({
+            "--tw-translate-z": value,
+            transform: ` translate3d(var(--tw-translate-x), var(--tw-translate-y), var(--tw-translate-z)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))`,
+          }),
+        },
+        { values: theme("translate"), supportsNegativeValues: true }
+      );
     }),
   ],
 } satisfies Config;
