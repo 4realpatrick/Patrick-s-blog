@@ -23,7 +23,7 @@ export default async function RootLayout({
         // prevent error: Extra attributes from the server https://github.com/pacocoursey/next-themes?tab=readme-ov-file#with-app
         suppressHydrationWarning
       >
-        <body className="w-screen sm:min-w-[800px] md:min-w-[800px] lg:min-w-[800px] xl:min-w-[800px] 2xl:min-w-[800px]">
+        <body className="w-screen sm:min-w-[800px] md:min-w-[800px] lg:min-w-[800px] xl:min-w-[800px] 2xl:min-w-[800px] antialiased">
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <ThemeColorProvider />
             <Toaster richColors />
