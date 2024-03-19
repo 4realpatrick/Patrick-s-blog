@@ -56,7 +56,7 @@ export function ThemeColorController({
   if (!mounted) return null;
   if (type === "expand") {
     return (
-      <div className="flex gap-6">
+      <div className="flex gap-6 flex-wrap">
         {THEME_COLOR_ARRAY.map((color) => {
           return (
             <div

@@ -139,12 +139,9 @@ export function ThemeController({
 
   if (type === "expand") {
     return (
-      <div className="flex gap-8 items-center">
+      <div className="flex gap-8 items-center flex-wrap">
         {themeArray.map((color) => (
-          <div
-            className="flex-1 lg:max-w-[400px] max-w-[300px]"
-            key={color.value}
-          >
+          <div className="flex-1 lg:max-w-[33%] max-w-[50%]" key={color.value}>
             <div
               className={cn(
                 "items-center rounded-md border-2 p-1 cursor-pointer hover:border-primary transition-[border]",
