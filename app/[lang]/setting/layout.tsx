@@ -6,7 +6,7 @@ const SettingLayout = async ({
   children: React.ReactNode;
   params: { lang: Locale };
 }) => {
-  return <div className="size-full p-10 flex flex-col pt-20">{children}</div>;
+  return <div className="size-full p-10 flex flex-col">{children}</div>;
 };
 
 export default SettingLayout;

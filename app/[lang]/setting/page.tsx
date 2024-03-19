@@ -44,7 +44,7 @@ const SettingPage = () => {
   }, []);
   return (
     <LazyMotion features={domAnimation}>
-      <m.div className="space-y-2 pt-10" {...showup()}>
+      <m.div className="space-y-2" {...showup()}>
         <h2 className="text-2xl font-bold tracking-tight">
           {commonDictionary.setting}
         </h2>
