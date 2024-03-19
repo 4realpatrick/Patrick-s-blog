@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Separator from "@/components/ui/separator";
+import { Unauthorized } from "./unauthorized";
 // Hooks
 import { useContext, useState, useTransition } from "react";
 import { useConrrentUser } from "@/hooks/use-current-user";
@@ -40,7 +41,9 @@ const DangerSetting = () => {
   const [inputVal, setInputVal] = useState("");
   const [open, setOpen] = useState(false);
   const user = useConrrentUser();
-  if (!user) return null;
+  if (!user) {
+    return <Unauthorized />;
+  }
 
   const handleDelete = () => {
     if (inputVal !== user.name) {

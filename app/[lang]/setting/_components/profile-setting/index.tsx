@@ -1,11 +1,9 @@
 // Cmp
-import Locked from "@/components/svg-components/locked";
-import { buttonVariants } from "@/components/ui/button";
-import Link from "next/link";
 import UpdateForm from "./update-form";
 import ProfileAvatar from "./profile-avatar";
 import Separator from "@/components/ui/separator";
 import ChangePassword from "./change-password";
+import { Unauthorized } from "../unauthorized";
 // Context
 import {
   DictionaryContext,
@@ -14,8 +12,6 @@ import {
 // Hooks
 import { useConrrentUser } from "@/hooks/use-current-user";
 import { useContext, useEffect, useState } from "react";
-// Utils
-import { cn } from "@/lib/utils";
 
 const ProfileSetting = () => {
   const [mounted, setMounted] = useState(false);
@@ -33,18 +29,7 @@ const ProfileSetting = () => {
   }, []);
   if (!mounted) return null;
   if (!user) {
-    return (
-      <div className="size-full flex justify-center items-center flex-col gap-8">
-        <Locked className="size-[40%]" />
-        <h1 className="text-2xl">{dictionary.unauthorized}</h1>
-        <Link
-          href={`/${locale}/login`}
-          className={cn(buttonVariants({ variant: "default" }), "w-1/5")}
-        >
-          {commonDictionary.login}
-        </Link>
-      </div>
-    );
+    return <Unauthorized />;
   }
 
   return (
