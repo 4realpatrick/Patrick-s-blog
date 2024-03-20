@@ -77,7 +77,9 @@ const ResetForm = () => {
   };
   useEffect(() => {
     if (!token) {
-      return setError("缺少Token");
+      setError("缺少Token");
+      setLoading(false);
+      return;
     }
     const onCheckTokenExist = () => {
       newPasswordTokenCheck(token)
