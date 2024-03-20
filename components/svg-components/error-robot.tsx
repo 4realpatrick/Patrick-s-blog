@@ -7,7 +7,7 @@ const ErrorRobot = ({ className = "" }: { className?: string }) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_2_772)">
+      <g clipPath="url(#clip0_2_772)">
         <path
           opacity="0.2"
           d="M111.548 278.086C173.154 278.086 223.096 228.111 223.096 166.463C223.096 104.816 173.154 54.8407 111.548 54.8407C49.9417 54.8407 0 104.816 0 166.463C0 228.111 49.9417 278.086 111.548 278.086Z"
