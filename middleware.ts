@@ -12,7 +12,7 @@ import { Locale, i18n } from "./i18n.config";
 export const { auth } = NextAuth(authConfig);
 /**
  * @description 获取当前浏览器的语言
- * @param {NextRequest} req request
+ * @param {string} pathname current pathname
  * @returns {string} 返回当前的语言
  */
 function getLocale(pathname: string): Locale {
