@@ -14,6 +14,14 @@ import { cn } from "@/lib/utils";
 import { m } from "framer-motion";
 // Context
 import { DictionaryContext } from "../dictionary-provider";
+// Font
+import { Fuzzy_Bubbles } from "next/font/google";
+
+const fuzzyBubbles = Fuzzy_Bubbles({
+  subsets: ["latin"],
+  display: "swap",
+  weight: "700",
+});
 
 const Intro = () => {
   const {
@@ -41,7 +49,12 @@ const Intro = () => {
         </m.div>
         <m.div {...showup({ delay: 2 })} className="text-2xl">
           {dictionary.title}
-          <span className="underlineAnimation text-primary font-mono font-semibold ml-2">
+          <span
+            className={cn(
+              "underlineAnimation text-primary ml-2",
+              fuzzyBubbles.className
+            )}
+          >
             Patrick
           </span>
         </m.div>
