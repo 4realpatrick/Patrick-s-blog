@@ -3,12 +3,12 @@ import Accessbility from "./_components/accessbility";
 
 const AuthLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="min-h-[calc(100vh-76px)] pt-[76px] bg-background flex justify-center items-center px-10 flex-col-reverse mx-8 sm:flex-row space-x-0 sm:space-x-4 md:space-x-6 lg:space-x-10">
-      <div className="flex-1 pt-8 max-w-[1000px] space-y-8 ">
+    <div className="min-h-[calc(100vh-80px)] w-screen bg-background flex justify-center items-center px-10 flex-col-reverse lg:flex-row space-x-0 lg:space-x-20 pt-20 lg:pt-0">
+      <div className="pt-8 md:flex-1 space-y-8 pb-8 lg:pb-0 lg:pl-20">
         <Accessbility />
         {children}
       </div>
-      <div className="relative grow max-w-[1200px] flex items-center">
+      <div className="lg:flex-1 w-2/3 lg:w-full flex justify-center lg:block">
         <LoginBackground />
       </div>
     </div>

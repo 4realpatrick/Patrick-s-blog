@@ -8,7 +8,7 @@ const LoginBackground = () => {
         viewBox="0 0 1600 1080"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="rounded-md max-w-[1920px] max-h-[1080px] min-w-[480px] min-h-[270px] shadow-lg"
+        className="lg:max-w-[1000px] md:max-w-[800px] max-w-full"
         {...showup({ duration: 2 })}
       >
         <g clipPath="url(#clip0_14_357)">
@@ -17,6 +17,8 @@ const LoginBackground = () => {
             height="1080"
             transform="translate(0.904175)"
             fill="#E4DAC5"
+            rx={20}
+            ry={20}
           />
           <rect
             x="-0.0958252"
@@ -24,6 +26,8 @@ const LoginBackground = () => {
             width="1600"
             height="412.673"
             fill="#658E67"
+            rx={20}
+            ry={20}
           />
           <path
             d="M1040.05 902.253C1040.05 926.448 951.544 946.062 842.361 946.062C733.178 946.062 644.668 926.448 644.668 902.253C644.668 878.058 733.178 858.444 842.361 858.444C951.544 858.444 1040.05 878.058 1040.05 902.253Z"

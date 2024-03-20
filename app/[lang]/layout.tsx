@@ -20,7 +20,7 @@ const LangLayout = async ({
   return (
     <DictionaryProvider lang={params.lang} dictionary={dictionary}>
       <Navbar />
-      <main className="size-full">
+      <main className="size-full pt-20">
         {modal}
         {children}
       </main>

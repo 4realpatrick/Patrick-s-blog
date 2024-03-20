@@ -20,7 +20,7 @@ const ErrorPage = () => {
       className="flex flex-col items-center bg-background px-20 mt-8 justify-center flex-1 space-y-10"
       {...showup({ duration: 1 })}
     >
-      <Cookie className="size-[40%]" />
+      <Cookie className="size-[40%] lg:size-[50%]" />
       <h1 className="text-3xl">{error.title}</h1>
       <Button size="lg">
         <Link href={`/${locale}/login`}>{error.to_login}</Link>
