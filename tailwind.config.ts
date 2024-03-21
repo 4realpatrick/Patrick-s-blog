@@ -127,6 +127,7 @@ const config = {
   },
   plugins: [
     require("tailwindcss-animate"),
+    require("@tailwindcss/typography"),
     plugin(function ({ addUtilities, matchUtilities, theme }) {
       addUtilities({
         ".underlineAnimation": {
