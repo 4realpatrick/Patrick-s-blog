@@ -1,6 +1,6 @@
 import { ICommonResponse } from "@/types";
 import { toast } from "sonner";
-import getRegularTime from "./get-regular-time";
+import { getRegularTime } from "./time";
 
 export default function fetchHandler(
   response: ICommonResponse,
