@@ -86,6 +86,11 @@
       "verifying": "Verifying token...",
       "to_login": "Back to login",
       "success": "Password reset successfully, redirecting..."
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "My ramblings on all things web dev.",
+      "empty": "There is no blog yet, wait patiently for the author's update"
     }
   },
   "components": {

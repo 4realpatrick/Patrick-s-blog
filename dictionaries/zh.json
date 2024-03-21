@@ -86,6 +86,11 @@
       "verifying": "正在验证token...",
       "to_login": "回到登录",
       "success": "密码重置成功, 正在重定向..."
+    },
+    "blog": {
+      "title": "博客",
+      "description": "开发过程中的胡言乱语",
+      "empty": "暂时还没有博客, 耐心等待作者的更新吧"
     }
   },
   "components": {
