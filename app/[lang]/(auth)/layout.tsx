@@ -1,5 +1,8 @@
 import LoginBackground from "@/components/svg-components/login-background";
 import Accessbility from "./_components/accessbility";
+import { genPageMetadata } from "@/app/seo";
+
+export const metadata = genPageMetadata({ title: "Auth page" });
 
 const AuthLayout = async ({ children }: { children: React.ReactNode }) => {
   return (

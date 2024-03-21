@@ -1,4 +1,3 @@
-"use client";
 // Cmp
 import LoginForm from "@/app/[lang]/(auth)/_components/login-form";
 import Social from "@/app/[lang]/(auth)/_components/social";
@@ -6,21 +5,25 @@ import CompositeAlert from "@/components/composite-alert";
 import { Frame as LoginFrame } from "../_components/frame";
 import Separator from "@/components/ui/separator";
 import UnderlineLink from "@/components/underline-link";
-// Hooks
-import { useContext } from "react";
-// Context
-import {
-  DictionaryContext,
-  LocaleContext,
-} from "@/components/dictionary-provider";
+// Utils
+import { genPageMetadata } from "@/app/seo";
+import { getDictionary } from "@/lib/dictionary";
+import { getLocaleFromUrl } from "@/lib/get-locale";
+// Types
+import { Locale } from "@/i18n.config";
 
-const LoginPage = () => {
+export const metadata = genPageMetadata({ title: "Login page" });
+
+export default async function LoginPage({
+  params,
+}: {
+  params: { lang: Locale };
+}) {
   const {
     pages: { login: dictionary },
     common: commonDictionary,
-  } = useContext(DictionaryContext);
-
-  const locale = useContext(LocaleContext);
+  } = await getDictionary(params.lang);
+  const locale = getLocaleFromUrl();
 
   return (
     <LoginFrame
@@ -44,6 +47,4 @@ const LoginPage = () => {
       />
     </LoginFrame>
   );
-};
-
-export default LoginPage;
+}

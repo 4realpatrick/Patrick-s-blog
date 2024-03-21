@@ -1,25 +1,29 @@
-"use client";
 // Cmp
 import RegisterForm from "@/app/[lang]/(auth)/_components/register-form";
 import Social from "@/app/[lang]/(auth)/_components/social";
 import Separator from "@/components/ui/separator";
 import { Frame as RegisterFrame } from "../_components/frame";
 import UnderlineLink from "@/components/underline-link";
-// Hooks
-import { useContext } from "react";
-// Context
-import {
-  DictionaryContext,
-  LocaleContext,
-} from "@/components/dictionary-provider";
+// Utils
+import { genPageMetadata } from "@/app/seo";
+import { getDictionary } from "@/lib/dictionary";
+import { getLocaleFromUrl } from "@/lib/get-locale";
+// Types
+import { Locale } from "@/i18n.config";
 
-const RegisterPage = () => {
+export const metadata = genPageMetadata({ title: "Register page" });
+
+export default async function RegisterPage({
+  params,
+}: {
+  params: { lang: Locale };
+}) {
   const {
     pages: { register: dictionary },
     common: commonDictionary,
-  } = useContext(DictionaryContext);
+  } = await getDictionary(params.lang);
+  const locale = getLocaleFromUrl();
 
-  const locale = useContext(LocaleContext);
   return (
     <RegisterFrame
       title={dictionary.title}
@@ -37,6 +41,4 @@ const RegisterPage = () => {
       <Social />
     </RegisterFrame>
   );
-};
-
-export default RegisterPage;
+}

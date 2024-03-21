@@ -7,6 +7,9 @@ import { BlogCard } from "./_components/blog-card";
 import { Locale } from "@/i18n.config";
 // Utils
 import { getDictionary } from "@/lib/dictionary";
+import { genPageMetadata } from "@/app/seo";
+
+export const metadata = genPageMetadata({ title: "Blog" });
 
 export default async function BlogPage({
   params,

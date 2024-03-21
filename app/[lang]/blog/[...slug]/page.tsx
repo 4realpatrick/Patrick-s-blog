@@ -2,16 +2,60 @@ import { posts } from "#site/content";
 import { MDXContent } from "@/components/mdx-content";
 import { notFound } from "next/navigation";
 import "@/constant/mdx.css";
+import { Metadata } from "next";
+import { siteMetadata } from "@/data/site";
 
-interface IBlogDetailPageProps {
+export interface IBlogDetailPageProps {
   params: {
     slug: string[];
   };
 }
-async function getPostFromParams(params: IBlogDetailPageProps["params"]) {
+
+export async function getPostFromParams(
+  params: IBlogDetailPageProps["params"]
+) {
   const slug = params?.slug?.join("/");
   const blog = posts.find((post) => post.slugAsParams === slug);
   return blog;
+}
+
+export async function generateMetadata({
+  params,
+}: IBlogDetailPageProps): Promise<Metadata> {
+  const blog = await getPostFromParams(params);
+
+  if (!blog) {
+    return {};
+  }
+
+  const ogSearchParams = new URLSearchParams();
+  ogSearchParams.set("title", blog.title);
+
+  return {
+    title: blog.title,
+    description: blog.description,
+    authors: { name: siteMetadata.author },
+    openGraph: {
+      title: blog.title,
+      description: blog.description,
+      type: "article",
+      url: blog.slug,
+      images: [
+        {
+          url: `/api/og?${ogSearchParams.toString()}`,
+          width: 1200,
+          height: 630,
+          alt: blog.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: blog.title,
+      description: blog.description,
+      images: [`/api/og?${ogSearchParams.toString()}`],
+    },
+  };
 }
 
 export async function generateStaticParams(): Promise<

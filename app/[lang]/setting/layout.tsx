@@ -1,4 +1,7 @@
+import { genPageMetadata } from "@/app/seo";
 import { Locale } from "@/i18n.config";
+
+export const metadata = genPageMetadata({ title: "Setting" });
 
 const SettingLayout = async ({
   children,
