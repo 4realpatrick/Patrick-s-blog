@@ -1,6 +1,6 @@
 "use client";
 // Cmp
-import SpotlightButton from "@/components/buttons/spotlight-button";
+import { SpotlightButton } from "@/components/buttons/spotlight-button";
 import {
   AlertDialogFooter,
   AlertDialogHeader,
