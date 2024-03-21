@@ -1,6 +1,7 @@
 import { posts } from "#site/content";
 import { MDXContent } from "@/components/mdx-content";
 import { notFound } from "next/navigation";
+import "@/constant/mdx.css";
 
 interface IBlogDetailPageProps {
   params: {

@@ -18,6 +18,7 @@ export default async function RootLayout({
   return (
     <SessionProvider>
       <html
+        className=" scroll-pt-[5rem] scroll-smooth"
         data-theme="light"
         style={{ colorScheme: "light" }}
         // prevent error: Extra attributes from the server https://github.com/pacocoursey/next-themes?tab=readme-ov-file#with-app
