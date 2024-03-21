@@ -31,7 +31,9 @@ export default auth((req) => {
   // 去掉locale的pathname
   const pathnameWithoutLocale = pathname.replace(/^\/[^\/]+/, "");
 
-  const isApiAuthRoute = pathname.startsWith(apiAuthPrefix);
+  const isApiAuthRoute = apiAuthPrefix.some((prefix) =>
+    pathname.startsWith(prefix)
+  );
   const isPublicRoute = publicRoutes.includes(pathnameWithoutLocale);
   const isAuthRoute = authRoutes.includes(pathnameWithoutLocale);
 
