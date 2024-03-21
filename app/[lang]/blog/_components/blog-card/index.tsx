@@ -7,7 +7,7 @@ import { BlogDate } from "./date";
 // Utils
 import { isNewBlog } from "@/lib/time";
 // Types
-import { Post } from "@/.velite";
+import { Post } from "#site/content";
 
 export const BlogCard = (post: Post) => {
   const { slug, cover, title, description, tags, date } = post;
@@ -32,7 +32,7 @@ export const BlogCard = (post: Post) => {
           )}
           <div className="justify-end flex flex-wrap items-start gap-2 flex-col lg:flex-row">
             {tags.map((tag) => (
-              <Badge className="gap-2">
+              <Badge className="gap-2" key={tag}>
                 <FaHashtag />
                 <p>{tag}</p>
               </Badge>
