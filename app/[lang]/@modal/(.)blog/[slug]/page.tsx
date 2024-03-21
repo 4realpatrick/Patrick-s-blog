@@ -2,7 +2,6 @@
 import { useRouter } from "next/navigation";
 import { Modal } from "./modal";
 import { Button } from "@/components/ui/button";
-import Markdown from "react-markdown";
 
 export default function ArticleModal({
   params: { id: articleId },
@@ -16,9 +15,5 @@ export default function ArticleModal({
     }
   };
 
-  return (
-    <Modal>
-      <Markdown>{}</Markdown>
-    </Modal>
-  );
+  return <Modal>{articleId}</Modal>;
 }
