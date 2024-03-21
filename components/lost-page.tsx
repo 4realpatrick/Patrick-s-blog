@@ -30,7 +30,7 @@ const LostPage = () => {
 
   return (
     <LazyMotion features={domAnimation}>
-      <div className="flex flex-col items-center bg-background px-20 mt-8 justify-center flex-1 space-y-10">
+      <div className="flex flex-col items-center px-20 mt-8 justify-center flex-1 space-y-10">
         <Image404 className="size-[500px]" />
         <m.div
           className="space-y-6"
