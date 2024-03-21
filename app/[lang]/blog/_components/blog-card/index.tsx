@@ -14,7 +14,7 @@ export const BlogCard = (post: Post) => {
   return (
     <Link
       href={slug}
-      className="hover:scale-[102%] transition-all border hover:shadow-lg hover:shadow-primary rounded-2xl"
+      className="transition-all border hover:shadow-lg hover:shadow-primary rounded-2xl"
     >
       <div className="relative flex flex-col bg-background rounded-2xl">
         <figure className="flex items-center justify-center rounded-2xl">
