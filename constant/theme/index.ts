@@ -1,10 +1,19 @@
-export type TThemeColor = "blue" | "green" | "red" | "violet" | "yellow";
+export type TThemeColor =
+  | "blue"
+  | "green"
+  | "red"
+  | "violet"
+  | "yellow"
+  | "orange"
+  | "zinc";
 export const THEME_COLOR_ARRAY: TThemeColor[] = [
   "blue",
   "green",
   "red",
   "violet",
   "yellow",
+  "orange",
+  "zinc",
 ];
 export type TTheme = "system" | "light" | "dark";
 export const THEME_ARRAY: TTheme[] = ["system", "light", "dark"];

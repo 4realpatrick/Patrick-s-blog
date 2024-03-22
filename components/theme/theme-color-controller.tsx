@@ -30,6 +30,8 @@ const realColor = {
   red: "bg-red-500",
   violet: "bg-violet-500",
   yellow: "bg-yellow-500",
+  orange: "bg-orange-500",
+  zinc: "bg-black",
 };
 // Types
 interface IThemeControllerProps {
@@ -73,7 +75,7 @@ export function ThemeColorController({
               >
                 {color === curTheme && (
                   <div className="absolute inset-0 rounded-full flex items-center justify-center bg-primary/70">
-                    <FaCheck />
+                    <FaCheck className="text-background" />
                   </div>
                 )}
               </div>

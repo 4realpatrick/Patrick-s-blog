@@ -135,7 +135,9 @@
       "green": "Green",
       "red": "Red",
       "violet": "Violet",
-      "yellow": "Yellow"
+      "yellow": "Yellow",
+      "orange": "Orange",
+      "Zinc": "Zinc"
     },
     "themes": {
       "system": "Follow the system",

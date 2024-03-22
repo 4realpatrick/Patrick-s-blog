@@ -135,7 +135,9 @@
       "green": "苹果绿",
       "red": "胭脂红",
       "violet": "紫罗兰",
-      "yellow": "活力黄"
+      "yellow": "活力黄",
+      "orange": "果粒橙",
+      "zinc": "商务黑"
     },
     "themes": {
       "system": "跟随系统",
