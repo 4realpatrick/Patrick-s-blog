@@ -4,42 +4,60 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaHashtag } from "react-icons/fa";
 import { BlogDate } from "./date";
+import Hint from "@/components/hint";
 // Utils
 import { isNewBlog } from "@/lib/time";
 // Types
 import { Post } from "#site/content";
 
 export const BlogCard = (post: Post) => {
-  const { slug, cover, title, description, tags, date } = post;
+  const { slug, cover, title, description, tags = [], date } = post;
   return (
     <Link
       href={slug}
-      className="transition-all border hover:shadow-lg hover:shadow-primary rounded-2xl"
+      className="transition-all border hover:shadow-lg hover:shadow-primary rounded-2xl bg-background flex flex-col justify-between"
     >
-      <div className="relative flex flex-col bg-background rounded-2xl">
-        <figure className="flex items-center justify-center rounded-2xl">
-          <Image src={cover} alt="Cover" className="rounded-t-2xl" />
-        </figure>
-        <div className="flex flex-[1_1_auto] flex-col p-8 gap-2">
-          <span className="flex items-center gap-2 text-xl font-semibold">
-            {title}
-          </span>
-          <p>{description}</p>
-          {isNewBlog(date) && (
-            <Badge variant="primary" className="w-fit">
-              NEW
-            </Badge>
+      <div className="h-fit">
+        <figure className="flex items-center justify-center rounded-t-2xl overflow-hidden shrink-0 w-full">
+          {cover ? (
+            <Image
+              src={cover}
+              alt="Cover"
+              className="rounded-t-2xl object-cover size-full aspect-video"
+            />
+          ) : (
+            <div className="rounded-t-2xl bg-primary size-full"></div>
           )}
-          <div className="justify-end flex flex-wrap items-start gap-2 flex-col lg:flex-row">
-            {tags.map((tag) => (
+        </figure>
+        <div className="p-8 space-y-2">
+          <h2 className="text-xl font-semibold">
+            {title}
+            {isNewBlog(date) && (
+              <Badge variant="primary" className="w-fit inline ml-2">
+                NEW
+              </Badge>
+            )}
+          </h2>
+          <p>{description}</p>
+
+          <div className="justify-end flex flex-wrap items-start gap-2">
+            {tags.slice(0, 3).map((tag) => (
               <Badge className="gap-2" key={tag}>
                 <FaHashtag />
                 <p>{tag}</p>
               </Badge>
             ))}
+            {tags.length > 3 && (
+              <Hint descrption={tags.slice(3, tags.length).join("、")} asChild>
+                <Badge className="gap-2 hover:bg-primary/10">...</Badge>
+              </Hint>
+            )}
           </div>
-          <BlogDate date={date} />
         </div>
+      </div>
+
+      <div className="px-4 pb-8">
+        <BlogDate date={date} />
       </div>
     </Link>
   );
