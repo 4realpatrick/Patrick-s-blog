@@ -8,7 +8,7 @@ export const DrawOutlineButton = ({
   return (
     <button
       {...rest}
-      className="group relative px-4 py-2 font-medium text-primary transition-colors duration-[400ms] bg-background"
+      className="group relative px-4 py-2 font-medium text-primary transition-colors duration-300 bg-background"
     >
       <span className="text-primary">{children}</span>
 
