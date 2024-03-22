@@ -73,7 +73,7 @@ const SettingTab: React.FC<ITabsProps> = ({ tabs, defaultIndex = 0 }) => {
               {isActive && (
                 <motion.span
                   layoutId="indicator"
-                  className="absolute inset-0 rounded-full bg-primary"
+                  className="absolute inset-0 rounded-md bg-primary"
                 />
               )}
               <nav
