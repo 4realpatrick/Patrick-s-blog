@@ -14,7 +14,9 @@ export interface IBlogDetailPageProps {
 export async function getPostFromParams(
   params: IBlogDetailPageProps["params"]
 ) {
-  const slug = params?.slug?.join("/");
+  const slug = Array.isArray(params.slug)
+    ? params?.slug?.join("/")
+    : params.slug;
   const blog = posts.find((post) => post.slugAsParams === slug);
   return blog;
 }
