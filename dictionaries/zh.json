@@ -104,6 +104,24 @@
         "zh": "中文(zh)",
         "en": "英文(en)"
       }
+    },
+    "blog_filter": {
+      "title": "筛选",
+      "reset": "重置",
+      "tag_filter": {
+        "title": "标签",
+        "placeholder": "搜索标签",
+        "empty": "无结果",
+        "clear": "清空该筛选器"
+      },
+      "keyword_filter": {
+        "placeholder": "输入关键词"
+      },
+      "time_filter": {
+        "ascend": "升序",
+        "descend": "降序",
+        "title": "按时间排序"
+      }
     }
   },
   "common": {

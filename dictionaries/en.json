@@ -104,6 +104,24 @@
         "zh": "Simplified Chinese(zh)",
         "en": "English(en)"
       }
+    },
+    "blog_filter": {
+      "title": "Filter by",
+      "reset": "Reset",
+      "tag_filter": {
+        "title": "Tags",
+        "placeholder": "Search tags",
+        "empty": "No tag found",
+        "clear": "Clear filters"
+      },
+      "keyword_filter": {
+        "placeholder": "Filter Blog..."
+      },
+      "time_filter": {
+        "ascend": "Ascend",
+        "descend": "Descend",
+        "title": "By order of time"
+      }
     }
   },
   "common": {

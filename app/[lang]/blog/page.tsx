@@ -8,6 +8,7 @@ import { Locale } from "@/i18n.config";
 // Utils
 import { getDictionary } from "@/lib/dictionary";
 import { genPageMetadata } from "@/app/seo";
+import { BlogFilter } from "./_components/filter";
 
 export const metadata = genPageMetadata({ title: "Blog" });
 
@@ -20,6 +21,7 @@ export default async function BlogPage({
 }) {
   const {
     pages: { blog: dictionary },
+    components: { blog_filter: blogFilter },
   } = await getDictionary(params.lang);
   if (!posts.length) {
     return <Empty />;
@@ -37,7 +39,8 @@ export default async function BlogPage({
         </div>
       </div>
       <hr className="my-8" />
-      <div className="grid grid-cols-1 gap-6 lg:gap-10 sm:grid-cols-2 lg:grid-cols-3">
+      <BlogFilter dictionary={blogFilter} />
+      <div className="grid grid-cols-1 gap-6 lg:gap-10 sm:grid-cols-2 lg:grid-cols-3 mt-8">
         {posts.map((post) => (
           <BlogCard {...post} key={post.slugAsParams} />
         ))}
