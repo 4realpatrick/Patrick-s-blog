@@ -14,23 +14,18 @@ const posts = defineCollection({
   schema: s
     .object({
       slug: s.path(),
-      title: s.string().max(99),
-      description: s.string().max(999).optional(),
+      title: s.string().max(50),
+      description: s.string().max(150).optional(),
       date: s.isodate(),
-      cover: s.image(),
-      tags: s.array(s.string()),
+      cover: s.image().optional(),
+      tags: s.array(s.string().max(15)).optional(),
       body: s.mdx(),
     })
     .transform(computedFields),
 });
 
 export default defineConfig({
-  root: "content",
   output: {
-    data: ".velite",
-    assets: "public/static",
-    base: "/static/",
-    name: "[name]-[hash:6].[ext]",
     clean: true,
   },
   collections: {
