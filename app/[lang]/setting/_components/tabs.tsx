@@ -50,7 +50,7 @@ const SettingTab: React.FC<ITabsProps> = ({ tabs, defaultIndex = 0 }) => {
   return (
     <div className="flex items-center flex-1 flex-col space-y-8 pt-4 lg:flex-row lg:space-x-12 lg:space-y-0 lg:pt-8 lg:items-stretch pb-10">
       <m.ul
-        className="flex gap-2 lg:flex-col lg:gap-4 w-full lg:w-auto bg-background lg:shadow-md rounded-md lg:py-4 lg:px-6 border-muted border"
+        className="flex lg:flex-col lg:gap-4 w-full lg:w-auto bg-background lg:shadow-md rounded-md lg:py-4 lg:px-6 border-muted border"
         role="tablist"
         variants={tabContentVariants}
         initial="initial"
@@ -64,22 +64,27 @@ const SettingTab: React.FC<ITabsProps> = ({ tabs, defaultIndex = 0 }) => {
             <li
               key={tab.id}
               className={cn(
-                "inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:text-accent-foreground h-9 lg:px-4 py-6 justify-start relative cursor-pointer",
+                "inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:text-accent-foreground h-9 lg:px-4 py-6 justify-start relative cursor-pointer lg:flex-[0_1_auto]",
                 !isActive && "hover:bg-muted"
               )}
               role="presentation"
               onClick={() => setActiveTab(tab)}
             >
-              <nav className="p-4 flex items-center text-base overflow-hidden relative font-normal">
-                {tab.icon({ className: "size-6" })}
-                <span className="ml-3">{tab.title}</span>
-              </nav>
               {isActive && (
                 <motion.span
                   layoutId="indicator"
-                  className="absolute w-full h-[2px] bottom-0 lg:h-full lg:left-0 lg:w-[2px] bg-primary rounded-md"
+                  className="absolute inset-0 rounded-full bg-primary"
                 />
               )}
+              <nav
+                className={cn(
+                  "p-4 flex items-center text-base overflow-hidden relative font-normal",
+                  isActive && "text-primary-foreground"
+                )}
+              >
+                {tab.icon({ className: "size-6 hidden md:inline" })}
+                <span className="ml-3">{tab.title}</span>
+              </nav>
             </li>
           );
         })}
