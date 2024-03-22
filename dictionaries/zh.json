@@ -96,7 +96,7 @@
   "components": {
     "navbar": {
       "title": "Patrick的博客",
-      "routes": ["CSS", "JS", "首页"]
+      "routes": ["博客", "项目", "关于"]
     },
     "language_controller": {
       "language_placeholder": "请选择一种语言",

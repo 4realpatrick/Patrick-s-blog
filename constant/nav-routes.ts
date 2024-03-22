@@ -1,18 +1,24 @@
-import { FaCss3 } from "react-icons/fa";
-import { IoLogoJavascript } from "react-icons/io5";
-import { FaHome } from "react-icons/fa";
+import { MdArticle } from "react-icons/md";
+import { AiOutlineFundProjectionScreen } from "react-icons/ai";
+import { SiAboutdotme } from "react-icons/si";
 import { TDictionary } from "@/lib/dictionary";
+import { CgProfile } from "react-icons/cg";
+
 export const getNavRoutes = (
   dictionary: TDictionary["components"]["navbar"]["routes"]
 ) => {
   const navRoutes = [
     {
-      icon: FaCss3,
-      href: "/css",
+      icon: MdArticle,
+      href: "/blog",
     },
     {
-      icon: IoLogoJavascript,
-      href: "/js",
+      icon: AiOutlineFundProjectionScreen,
+      href: "/project",
+    },
+    {
+      icon: CgProfile,
+      href: "/about",
     },
   ];
   return navRoutes.map((route, index) => ({

@@ -56,7 +56,7 @@ const Navbar = () => {
       >
         <Hint descrption={commonDictionary.home} asChild>
           <Link
-            className="flex items-center hover:scale-105 transition-transform"
+            className="flex items-center hover:scale-105 transition-transform shrink-0"
             href={`/${locale}`}
           >
             <Image
@@ -75,18 +75,12 @@ const Navbar = () => {
           )}
         >
           {getNavRoutes(dictionary.routes).map((nav) => (
-            <Button
-              variant="ghost"
-              size="lg"
-              className="text-lg"
-              asChild
-              key={nav.title}
-            >
+            <Button variant="ghost" asChild key={nav.title}>
               <Link
                 href={`/${locale}${nav.href}`}
                 className="hover:text-primary"
               >
-                <nav.icon className="mr-2" />
+                <nav.icon className="mr-2 hidden lg:inline size-6" />
                 {nav.title}
               </Link>
             </Button>

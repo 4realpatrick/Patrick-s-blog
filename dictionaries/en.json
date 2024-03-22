@@ -96,7 +96,7 @@
   "components": {
     "navbar": {
       "title": "Patrick's Blog",
-      "routes": ["CSS", "JS", "Homepage"]
+      "routes": ["Blog", "Project", "About"]
     },
     "language_controller": {
       "language_placeholder": "Select a language",
