@@ -69,6 +69,7 @@ export const BlogCard = (post: Post) => {
                         className={cn(isSelected && "bg-primary/10")}
                         key={tag}
                       >
+                        <FaHashtag />
                         {tag}
                       </Badge>
                     );
