@@ -3,15 +3,18 @@ import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import Link from "next/link";
 import { FaHashtag } from "react-icons/fa";
-import { BlogDate } from "./date";
+import { BlogDate } from "./blog-date";
 import Hint from "@/components/hint";
 // Utils
 import { isNewBlog } from "@/lib/time";
 // Types
 import { Post } from "#site/content";
+import { useBlogState } from "@/hooks/use-blog-state";
+import { cn } from "@/lib/utils";
 
 export const BlogCard = (post: Post) => {
   const { slug, cover, title, description, tags = [], date } = post;
+  const filters = useBlogState((state) => state.filters);
   return (
     <Link
       href={slug}
@@ -39,24 +42,43 @@ export const BlogCard = (post: Post) => {
             )}
           </h2>
           <p>{description}</p>
-
-          <div className="justify-end flex flex-wrap items-start gap-2">
-            {tags.slice(0, 3).map((tag) => (
-              <Badge className="gap-2" key={tag}>
+        </div>
+      </div>
+      <div className="px-8 pb-8 space-y-4">
+        <div className="justify-end flex flex-wrap items-start gap-2">
+          {tags.slice(0, 3).map((tag) => {
+            const isSelected = filters.tags.includes(tag);
+            return (
+              <Badge
+                className={cn("gap-2", isSelected && "bg-primary/10")}
+                key={tag}
+              >
                 <FaHashtag />
                 <p>{tag}</p>
               </Badge>
-            ))}
-            {tags.length > 3 && (
-              <Hint descrption={tags.slice(3, tags.length).join("、")} asChild>
-                <Badge className="gap-2 hover:bg-primary/10">...</Badge>
-              </Hint>
-            )}
-          </div>
+            );
+          })}
+          {tags.length > 3 && (
+            <Hint
+              descrption={
+                <div className="flex flex-wrap gap-2">
+                  {tags.slice(3, tags.length).map((tag) => {
+                    const isSelected = filters.tags.includes(tag);
+                    return (
+                      <Badge className={cn(isSelected && "bg-primary/10")}>
+                        {tag}
+                      </Badge>
+                    );
+                  })}
+                </div>
+              }
+              asChild
+              sideOffset={5}
+            >
+              <Badge className="gap-2 hover:bg-primary/10">...</Badge>
+            </Hint>
+          )}
         </div>
-      </div>
-
-      <div className="px-4 pb-8">
         <BlogDate date={date} />
       </div>
     </Link>

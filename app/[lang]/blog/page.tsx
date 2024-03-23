@@ -2,13 +2,13 @@
 import { posts } from "#site/content";
 // Cmp
 import { Empty } from "./_components/empty";
-import { BlogCard } from "./_components/blog-card";
+import { BlogFilter } from "./_components/filter";
+import { BlogArea } from "./_components/blog-area";
 // Types
 import { Locale } from "@/i18n.config";
 // Utils
 import { getDictionary } from "@/lib/dictionary";
 import { genPageMetadata } from "@/app/seo";
-import { BlogFilter } from "./_components/filter";
 
 export const metadata = genPageMetadata({ title: "Blog" });
 
@@ -40,11 +40,7 @@ export default async function BlogPage({
       </div>
       <hr className="my-8" />
       <BlogFilter dictionary={blogFilter} />
-      <div className="grid grid-cols-1 gap-6 lg:gap-10 sm:grid-cols-2 lg:grid-cols-3 mt-8">
-        {posts.map((post) => (
-          <BlogCard {...post} key={post.slugAsParams} />
-        ))}
-      </div>
+      <BlogArea />
     </div>
   );
 }
