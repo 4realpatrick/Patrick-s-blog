@@ -1,7 +1,11 @@
 "use client";
-import { useBlogState } from "@/hooks/use-blog-state";
+// Cmp
 import { BlogCard } from "./blog-card";
+import { AnimatePresence } from "framer-motion";
+// Hooks
+import { useBlogState } from "@/hooks/use-blog-state";
 import { useMemo } from "react";
+// Utils
 import {
   filterBlogsByKeyword,
   filterBlogsByTags,
@@ -26,9 +30,11 @@ export const BlogArea = () => {
 
   return (
     <div className="grid grid-cols-1 gap-6 lg:gap-10 sm:grid-cols-2 lg:grid-cols-3 mt-8">
-      {filteredBlog.map((blog) => (
-        <BlogCard {...blog} key={blog.slugAsParams} />
-      ))}
+      <AnimatePresence mode="sync">
+        {filteredBlog.map((blog) => (
+          <BlogCard {...blog} key={blog.slugAsParams} />
+        ))}
+      </AnimatePresence>
     </div>
   );
 };
