@@ -7,7 +7,7 @@ import {
 
 interface IHintProps {
   children: React.ReactNode;
-  descrption: string;
+  descrption: string | React.ReactNode;
   side?: "left" | "right" | "top" | "bottom";
   sideOffset?: number;
   asChild?: boolean;
