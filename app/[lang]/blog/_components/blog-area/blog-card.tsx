@@ -65,7 +65,10 @@ export const BlogCard = (post: Post) => {
                   {tags.slice(3, tags.length).map((tag) => {
                     const isSelected = filters.tags.includes(tag);
                     return (
-                      <Badge className={cn(isSelected && "bg-primary/10")}>
+                      <Badge
+                        className={cn(isSelected && "bg-primary/10")}
+                        key={tag}
+                      >
                         {tag}
                       </Badge>
                     );
