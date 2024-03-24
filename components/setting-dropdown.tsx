@@ -65,7 +65,7 @@ export default function SettingDropdown({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="text-lg" size="lg">
+        <Button variant="ghost" className="text-lg">
           <IoMdMenu />
         </Button>
       </DropdownMenuTrigger>
