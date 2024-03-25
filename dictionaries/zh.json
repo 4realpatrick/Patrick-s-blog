@@ -112,7 +112,8 @@
         "title": "标签",
         "placeholder": "搜索标签",
         "empty": "无结果",
-        "clear": "清空该筛选器"
+        "clear": "清空该筛选器",
+        "selected": "个已选"
       },
       "keyword_filter": {
         "placeholder": "输入关键词"

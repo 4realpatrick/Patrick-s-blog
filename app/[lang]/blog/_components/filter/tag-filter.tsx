@@ -66,7 +66,7 @@ export const TagFilter: React.FC<ITagFilter> = ({
                     variant="secondary"
                     className="rounded-sm px-1 font-normal"
                   >
-                    {tags.length} selected
+                    {tags.length} {dictionary.selected}
                   </Badge>
                 ) : (
                   tags.map((tag) => (

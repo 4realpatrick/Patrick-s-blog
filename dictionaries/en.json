@@ -112,7 +112,8 @@
         "title": "Tags",
         "placeholder": "Search tags",
         "empty": "No tag found",
-        "clear": "Clear filters"
+        "clear": "Clear filters",
+        "selected": "Selected"
       },
       "keyword_filter": {
         "placeholder": "Filter Blog..."
