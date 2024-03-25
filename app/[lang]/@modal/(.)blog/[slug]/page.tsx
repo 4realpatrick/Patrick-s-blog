@@ -2,7 +2,7 @@
 import { Modal } from "./modal";
 import { Badge } from "@/components/ui/badge";
 import { MDXContent } from "@/components/mdx-content";
-import { BlogFooter } from "@/app/[lang]/blog/[...slug]/_components/footer";
+import { BlogFooter } from "@/app/[lang]/blog/[slug]/_components/footer";
 import { FaHashtag } from "react-icons/fa";
 import { FaCalendar } from "react-icons/fa";
 // Constant

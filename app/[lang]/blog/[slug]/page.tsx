@@ -19,15 +19,12 @@ import { Metadata } from "next";
 
 export interface IBlogDetailPageProps {
   params: {
-    slug: string[];
+    slug: string;
   };
 }
 
 async function getPostFromParams(params: IBlogDetailPageProps["params"]) {
-  const slug = Array.isArray(params.slug)
-    ? params?.slug?.join("/")
-    : params.slug;
-  const blog = posts.find((post) => post.slugAsParams === slug);
+  const blog = posts.find((post) => post.slugAsParams === params.slug);
   return blog;
 }
 
@@ -73,7 +70,7 @@ export async function generateMetadata({
 export async function generateStaticParams(): Promise<
   IBlogDetailPageProps["params"][]
 > {
-  return posts.map((post) => ({ slug: post.slugAsParams.split("/") }));
+  return posts.map((post) => ({ slug: post.slugAsParams }));
 }
 
 export default async function BlogDetailPage({ params }: IBlogDetailPageProps) {
