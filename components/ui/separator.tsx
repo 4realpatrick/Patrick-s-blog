@@ -26,4 +26,6 @@ const Separator: React.FC<ISeparatorProps> = memo(
   }
 );
 
+Separator.displayName = "Separator";
+
 export default Separator;
