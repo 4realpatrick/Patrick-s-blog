@@ -12,14 +12,15 @@ import "dayjs/locale/zh";
 // Utils
 import { notFound } from "next/navigation";
 import dayjs from "dayjs";
-import { getLocaleFromUrl } from "@/lib/get-locale";
 import { getFormatterByLocale } from "@/lib/time";
 // Types
 import { Metadata } from "next";
+import { Locale } from "@/i18n.config";
 
 export interface IBlogDetailPageProps {
   params: {
     slug: string;
+    lang: Locale;
   };
 }
 
@@ -70,12 +71,10 @@ export async function generateMetadata({
 export async function generateStaticParams(): Promise<
   IBlogDetailPageProps["params"][]
 > {
-  return posts.map((post) => ({ slug: post.slugAsParams }));
+  return posts.map((post) => ({ slug: post.slugAsParams, lang: "en" }));
 }
 
 export default async function BlogDetailPage({ params }: IBlogDetailPageProps) {
-  const locale = getLocaleFromUrl();
-
   const blog = await getPostFromParams(params);
 
   if (!blog) {
@@ -95,7 +94,9 @@ export default async function BlogDetailPage({ params }: IBlogDetailPageProps) {
         </div>
         <div className="flex items-center gap-2">
           <FaCalendar />
-          {dayjs(blog.date).locale(locale).format(getFormatterByLocale(locale))}
+          {dayjs(blog.date)
+            .locale(params.lang)
+            .format(getFormatterByLocale(params.lang))}
         </div>
         <hr className="my-4" />
         {blog.description ? (
