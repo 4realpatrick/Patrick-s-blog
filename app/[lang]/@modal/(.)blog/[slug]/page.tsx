@@ -22,7 +22,7 @@ interface IBlogModalPageProps {
   };
 }
 
-export async function getPostFromParams(params: IBlogModalPageProps["params"]) {
+async function getPostFromParams(params: IBlogModalPageProps["params"]) {
   const slug = Array.isArray(params.slug)
     ? params?.slug?.join("/")
     : params.slug;
