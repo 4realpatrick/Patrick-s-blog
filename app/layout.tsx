@@ -5,6 +5,7 @@ import ThemeColorProvider from "@/components/theme/theme-color-provider";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { siteMetadata } from "@/data/site";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
@@ -66,6 +67,7 @@ export default async function RootLayout({
             <ThemeColorProvider />
             <Toaster richColors />
             {children}
+            <Analytics />
           </ThemeProvider>
         </body>
       </html>
