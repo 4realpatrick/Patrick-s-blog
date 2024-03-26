@@ -16,8 +16,8 @@ import { useBlogState } from "@/hooks/use-blog-state";
 
 const MotionLink = m(Link);
 
-export const BlogCard = (post: Post) => {
-  const { slug, cover, title, description, tags = [], date } = post;
+export const BlogCard = (post: Post & { order: number }) => {
+  const { slug, cover, title, description, tags = [], date, order } = post;
   const filters = useBlogState((state) => state.filters);
   return (
     <LazyMotion features={domAnimation}>
@@ -37,6 +37,9 @@ export const BlogCard = (post: Post) => {
           once: true,
           amount: 0.8,
           margin: "20px",
+        }}
+        transition={{
+          delay: 0.2 * order + 0.5,
         }}
       >
         <div className="h-fit">
